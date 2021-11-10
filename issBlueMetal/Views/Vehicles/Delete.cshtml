@@ -1,0 +1,182 @@
+﻿@model issBlueMetal.Models.Vehicle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Vehicle Delete</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Vehicles/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Delete</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.vehicleNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.vehicleNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.shortNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.shortNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.vehicleName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.vehicleName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.registrationAddress)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.registrationAddress)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.mfdYear)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.mfdYear)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.insuranceExDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.insuranceExDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.taxExDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.taxExDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.permitExDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.permitExDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.fcExDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.fcExDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.oillService)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.oillService)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.greecePacking)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.greecePacking)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.coolentOill)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.coolentOill)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.gearBoxOill)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.gearBoxOill)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.grownOill)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.grownOill)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.salary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.salary)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.vehicleDetail)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.vehicleDetail)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.noofUnit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.noofUnit)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color" style="text-align:center">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

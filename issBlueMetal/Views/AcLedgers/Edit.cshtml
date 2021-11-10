@@ -1,0 +1,106 @@
+﻿@model issBlueMetal.Models.AcLedger
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Account ledger Edit</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/AcLedgers/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Edit</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="header-elements">
+                        <div class="list-icons" style="text-align:right">
+                            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="form-group">
+
+                                <div class="input-field col s3">
+                                    <label for="icon_prefix3">Account ledger</label>
+                                    <div class="form-control input-field">
+                                        @Html.EditorFor(model => model.accountledger, new { htmlAttributes = new { @class = "form-control", } })
+                                        @Html.ValidationMessageFor(model => model.accountledger, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="input-field col s3" style="height: 240.047px">
+                                    <label for="icon_prefix3">Account Group</label>
+                                    <div class="form-control input-field">
+                                        @Html.DropDownList("accountGroupID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.accountGroupID, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="input-field col s3">
+                                    <div class="form-control input-field">
+                                        @Html.EditorFor(model => model.openingBal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Opening Bal" } })
+                                        @Html.ValidationMessageFor(model => model.openingBal, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="input-field col s3">
+                                    <label for="icon_prefix3">Status</label>
+                                    <div class="form-control input-field">
+                                        @Html.DropDownList("type", new List<SelectListItem>
+                                         {
+new SelectListItem{ Text="Debit", Value="Debit"},
+new SelectListItem{ Text="Credit", Value="Credit"},
+}, "--- Select ---", new { @class = "js-example-basic-single" })
+                                        @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 input-field col s3">
+                                <input type="submit" value="SUBMIT" class="btn btn-default" />
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

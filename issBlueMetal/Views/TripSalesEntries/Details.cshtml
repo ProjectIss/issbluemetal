@@ -1,0 +1,154 @@
+﻿@model issBlueMetal.Models.TripSalesEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TripSalesEntry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicleNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicleNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.driverName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.driverName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.materialName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.materialName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deliveryPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliveryPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noofUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noofUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.driverSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.driverSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.netAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.netAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paidAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paidAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rateperUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rateperUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.advanceAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.advanceAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.balanceAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.balanceAmt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

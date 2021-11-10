@@ -1,0 +1,364 @@
+﻿@model issBlueMetal.Models.RawMateriyalPurchase
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+}
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Raw Materiyal Purchase Edit</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/RawMateriyalPurchases/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Edit</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col s12">
+                <div id="icon-prefixes" class="card card-tabs">
+                    <div class="card-content">
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col s12 m6 l10">
+                                    <h4 class="card-title">New Purchase</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="view-icon-prefixes" class="active">
+                            <div class="row">
+
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s6">
+                                            <div class="form-control input-field">
+                                                @*<input type="date" name="Date" id="Date" value="@Model.Date" class="form-control" />*@
+                                                @Html.TextBoxFor(m => m.dateTime, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                                @* @Html.TextBoxFor(m => m.dateTime, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        @Html.DropDownList("vehicleId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_prefix3">Vehicle Id </label>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+
+                                        <i class="material-icons prefix">account_circle</i>
+                                        @Html.DropDownList("staffId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_prefix3">Driver Name</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <label for="icon_prefix3">Type</label>
+                                        <div class="form-control input-field">
+
+                                            @Html.DropDownList("type", new List<SelectListItem>
+                                             {
+    new SelectListItem{ Text="6 WHEELER HMV", Value="6 WHEELER HMV"},
+    new SelectListItem{ Text="10 WHEELER HMV", Value="10 WHEELER HMV"},
+    new SelectListItem{ Text="LCV", Value="LCV"},
+    new SelectListItem{ Text="JCB", Value="JCB"},
+    new SelectListItem{ Text="CRANE", Value="CRANE"},
+     new SelectListItem{ Text="TATA ACE", Value="TATA ACE"},
+      new SelectListItem{ Text="DOZER", Value="DOZER"},
+       new SelectListItem{ Text="TRACTOR", Value="TRACTOR"},
+        new SelectListItem{ Text="EXCAVATOR", Value="EXCAVATOR"},
+         new SelectListItem{ Text="ROLLER", Value="ROLLER"},
+          new SelectListItem{ Text="PAVER", Value="PAVER"},
+           new SelectListItem{ Text="GRADER", Value="GRADER"},
+    }, "--- Select ---", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        @Html.DropDownList("departurePlaceId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_prefix3"> Departure Place</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">phone</i>
+                                        @Html.DropDownList("supplierId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_telephone">Supplier Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        @Html.DropDownList("arrivalPlaceId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_prefix3"> Arrival Place</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">phone</i>
+                                        @Html.DropDownList("materialNameId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_telephone">Material Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Weight (or) Unit</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control", @id = "txtWeight" } })
+                                                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">No of Load</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.noofLoad, new { htmlAttributes = new { @class = "form-control", @id = "txtnoofLoad" } })
+                                                @Html.ValidationMessageFor(model => model.noofLoad, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Total Unit</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.totalUnit, new { htmlAttributes = new { @class = "form-control", @id = "txtTotalUnits" } })
+                                                @Html.ValidationMessageFor(model => model.totalUnit, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Production Dept</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.productionDept, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.productionDept, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Raw Material Dept</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.rawMaterialDept, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.rawMaterialDept, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Salary Per Load</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.salaryPerLoad, new { htmlAttributes = new { @class = "form-control", @id = "txtsalaryPerLoad" } })
+                                                @Html.ValidationMessageFor(model => model.salaryPerLoad, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Salary</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", @id = "txtsalary" } })
+                                                @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Rate Per Unit</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.ratePerUnit, new { htmlAttributes = new { @class = "form-control", @id = "txtratePerUnit" } })
+                                                @Html.ValidationMessageFor(model => model.ratePerUnit, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Total Amount</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @id = "txttotalAmount" } })
+                                                @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Driver Salary</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.driverSalary, new { htmlAttributes = new { @class = "form-control", @id = "txtdriverSalary" } })
+                                                @Html.ValidationMessageFor(model => model.driverSalary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Jcb Salary</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.JcbSalary, new { htmlAttributes = new { @class = "form-control", @id = "txtJcbSalary" } })
+                                                @Html.ValidationMessageFor(model => model.JcbSalary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Vehicle Rent</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.vehicleRent, new { htmlAttributes = new { @class = "form-control", @id = "txtvehicleRent" } })
+                                                @Html.ValidationMessageFor(model => model.vehicleRent, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Net Amount</label>
+                                            <div class="form-control input-field">
+
+                                                @Html.EditorFor(model => model.netAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtnetAmount" } })
+                                                @Html.ValidationMessageFor(model => model.netAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 input-field col s3">
+                                        <input type="submit" value="SUBMIT" class="btn btn-default" />
+                                    </div>
+
+                                </div>
+                                <div class="header-elements">
+                                    <div class="list-icons" style="text-align:right">
+                                        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+}
+
+<div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //salary Calculation
+        $('#txtsalaryPerLoad').focusout(function () {
+            let nofoLoad = parseFloat($(this).val());
+            let salaryPerLoad = parseFloat($('#txtnoofLoad').val());
+            let salary = nofoLoad * salaryPerLoad;
+            $('#txtsalary').val(salary);
+            //
+        });
+        //salary Calculation
+        $('#txtnoofLoad').focusout(function () {
+            let weight = parseFloat($('#txtWeight').val());
+            let totalUint = parseFloat($(this).val() * weight);
+            $('#txtTotalUnits').val(totalUint);
+
+        });
+
+        $('#txtratePerUnit').focusout(function () {
+            let txtTotalUnits = parseFloat($('#txtTotalUnits').val());
+            let perunit = parseFloat($(this).val() * txtTotalUnits);
+            $('#txttotalAmount').val(perunit);
+
+        });
+        $('#txtvehicleRent').focusout(function () {
+            let vRent = parseFloat($(this).val());
+            let TotalAmount = parseFloat($('#txttotalAmount').val());
+            let driverSalary = parseFloat($('#txtdriverSalary').val());
+            let JcbSalary = parseFloat($('#txtJcbSalary').val());
+            let netAmount = TotalAmount + vRent + driverSalary + JcbSalary;
+            $('#txtnetAmount').val(netAmount);
+            //
+        });
+    });
+
+</script>
+
+
+
+
+

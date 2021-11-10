@@ -1,0 +1,1398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18E7616A-1FFA-43E3-B0D0-383B68CCED0A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>issBlueMetal</RootNamespace>
+    <AssemblyName>issBlueMetal</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\DefaultController.cs" />
+    <Compile Include="API\HotelController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountGroupsController.cs" />
+    <Compile Include="Controllers\AcLedgersController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\PaymentEntriesController.cs" />
+    <Compile Include="Controllers\RawMateriyalPurchasesController.cs" />
+    <Compile Include="Controllers\RawMeteriyalsController.cs" />
+    <Compile Include="Controllers\ReciptEntriesController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\TripSalesEntriesController.cs" />
+    <Compile Include="Controllers\UnitConvertionsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
+    <Compile Include="Custom\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Custom\CustomPrincipal.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107230750289_m1.cs" />
+    <Compile Include="Migrations\202107230750289_m1.Designer.cs">
+      <DependentUpon>202107230750289_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107230758188_m2.cs" />
+    <Compile Include="Migrations\202107230758188_m2.Designer.cs">
+      <DependentUpon>202107230758188_m2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107260409306_m3.cs" />
+    <Compile Include="Migrations\202107260409306_m3.Designer.cs">
+      <DependentUpon>202107260409306_m3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107271147183_m31.cs" />
+    <Compile Include="Migrations\202107271147183_m31.Designer.cs">
+      <DependentUpon>202107271147183_m31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107280655455_m4.cs" />
+    <Compile Include="Migrations\202107280655455_m4.Designer.cs">
+      <DependentUpon>202107280655455_m4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108020921332_m5.cs" />
+    <Compile Include="Migrations\202108020921332_m5.designer.cs">
+      <DependentUpon>202108020921332_m5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108021824356_m6.cs" />
+    <Compile Include="Migrations\202108021824356_m6.designer.cs">
+      <DependentUpon>202108021824356_m6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108091740083_m7.cs" />
+    <Compile Include="Migrations\202108091740083_m7.designer.cs">
+      <DependentUpon>202108091740083_m7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108100655454_m8.cs" />
+    <Compile Include="Migrations\202108100655454_m8.designer.cs">
+      <DependentUpon>202108100655454_m8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108211702060_m9.cs" />
+    <Compile Include="Migrations\202108211702060_m9.designer.cs">
+      <DependentUpon>202108211702060_m9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AcLedger.cs" />
+    <Compile Include="Models\customerLedger.cs" />
+    <Compile Include="Models\errorLog.cs" />
+    <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\ReciptEntry.cs" />
+    <Compile Include="Models\RoomStatus.cs" />
+    <Compile Include="Models\supplierLedger.cs" />
+    <Compile Include="Models\TblGRC.cs" />
+    <Compile Include="Models\UnitConvertion.cs" />
+    <Compile Include="Models\AccountGroup.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\issModel.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\LoginView.cs" />
+    <Compile Include="Models\PaymentEntry.cs" />
+    <Compile Include="Models\RawMateriyalPurchase.cs" />
+    <Compile Include="Models\RawMeteriyal.cs" />
+    <Compile Include="Models\Sales.cs" />
+    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\TripSalesEntry.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app-assets\css\custom\custom.css" />
+    <Content Include="app-assets\css\pages\advance-ui-media.min.css" />
+    <Content Include="app-assets\css\pages\app-calendar.min.css" />
+    <Content Include="app-assets\css\pages\app-chat.min.css" />
+    <Content Include="app-assets\css\pages\app-contacts.min.css" />
+    <Content Include="app-assets\css\pages\app-email-content.min.css" />
+    <Content Include="app-assets\css\pages\app-email.min.css" />
+    <Content Include="app-assets\css\pages\app-file-manager.min.css" />
+    <Content Include="app-assets\css\pages\app-invoice.min.css" />
+    <Content Include="app-assets\css\pages\app-kanban.css" />
+    <Content Include="app-assets\css\pages\app-sidebar.min.css" />
+    <Content Include="app-assets\css\pages\app-todo.min.css" />
+    <Content Include="app-assets\css\pages\badges.min.css" />
+    <Content Include="app-assets\css\pages\cards-basic.min.css" />
+    <Content Include="app-assets\css\pages\charts-chartist.min.css" />
+    <Content Include="app-assets\css\pages\charts-sparkline.min.css" />
+    <Content Include="app-assets\css\pages\component-navbar.min.css" />
+    <Content Include="app-assets\css\pages\css-media.min.css" />
+    <Content Include="app-assets\css\pages\dashboard-modern.css" />
+    <Content Include="app-assets\css\pages\dashboard.min.css" />
+    <Content Include="app-assets\css\pages\data-tables.min.css" />
+    <Content Include="app-assets\css\pages\eCommerce-products-page.min.css" />
+    <Content Include="app-assets\css\pages\extra-components-tour.min.css" />
+    <Content Include="app-assets\css\pages\extra-components-treeview.min.css" />
+    <Content Include="app-assets\css\pages\forgot.min.css" />
+    <Content Include="app-assets\css\pages\form-select2.min.css" />
+    <Content Include="app-assets\css\pages\form-wizard.min.css" />
+    <Content Include="app-assets\css\pages\icon.css" />
+    <Content Include="app-assets\css\pages\intro.min.css" />
+    <Content Include="app-assets\css\pages\lock.min.css" />
+    <Content Include="app-assets\css\pages\login.css" />
+    <Content Include="app-assets\css\pages\page-404.min.css" />
+    <Content Include="app-assets\css\pages\page-500.min.css" />
+    <Content Include="app-assets\css\pages\page-account-settings.min.css" />
+    <Content Include="app-assets\css\pages\page-blog.min.css" />
+    <Content Include="app-assets\css\pages\page-contact.min.css" />
+    <Content Include="app-assets\css\pages\page-faq.min.css" />
+    <Content Include="app-assets\css\pages\page-knowledge.min.css" />
+    <Content Include="app-assets\css\pages\page-maintenance.min.css" />
+    <Content Include="app-assets\css\pages\page-search.min.css" />
+    <Content Include="app-assets\css\pages\page-timeline.min.css" />
+    <Content Include="app-assets\css\pages\page-users.min.css" />
+    <Content Include="app-assets\css\pages\pricing.min.css" />
+    <Content Include="app-assets\css\pages\register.min.css" />
+    <Content Include="app-assets\css\pages\user-profile-page.min.css" />
+    <Content Include="app-assets\css\pages\widget-timeline.min.css" />
+    <Content Include="app-assets\css\themes\vertical-menu-nav-dark-template\materialize.min.css" />
+    <Content Include="app-assets\css\themes\vertical-menu-nav-dark-template\style.min.css" />
+    <Content Include="app-assets\fonts\fontawesome\css\all.min.css" />
+    <Content Include="app-assets\fonts\fontawesome\js\all.min.js" />
+    <Content Include="app-assets\images\avatar\avatar-1.png" />
+    <Content Include="app-assets\images\avatar\avatar-10.png" />
+    <Content Include="app-assets\images\avatar\avatar-11.png" />
+    <Content Include="app-assets\images\avatar\avatar-12.png" />
+    <Content Include="app-assets\images\avatar\avatar-13.png" />
+    <Content Include="app-assets\images\avatar\avatar-14.png" />
+    <Content Include="app-assets\images\avatar\avatar-15.png" />
+    <Content Include="app-assets\images\avatar\avatar-16.png" />
+    <Content Include="app-assets\images\avatar\avatar-17.png" />
+    <Content Include="app-assets\images\avatar\avatar-2.png" />
+    <Content Include="app-assets\images\avatar\avatar-3.png" />
+    <Content Include="app-assets\images\avatar\avatar-4.png" />
+    <Content Include="app-assets\images\avatar\avatar-5.png" />
+    <Content Include="app-assets\images\avatar\avatar-6.png" />
+    <Content Include="app-assets\images\avatar\avatar-7.png" />
+    <Content Include="app-assets\images\avatar\avatar-8.png" />
+    <Content Include="app-assets\images\avatar\avatar-9.png" />
+    <Content Include="app-assets\images\cards\camara.png" />
+    <Content Include="app-assets\images\cards\cameras.png" />
+    <Content Include="app-assets\images\cards\headphone.png" />
+    <Content Include="app-assets\images\cards\headphones-2.png" />
+    <Content Include="app-assets\images\cards\headphones.png" />
+    <Content Include="app-assets\images\cards\horizontal-news-1.jpg" />
+    <Content Include="app-assets\images\cards\horizontal-news-2.jpg" />
+    <Content Include="app-assets\images\cards\ipad.png" />
+    <Content Include="app-assets\images\cards\iphone-x.png" />
+    <Content Include="app-assets\images\cards\iphonec.png" />
+    <Content Include="app-assets\images\cards\magic-mouse.png" />
+    <Content Include="app-assets\images\cards\news-apple.jpg" />
+    <Content Include="app-assets\images\cards\news-fashion.jpg" />
+    <Content Include="app-assets\images\cards\news-twitter.jpg" />
+    <Content Include="app-assets\images\cards\nike.png" />
+    <Content Include="app-assets\images\cards\oneplus-6t.png" />
+    <Content Include="app-assets\images\cards\powerbank.png" />
+    <Content Include="app-assets\images\cards\puma.png" />
+    <Content Include="app-assets\images\cards\reebok.png" />
+    <Content Include="app-assets\images\cards\remote.png" />
+    <Content Include="app-assets\images\cards\shoes.png" />
+    <Content Include="app-assets\images\cards\smartspeakers.png" />
+    <Content Include="app-assets\images\cards\speakers.png" />
+    <Content Include="app-assets\images\cards\watch-2.png" />
+    <Content Include="app-assets\images\cards\watch.png" />
+    <Content Include="app-assets\images\favicon\apple-touch-icon-152x152.png" />
+    <Content Include="app-assets\images\favicon\favicon-32x32.png" />
+    <Content Include="app-assets\images\gallery\1.png" />
+    <Content Include="app-assets\images\gallery\10.png" />
+    <Content Include="app-assets\images\gallery\11.png" />
+    <Content Include="app-assets\images\gallery\12.png" />
+    <Content Include="app-assets\images\gallery\13.png" />
+    <Content Include="app-assets\images\gallery\14.png" />
+    <Content Include="app-assets\images\gallery\15.png" />
+    <Content Include="app-assets\images\gallery\16.png" />
+    <Content Include="app-assets\images\gallery\17.png" />
+    <Content Include="app-assets\images\gallery\18.png" />
+    <Content Include="app-assets\images\gallery\19.png" />
+    <Content Include="app-assets\images\gallery\2.png" />
+    <Content Include="app-assets\images\gallery\20.png" />
+    <Content Include="app-assets\images\gallery\21.png" />
+    <Content Include="app-assets\images\gallery\22.png" />
+    <Content Include="app-assets\images\gallery\23.png" />
+    <Content Include="app-assets\images\gallery\24.png" />
+    <Content Include="app-assets\images\gallery\25.png" />
+    <Content Include="app-assets\images\gallery\26.png" />
+    <Content Include="app-assets\images\gallery\28.png" />
+    <Content Include="app-assets\images\gallery\29.png" />
+    <Content Include="app-assets\images\gallery\3.png" />
+    <Content Include="app-assets\images\gallery\30.png" />
+    <Content Include="app-assets\images\gallery\31.png" />
+    <Content Include="app-assets\images\gallery\33.png" />
+    <Content Include="app-assets\images\gallery\34.png" />
+    <Content Include="app-assets\images\gallery\35.png" />
+    <Content Include="app-assets\images\gallery\36.png" />
+    <Content Include="app-assets\images\gallery\37.png" />
+    <Content Include="app-assets\images\gallery\38.png" />
+    <Content Include="app-assets\images\gallery\39.png" />
+    <Content Include="app-assets\images\gallery\4.png" />
+    <Content Include="app-assets\images\gallery\40.png" />
+    <Content Include="app-assets\images\gallery\41.png" />
+    <Content Include="app-assets\images\gallery\42.png" />
+    <Content Include="app-assets\images\gallery\43.png" />
+    <Content Include="app-assets\images\gallery\44.jpg" />
+    <Content Include="app-assets\images\gallery\46.jpg" />
+    <Content Include="app-assets\images\gallery\47.jpg" />
+    <Content Include="app-assets\images\gallery\48.jpg" />
+    <Content Include="app-assets\images\gallery\5.png" />
+    <Content Include="app-assets\images\gallery\6.png" />
+    <Content Include="app-assets\images\gallery\7.png" />
+    <Content Include="app-assets\images\gallery\8.png" />
+    <Content Include="app-assets\images\gallery\9.png" />
+    <Content Include="app-assets\images\gallery\breadcrumb-bg.jpg" />
+    <Content Include="app-assets\images\gallery\chat-bg.jpg" />
+    <Content Include="app-assets\images\gallery\error-2.png" />
+    <Content Include="app-assets\images\gallery\faq-search.jpg" />
+    <Content Include="app-assets\images\gallery\flat-bg.jpg" />
+    <Content Include="app-assets\images\gallery\intro-app.png" />
+    <Content Include="app-assets\images\gallery\intro-features.png" />
+    <Content Include="app-assets\images\gallery\intro-slide-1.png" />
+    <Content Include="app-assets\images\gallery\maintenance.png" />
+    <Content Include="app-assets\images\gallery\pixinvent-logo.png" />
+    <Content Include="app-assets\images\gallery\post-1.png" />
+    <Content Include="app-assets\images\gallery\post-2.png" />
+    <Content Include="app-assets\images\gallery\post-3.png" />
+    <Content Include="app-assets\images\gallery\profile-bg.png" />
+    <Content Include="app-assets\images\gallery\search.jpg" />
+    <Content Include="app-assets\images\gallery\wave.png" />
+    <Content Include="app-assets\images\icon\apple-watch.png" />
+    <Content Include="app-assets\images\icon\bowling.png" />
+    <Content Include="app-assets\images\icon\doc-image.png" />
+    <Content Include="app-assets\images\icon\doc.png" />
+    <Content Include="app-assets\images\icon\jpg-image.png" />
+    <Content Include="app-assets\images\icon\laptop.png" />
+    <Content Include="app-assets\images\icon\pdf-image.png" />
+    <Content Include="app-assets\images\icon\pdf.png" />
+    <Content Include="app-assets\images\icon\printer.png" />
+    <Content Include="app-assets\images\icon\psd.png" />
+    <Content Include="app-assets\images\icon\sketch.png" />
+    <Content Include="app-assets\images\icon\xls-image.png" />
+    <Content Include="app-assets\images\logo\login-logo.png" />
+    <Content Include="app-assets\images\logo\materialize-logo.png" />
+    <Content Include="app-assets\images\user\1.jpg" />
+    <Content Include="app-assets\images\user\10.jpg" />
+    <Content Include="app-assets\images\user\11.jpg" />
+    <Content Include="app-assets\images\user\12.jpg" />
+    <Content Include="app-assets\images\user\2.jpg" />
+    <Content Include="app-assets\images\user\3.jpg" />
+    <Content Include="app-assets\images\user\4.jpg" />
+    <Content Include="app-assets\images\user\5.jpg" />
+    <Content Include="app-assets\images\user\6.jpg" />
+    <Content Include="app-assets\images\user\7.jpg" />
+    <Content Include="app-assets\images\user\8.jpg" />
+    <Content Include="app-assets\images\user\9.jpg" />
+    <Content Include="app-assets\js\custom\buttons.uikit.js" />
+    <Content Include="app-assets\js\custom\common.js" />
+    <Content Include="app-assets\js\custom\custom-script.min.js" />
+    <Content Include="app-assets\js\custom\datatables.uikit.js" />
+    <Content Include="app-assets\js\custom\datatables.uikit.min.js" />
+    <Content Include="app-assets\js\FileSaver.js" />
+    <Content Include="app-assets\js\plugins.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-carousel.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-feature-discovery.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-media.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-modals.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-scrollspy.min.js" />
+    <Content Include="app-assets\js\scripts\advance-ui-toasts.min.js" />
+    <Content Include="app-assets\js\scripts\app-calendar.min.js" />
+    <Content Include="app-assets\js\scripts\app-chat.min.js" />
+    <Content Include="app-assets\js\scripts\app-contacts.min.js" />
+    <Content Include="app-assets\js\scripts\app-email-content.min.js" />
+    <Content Include="app-assets\js\scripts\app-email.min.js" />
+    <Content Include="app-assets\js\scripts\app-file-manager.min.js" />
+    <Content Include="app-assets\js\scripts\app-invoice.min.js" />
+    <Content Include="app-assets\js\scripts\app-kanban.js" />
+    <Content Include="app-assets\js\scripts\app-todo.min.js" />
+    <Content Include="app-assets\js\scripts\card-advanced.min.js" />
+    <Content Include="app-assets\js\scripts\cards-extended.min.js" />
+    <Content Include="app-assets\js\scripts\charts-chartist.min.js" />
+    <Content Include="app-assets\js\scripts\charts-chartjs.min.js" />
+    <Content Include="app-assets\js\scripts\charts-sparklines.min.js" />
+    <Content Include="app-assets\js\scripts\css-animation.js" />
+    <Content Include="app-assets\js\scripts\css-grid.min.js" />
+    <Content Include="app-assets\js\scripts\css-transition.js" />
+    <Content Include="app-assets\js\scripts\css-typography.min.js" />
+    <Content Include="app-assets\js\scripts\customizer.min.js" />
+    <Content Include="app-assets\js\scripts\dashboard-analytics.min.js" />
+    <Content Include="app-assets\js\scripts\dashboard-ecommerce.min.js" />
+    <Content Include="app-assets\js\scripts\dashboard-modern.js" />
+    <Content Include="app-assets\js\scripts\data-tables.min.js" />
+    <Content Include="app-assets\js\scripts\eCommerce-products-page.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-i18n.js" />
+    <Content Include="app-assets\js\scripts\extra-components-nestable.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-range-slider.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-ratings.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-sweetalert.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-tour.min.js" />
+    <Content Include="app-assets\js\scripts\extra-components-treeview.min.js" />
+    <Content Include="app-assets\js\scripts\form-editor.min.js" />
+    <Content Include="app-assets\js\scripts\form-elements.min.js" />
+    <Content Include="app-assets\js\scripts\form-file-uploads.min.js" />
+    <Content Include="app-assets\js\scripts\form-masks.min.js" />
+    <Content Include="app-assets\js\scripts\form-select2.min.js" />
+    <Content Include="app-assets\js\scripts\form-validation.js" />
+    <Content Include="app-assets\js\scripts\form-wizard.min.js" />
+    <Content Include="app-assets\js\scripts\fullscreen-slider.min.js" />
+    <Content Include="app-assets\js\scripts\intro.min.js" />
+    <Content Include="app-assets\js\scripts\media-gallery-page.min.js" />
+    <Content Include="app-assets\js\scripts\media-hover-effects.min.js" />
+    <Content Include="app-assets\js\scripts\page-account-settings.min.js" />
+    <Content Include="app-assets\js\scripts\page-contact.min.js" />
+    <Content Include="app-assets\js\scripts\page-knowledge.min.js" />
+    <Content Include="app-assets\js\scripts\page-users.min.js" />
+    <Content Include="app-assets\js\scripts\ui-alerts.min.js" />
+    <Content Include="app-assets\js\scripts\ui-chips.min.js" />
+    <Content Include="app-assets\js\search.min.js" />
+    <Content Include="app-assets\js\vendors.min.js" />
+    <Content Include="app-assets\js\xlsx.full.min.js" />
+    <Content Include="app-assets\vendors\animate-css\animate.css" />
+    <Content Include="app-assets\vendors\chartist-js\chartist-plugin-fill-donut.min.js" />
+    <Content Include="app-assets\vendors\chartist-js\chartist-plugin-tooltip.css" />
+    <Content Include="app-assets\vendors\chartist-js\chartist-plugin-tooltip.js" />
+    <Content Include="app-assets\vendors\chartist-js\chartist.css" />
+    <Content Include="app-assets\vendors\chartist-js\chartist.min.css" />
+    <Content Include="app-assets\vendors\chartist-js\chartist.min.js" />
+    <Content Include="app-assets\vendors\chartjs\chart.min.js" />
+    <Content Include="app-assets\vendors\data-tables\css\dataTables.checkboxes.css" />
+    <Content Include="app-assets\vendors\data-tables\css\images\sort_asc.png" />
+    <Content Include="app-assets\vendors\data-tables\css\images\sort_asc_disabled.png" />
+    <Content Include="app-assets\vendors\data-tables\css\images\sort_both.png" />
+    <Content Include="app-assets\vendors\data-tables\css\images\sort_desc.png" />
+    <Content Include="app-assets\vendors\data-tables\css\images\sort_desc_disabled.png" />
+    <Content Include="app-assets\vendors\data-tables\css\jquery.dataTables.min.css" />
+    <Content Include="app-assets\vendors\data-tables\css\select.dataTables.min.css" />
+    <Content Include="app-assets\vendors\data-tables\extensions\responsive\css\responsive.dataTables.min.css" />
+    <Content Include="app-assets\vendors\data-tables\extensions\responsive\js\dataTables.responsive.min.js" />
+    <Content Include="app-assets\vendors\data-tables\js\datatables.checkboxes.min.js" />
+    <Content Include="app-assets\vendors\data-tables\js\dataTables.select.min.js" />
+    <Content Include="app-assets\vendors\data-tables\js\jquery.dataTables.min.js" />
+    <Content Include="app-assets\vendors\dropify\css\dropify.min.css" />
+    <Content Include="app-assets\vendors\dropify\js\dropify.min.js" />
+    <Content Include="app-assets\vendors\flag-icon\css\flag-icon.min.css" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ad.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ae.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\af.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ag.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ai.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\al.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\am.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ao.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\aq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ar.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\as.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\at.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\au.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\aw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ax.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\az.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ba.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\be.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\br.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\by.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\bz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ca.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ch.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ci.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ck.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\co.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\cz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\de.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\dj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\dk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\dm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\do.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\dz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ec.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ee.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\eg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\eh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\er.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\es-ct.html" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\es.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\et.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\eu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\fr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ga.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gb-eng.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gb-nir.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gb-sct.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gb-wls.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ge.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\gy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\hk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\hm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\hn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\hr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ht.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\hu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\id.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ie.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\il.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\im.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\in.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\io.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\iq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ir.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\is.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\it.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\je.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\jm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\jo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\jp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ke.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ki.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\km.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ky.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\kz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\la.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\li.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ls.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\lv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ly.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ma.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\md.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\me.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ml.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ms.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\my.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\mz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\na.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ne.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ng.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ni.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\no.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\np.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\nz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\om.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pe.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ph.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ps.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\pw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\py.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\qa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\re.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ro.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\rs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ru.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\rw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\se.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\si.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\so.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ss.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\st.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\sz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\td.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\th.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\to.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\tz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ua.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ug.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\um.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\un.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\us.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\uy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\uz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\va.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\vc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ve.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\vg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\vi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\vn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\vu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\wf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ws.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\ye.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\yt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\za.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\zm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\1x1\zw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ad.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ae.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\af.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ag.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ai.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\al.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\am.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ao.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\aq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ar.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\as.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\at.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\au.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\aw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ax.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\az.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ba.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\be.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\br.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\by.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\bz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ca.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ch.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ci.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ck.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\co.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\cz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\de.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\dj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\dk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\dm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\do.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\dz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ec.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ee.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\eg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\eh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\er.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\es-ct.html" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\es.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\et.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\eu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\fr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ga.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gb-eng.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gb-nir.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gb-sct.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gb-wls.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ge.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\gy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\hk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\hm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\hn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\hr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ht.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\hu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\id.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ie.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\il.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\im.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\in.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\io.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\iq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ir.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\is.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\it.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\je.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\jm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\jo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\jp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ke.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ki.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\km.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ky.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\kz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\la.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\li.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ls.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\lv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ly.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ma.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\md.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\me.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ml.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mo.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mp.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mq.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ms.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\my.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\mz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\na.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ne.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ng.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ni.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\no.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\np.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\nz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\om.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pe.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ph.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ps.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\pw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\py.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\qa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\re.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ro.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\rs.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ru.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\rw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sa.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sb.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sd.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\se.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sh.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\si.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\so.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ss.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\st.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sx.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\sz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\td.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\th.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tj.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tk.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tl.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\to.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tr.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tv.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tw.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\tz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ua.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ug.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\um.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\un.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\us.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\uy.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\uz.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\va.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\vc.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ve.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\vg.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\vi.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\vn.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\vu.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\wf.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ws.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\ye.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\yt.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\za.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\zm.svg" />
+    <Content Include="app-assets\vendors\flag-icon\flags\4x3\zw.svg" />
+    <Content Include="app-assets\vendors\formatter\jquery.formatter.min.js" />
+    <Content Include="app-assets\vendors\form_repeater\jquery.repeater.min.js" />
+    <Content Include="app-assets\vendors\fullcalendar\css\fullcalendar.min.css" />
+    <Content Include="app-assets\vendors\fullcalendar\daygrid\daygrid.min.css" />
+    <Content Include="app-assets\vendors\fullcalendar\daygrid\daygrid.min.js" />
+    <Content Include="app-assets\vendors\fullcalendar\interaction\interaction.min.js" />
+    <Content Include="app-assets\vendors\fullcalendar\js\fullcalendar.min.js" />
+    <Content Include="app-assets\vendors\fullcalendar\lib\moment.min.js" />
+    <Content Include="app-assets\vendors\fullcalendar\timegrid\timegrid.min.css" />
+    <Content Include="app-assets\vendors\fullcalendar\timegrid\timegrid.min.js" />
+    <Content Include="app-assets\vendors\hover-effects\media-hover-effects.css" />
+    <Content Include="app-assets\vendors\imagesloaded.pkgd.min.js" />
+    <Content Include="app-assets\vendors\ionRangeSlider\css\ion.rangeSlider.css" />
+    <Content Include="app-assets\vendors\ionRangeSlider\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="app-assets\vendors\ionRangeSlider\img\sprite-skin-flat.png" />
+    <Content Include="app-assets\vendors\ionRangeSlider\js\ion.rangeSlider.js" />
+    <Content Include="app-assets\vendors\jkanban\jkanban.min.css" />
+    <Content Include="app-assets\vendors\jkanban\jkanban.min.js" />
+    <Content Include="app-assets\vendors\jquery-validation\jquery.validate.min.js" />
+    <Content Include="app-assets\vendors\jquery.nestable\jquery.nestable.js" />
+    <Content Include="app-assets\vendors\jquery.nestable\nestable.css" />
+    <Content Include="app-assets\vendors\jstree\jstree.min.js" />
+    <Content Include="app-assets\vendors\jstree\themes\default\32px.png" />
+    <Content Include="app-assets\vendors\jstree\themes\default\40px.png" />
+    <Content Include="app-assets\vendors\jstree\themes\default\style.min.css" />
+    <Content Include="app-assets\vendors\jstree\themes\default\throbber.gif" />
+    <Content Include="app-assets\vendors\magnific-popup\jquery.magnific-popup.min.js" />
+    <Content Include="app-assets\vendors\magnific-popup\magnific-popup.css" />
+    <Content Include="app-assets\vendors\masonry.pkgd.min.js" />
+    <Content Include="app-assets\vendors\materialize-stepper\materialize-stepper.min.css" />
+    <Content Include="app-assets\vendors\materialize-stepper\materialize-stepper.min.js" />
+    <Content Include="app-assets\vendors\noUiSlider\nouislider.js" />
+    <Content Include="app-assets\vendors\noUiSlider\nouislider.min.css" />
+    <Content Include="app-assets\vendors\noUiSlider\nouislider.min.js" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_AMS-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_AMS-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_AMS-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_AMS-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Bold-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Bold-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Bold-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Bold.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Caligraphic-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Bold-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Bold-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Bold-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Bold.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Fraktur-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Bold-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Bold-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Bold-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Bold.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Italic-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Italic-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Italic-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Italic.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Math-Italic-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Math-Italic-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Math-Italic.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_SansSerif-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_SansSerif-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_SansSerif-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_SansSerif-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Script-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Script-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Script-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Script-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size1-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size1-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size1-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size1-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size2-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size2-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size2-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size2-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size3-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size3-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size3-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size3-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size4-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size4-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size4-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Size4-Regular.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Typewriter-Regular-2.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Typewriter-Regular-3.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Typewriter-Regular-4.html" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Typewriter-Regular.html" />
+    <Content Include="app-assets\vendors\quill\highlight.min.js" />
+    <Content Include="app-assets\vendors\quill\katex.min.css" />
+    <Content Include="app-assets\vendors\quill\katex.min.js" />
+    <Content Include="app-assets\vendors\quill\monokai-sublime.min.css" />
+    <Content Include="app-assets\vendors\quill\quill.bubble.css" />
+    <Content Include="app-assets\vendors\quill\quill.min.js" />
+    <Content Include="app-assets\vendors\quill\quill.snow.css" />
+    <Content Include="app-assets\vendors\rateYo\jquery.rateyo.min.css" />
+    <Content Include="app-assets\vendors\rateYo\jquery.rateyo.min.js" />
+    <Content Include="app-assets\vendors\select2\select2-materialize.css" />
+    <Content Include="app-assets\vendors\select2\select2.full.min.js" />
+    <Content Include="app-assets\vendors\select2\select2.min.css" />
+    <Content Include="app-assets\vendors\shepherd-js\shepherd-theme-default.min.css" />
+    <Content Include="app-assets\vendors\shepherd-js\shepherd.min.js" />
+    <Content Include="app-assets\vendors\sortable\jquery-sortable-min.js" />
+    <Content Include="app-assets\vendors\sparkline\jquery.sparkline.min.js" />
+    <Content Include="app-assets\vendors\sweetalert\sweetalert.css" />
+    <Content Include="app-assets\vendors\sweetalert\sweetalert.min.js" />
+    <Content Include="app-assets\vendors\vendors.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Main-Regular.woff2" />
+    <Content Include="app-assets\vendors\quill\fonts\KaTeX_Math-Italic.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\RawMeteriyals\Create.cshtml" />
+    <Content Include="Views\RawMeteriyals\Delete.cshtml" />
+    <Content Include="Views\RawMeteriyals\Details.cshtml" />
+    <Content Include="Views\RawMeteriyals\Edit.cshtml" />
+    <Content Include="Views\RawMeteriyals\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\Suppliers\Create.cshtml" />
+    <Content Include="Views\Suppliers\Delete.cshtml" />
+    <Content Include="Views\Suppliers\Details.cshtml" />
+    <Content Include="Views\Suppliers\Edit.cshtml" />
+    <Content Include="Views\Suppliers\Index.cshtml" />
+    <Content Include="Views\TripSalesEntries\Create.cshtml" />
+    <Content Include="Views\TripSalesEntries\Delete.cshtml" />
+    <Content Include="Views\TripSalesEntries\Details.cshtml" />
+    <Content Include="Views\TripSalesEntries\Edit.cshtml" />
+    <Content Include="Views\TripSalesEntries\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\RawMateriyalPurchases\Create.cshtml" />
+    <Content Include="Views\RawMateriyalPurchases\Delete.cshtml" />
+    <Content Include="Views\RawMateriyalPurchases\Details.cshtml" />
+    <Content Include="Views\RawMateriyalPurchases\Index.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\UnitConvertions\Create.cshtml" />
+    <Content Include="Views\UnitConvertions\Delete.cshtml" />
+    <Content Include="Views\UnitConvertions\Details.cshtml" />
+    <Content Include="Views\UnitConvertions\Edit.cshtml" />
+    <Content Include="Views\UnitConvertions\Index.cshtml" />
+    <Content Include="Views\AccountGroups\Create.cshtml" />
+    <Content Include="Views\AccountGroups\Delete.cshtml" />
+    <Content Include="Views\AccountGroups\Details.cshtml" />
+    <Content Include="Views\AccountGroups\Edit.cshtml" />
+    <Content Include="Views\AccountGroups\Index.cshtml" />
+    <Content Include="Views\RawMateriyalPurchases\Edit.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\MaterialPurchase.cshtml" />
+    <Content Include="Views\Report\RawMaterial.cshtml" />
+    <Content Include="Views\Report\SalesReport.cshtml" />
+    <Content Include="Views\AcLedgers\Create.cshtml" />
+    <Content Include="Views\AcLedgers\Delete.cshtml" />
+    <Content Include="Views\AcLedgers\Details.cshtml" />
+    <Content Include="Views\AcLedgers\Edit.cshtml" />
+    <Content Include="Views\AcLedgers\Index.cshtml" />
+    <Content Include="Views\Report\DayBook.cshtml" />
+    <Content Include="Views\Report\HotelsBook.cshtml" />
+    <Content Include="Views\Report\CustomerLedger.cshtml" />
+    <Content Include="Views\Report\SupplierLedger.cshtml" />
+    <Content Include="Views\PaymentEntries\Create.cshtml" />
+    <Content Include="Views\PaymentEntries\Delete.cshtml" />
+    <Content Include="Views\PaymentEntries\Details.cshtml" />
+    <Content Include="Views\PaymentEntries\Edit.cshtml" />
+    <Content Include="Views\PaymentEntries\Index.cshtml" />
+    <Content Include="Views\ReciptEntries\Create.cshtml" />
+    <Content Include="Views\ReciptEntries\Delete.cshtml" />
+    <Content Include="Views\ReciptEntries\Details.cshtml" />
+    <Content Include="Views\ReciptEntries\Edit.cshtml" />
+    <Content Include="Views\ReciptEntries\Index.cshtml" />
+    <Content Include="Views\Report\PaymentReport.cshtml" />
+    <Content Include="Views\Report\ReciptReport.cshtml" />
+    <Content Include="Views\Report\TblGRC.cshtml" />
+    <Content Include="Views\Report\RoomStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202107230750289_m1.resx">
+      <DependentUpon>202107230750289_m1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107230758188_m2.resx">
+      <DependentUpon>202107230758188_m2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107260409306_m3.resx">
+      <DependentUpon>202107260409306_m3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107271147183_m31.resx">
+      <DependentUpon>202107271147183_m31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107280655455_m4.resx">
+      <DependentUpon>202107280655455_m4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108020921332_m5.resx">
+      <DependentUpon>202108020921332_m5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108021824356_m6.resx">
+      <DependentUpon>202108021824356_m6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108091740083_m7.resx">
+      <DependentUpon>202108091740083_m7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108100655454_m8.resx">
+      <DependentUpon>202108100655454_m8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108211702060_m9.resx">
+      <DependentUpon>202108211702060_m9.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63998</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63998/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

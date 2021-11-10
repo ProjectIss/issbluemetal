@@ -1,0 +1,274 @@
+﻿@model IEnumerable<issBlueMetal.Models.RawMateriyalPurchase>
+
+@{
+    ViewBag.Title = "MaterialPurchase";
+}
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+<div class="container">
+    <div>
+        <h5 style="text-align: center">Material Purchase REPORT</h5>
+    </div>
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="col s1">
+    </div>
+    <div class="col s2 card card-header info">
+        <select name="id" id="suppliers" class="form-control col-xl-10" required>
+            <option value="">-Select Supplier-</option>
+            @foreach (var item in ViewBag.customers)
+            {
+                <option value="@item.Value">@item.Text </option>
+            }
+        </select>
+    </div>
+    <div class="col s1">
+        <div>
+            <label>  From Date :</label>
+        </div>
+    </div>
+    <div class="col s2 card card-header info">
+
+        <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
+    </div>
+    <div class="col s1">
+        <div>
+            <label>  To Date :</label>
+        </div>
+    </div>
+    <div class="col s2 card card-header info">
+      
+        <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
+    </div>
+    <div class="col s2">
+        <button class="btn waves-effect waves-light " id="btnsearch" style="float:inherit;margin-top:10%">
+            Search
+            <i class="material-icons right"></i>
+        </button>
+    </div>
+</div>
+}
+<div class="col s10" style="margin:1%">
+    <div class="card">
+        <div id="material_wrapper" class="dataTables_wrapper" style="overflow: scroll;">
+          
+            <table style="width:100%" id="material">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Vehicle No</th>
+                        <th>Supplier Name</th>
+                        <th>Material Name</th>
+                        <th>Weight</th>
+                        <th>No of Load</th>
+                        <th>Total Unit</th>
+                        <th>Rate Per Unit</th>
+                        <th> Driver Salary</th>
+                        <th>JCB</th>
+                        <th>vehicle Rent</th>
+                        <th>Total Amount</th>
+                        <th>Net Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="tblMaterial">
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.id)</td>
+                        
+                            @if (@item.dateTime != null)
+                            {
+                            <td>
+                                @item.dateTime.Value.ToShortDateString()
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>}
+                            <td>@Html.DisplayFor(modelItem => item.Vehicle.vehicleNo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Supplier.name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.materialName.name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                            <td>@Html.DisplayFor(modelItem => item.noofLoad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.totalUnit)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ratePerUnit)</td>
+                            <td>@Html.DisplayFor(modelItem => item.driverSalary)</td>
+                            <td>@Html.DisplayFor(modelItem => item.JcbSalary)</td>
+                            <td>@Html.DisplayFor(modelItem => item.vehicleRent)</td>
+                            <td>@Html.DisplayFor(modelItem => item.totalAmount)</td>
+                            <td>@Html.DisplayFor(modelItem => item.netAmount)</td>
+
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+
+
+
+                        <th>Total</th>
+
+                        <th colspan="11"></th>
+                        <th id="gTotalPaid">@ViewBag.gTotalPaid</th>
+                        <th id="Total">@ViewBag.Total</th>
+
+                    </tr>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js" defer></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#material').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    text: 'Pdf',
+                    orientation: 'landscape',
+                    autoPrint: true,
+                    footer: true,
+                    title:'Metarial purchase'
+
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    orientation: 'landscape',
+                    autoPrint: true,
+                    footer: true,
+                    title: 'Metarial purchase'
+                },
+
+                'csv', 'excel',
+            ]
+        });
+    });
+
+</script>
+
+
+<script>
+
+
+
+   
+    $(function () {
+
+
+
+      
+    });
+    function Advance(fromDate, toDate, Id) {
+        $("#tblMaterial").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Report/MaterialPurchase")',
+            dataType: 'json',
+            data: { fromDate: fromDate, toDate: toDate, Id: Id },
+            success: function (data) {
+                if (data != "Faild") {
+                   
+                var row;
+                    let Total = 0;
+                    let gTotal = 0;
+                    let sNo = 1;
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        var tempData = {};
+                        tempData.id = data[i].id;
+                        if (data[i].dateTime != null) { tempData.dateTime = DateConvertion(data[i].dateTime) } else tempData.dateTime = "";
+                        if (data[i].Vehicle != null) { tempData.Vehicle = data[i].Vehicle.vehicleNo; } else tempData.Vehicle = "";
+                        if (data[i].Supplier != null) { tempData.Supplier = data[i].Supplier.name; } else tempData.Supplier = "";
+                        if (data[i].materialName != null) { tempData.materialName = data[i].materialName.name; } else tempData.materialName = "";
+                        if (data[i].Weight != null) { tempData.Weight = data[i].Weight; } else tempData.Weight = "";
+                        if (data[i].noofLoad != null) { tempData.noofLoad = data[i].noofLoad; } else tempData.noofLoad = "";
+                        if (data[i].totalUnit != null) { tempData.totalUnit = data[i].totalUnit; } else tempData.totalUnit = "";
+                        if (data[i].ratePerUnit != null) { tempData.ratePerUnit = data[i].ratePerUnit; } else tempData.ratePerUnit = "";
+                        if (data[i].driverSalary != null) { tempData.driverSalary = data[i].driverSalary; } else tempData.driverSalary = "";
+                        if (data[i].JcbSalary != null) { tempData.JcbSalary = data[i].JcbSalary; } else tempData.JcbSalary = "";
+                        if (data[i].vehicleRent != null) { tempData.vehicleRent = data[i].vehicleRent; } else tempData.vehicleRent = "";
+                        if (data[i].totalAmount != null) { tempData.totalAmount = data[i].totalAmount; Total += parseInt(data[i].totalAmount); } else tempData.totalAmount = "";
+                        if (data[i].netAmount != null) { tempData.netAmount = data[i].netAmount; gTotal += parseInt(data[i].netAmount);} else tempData.netAmount = "";
+
+
+                        row = '<tr>'
+                        row += "<td>" + sNo + "</td>"
+                        row += '<td>' + tempData.id + '</td>'
+                        row += '<td>' + tempData.dateTime + '</td>'
+                        row += '<td>' + tempData.Vehicle + '</td>'
+                        row += '<td>' + tempData.Supplier + '</td>'
+                        row += '<td>' + tempData.materialName + '</td>'
+                        row += '<td>' + tempData.Weight + '</td>'
+                        row += '<td>' + tempData.noofLoad + '</td>'
+                        row += '<td>' + tempData.totalUnit + '</td>'
+                        row += '<td>' + tempData.ratePerUnit + '</td>'
+
+                        row += '<td>' + tempData.driverSalary + '</td>'
+                        row += '<td>' + tempData.JcbSalary + '</td>'
+                        row += '<td>' + tempData.vehicleRent + '</td>'
+                        row += '<td>' + tempData.totalAmount + '</td>'
+                        row += '<td>' + tempData.netAmount + '</td>'
+
+                    row += '</tr>';
+                        $("#tblMaterial").append(row);
+                        $('#Total').empty();
+                        $('#Total').append(Total);
+                        $('#gTotal').empty();
+                        $('#gTotal').append(gTotal);
+                        sNo++;
+                    }
+                    }
+                } else {
+                    alert("Somthing went wrong please try again.");
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+   
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) {
+            view[i] = s.charCodeAt(i) & 0xFF;
+        }
+        return buf;
+    }
+</script>

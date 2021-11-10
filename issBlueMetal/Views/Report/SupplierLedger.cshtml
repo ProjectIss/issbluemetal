@@ -1,0 +1,336 @@
+﻿@model IEnumerable<issBlueMetal.Models.supplierLedger>
+
+@{
+    ViewBag.Title = "SupplierLedger";
+}
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+
+<div class="container">
+    <div>
+        <h5 style="text-align: center">Supplier Ledger</h5>
+
+    </div>
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col s1">
+        </div>
+        <div class="col s2 card card-header info">
+            <label>Suppliers :</label>
+            <select name="id" id="id" class="form-control col-xl-10" required>
+                <option value="">-Select Supplier-</option>
+                @foreach (var item in ViewBag.customers)
+                {
+                    <option value="@item.Value">@item.Text </option>
+                }
+            </select>
+        </div>
+
+        <div class="col s1">
+            <div>
+                <label>  From Date :</label>
+            </div>
+        </div>
+        <div class="col s2 card card-header info">
+
+            <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
+        </div>
+
+        <div class="col s1">
+            <div>
+                <label>  To Date :</label>
+            </div>
+        </div>
+        <div class="col s2 card card-header info">
+
+            <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
+        </div>
+        <div class="col s2">
+            <button class="btn waves-effect waves-light " id="btnsearch" style="float:inherit;margin-top:10%">
+                Search
+                <i class="material-icons right"></i>
+            </button>
+
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+<br />
+<div class="col s10" style="margin:1%">
+    <div class="card">
+       
+     
+        <table id="sublier" class="display" style="width:100%">
+            <thead>
+               
+                <tr>
+                    <th>Bill No</th>
+                    <th>Date</th>
+                    <th>Type </th>
+                    <th>Credit</th>
+                    <th>Debit</th>
+                </tr>
+            </thead>
+            <tbody id="tblsales">
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+
+                    @if (@item.dateOfPurchages != null)
+                    {
+                        <td>
+                            @item.dateOfPurchages.ToShortDateString()
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>}
+                    <td>@Html.DisplayFor(modelItem => item.type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.credit)</td>
+
+
+                    <td>@Html.DisplayFor(modelItem => item.debit)</td>
+
+
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        <span>Opening Balance</span> :
+                        <span id="txtOB">@ViewBag.resOpeningBalance</span>
+                    </th>
+                    <th>
+                        Closing Balance :    <span id="txtCB">@ViewBag.closingBalance</span>
+                    </th>
+
+                    <th>Total</th>
+
+                  
+                    <th id="gTotalPaid">@ViewBag.gTotalPaid</th>
+                    <th id="Total">@ViewBag.Total</th>
+                </tr>
+                
+            </tfoot>
+        </table>
+
+      
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="~/app-assets/js/custom/buttons.uikit.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js" defer></script>
+<script src="~/app-assets/js/custom/datatables.uikit.min.js"></script>
+<script src="~/app-assets/js/custom/common.js"></script>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#sublier').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    text: 'Pdf',
+                    orientation: 'landscape',
+                    autoPrint: true,
+                    footer: true,
+                  
+                    title: "Supplier Ledger"
+
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    orientation: 'landscape',
+                    autoPrint: true,
+                    footer: true,
+                    title: "Supplier Ledger"
+                },
+
+                'csv', 'excel',
+            ]
+        });
+    });
+
+</script>
+
+
+<script>
+
+    $(function () {
+
+
+       
+         function loadCustomer(fromDate, toDate, Id) {
+        $.ajax({
+            type: 'POST',
+            data: { fromDate: fromDate, toDate: toDate, name: Id },
+            url: '@Url.Content("~/Report/getSupplierDetails")',
+            success: function (data) {
+
+                var $material = $('#sublier'),
+                    $dt_buttons = $material.prev('.dt_colVis_buttons');
+
+                if ($material.length) {
+                    var table_export = $material.DataTable({
+                        "destroy": true,
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    });
+
+
+                     table_export.buttons().container().appendTo($dt_buttons);
+                     table_export.clear();
+                     let gTotal = 0;
+                     let Total = 0;
+
+                     let closingBalance = 0;
+                   
+                    $.each(data.supplier, function (i, item) {
+                         if (item.credit != null)
+                             gTotal += parseInt(item.credit)
+                         if (item.debit != null)
+                             Total += parseInt(item.debit)
+                         table_export.row.add([
+
+
+                             item.Id != null ? item.Id : "",
+                             item.dateOfPurchages != null ? DateConvertion(item.dateOfPurchages) : "",
+                             item.credit != null ? item.credit : "",
+                             item.debit != null ? item.debit : "",
+
+
+                        ]);
+                        $('#txtOB').text(data.resOpeningBalance);
+                         closingBalance = (parseFloat(gTotal) + parseFloat(data.resOpeningBalance)) - (Total);
+                         $('#txtCB').text(closingBalance);
+                     });
+                     table_export.draw();
+                 }
+             },
+             error: function () {
+                 alert("Failed! Please try again.");
+             }
+         });
+     }
+    });
+
+
+    function Advance(fromDate, toDate, Id) {
+        $('#Total').empty();
+        $('#gTotal').empty();
+        $('#tblsales').empty();
+        $('#txtOB').text("");
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Content("~/Report/getSupplierDetails")',
+                dataType: 'json',
+                data: { fromDate: fromDate, toDate: toDate, name: Id },
+
+                success: function (data) {
+                    if (data != "Faild") {
+                        //var data = JSON.parse(result);
+                        console.log(data)
+                        var row;
+
+                        let gTotal = 0;
+                        let Total = 0;
+                        let sNo = 1;
+                        let closingBalance = 0;
+
+                      
+                        if (data.supplier.length > 0) {
+                            for (var i = 0; i < data.supplier.length; i++) {
+                            var tempData = {};
+                            if (data.supplier[i].Id) { tempData.Id = data.supplier[i].Id } else tempData.Id = "";
+                            if (data.supplier[i].dateOfPurchages) { tempData.dateOfPurchages = DateConvertion(data.supplier[i].dateOfPurchages) } else tempData.dateOfPurchages = "";
+                            //if (data[i].materialName.name) { tempData.materialName = data[i].materialName.name } else tempData.materialName = "";
+                            if (data.supplier[i].credit) { tempData.credit = data.supplier[i].credit; gTotal += parseInt(data.supplier[i].credit) } else tempData.credit = "0";
+                            if (data.supplier[i].debit) { tempData.debit = data.supplier[i].debit; Total += parseInt(data.supplier[i].debit) } else tempData.debit = "0";
+
+
+                            row = "<tr>"
+                            row += "<td>" + sNo + "</td>"
+                            row += "<td>" + tempData.Id + "</td>"
+                            row += "<td>" + tempData.dateOfPurchages + "</td>"
+                            //row += "<td>" + tempData.materialName + "</td>"
+                            row += "<td>" + tempData.credit + "</td>"
+                            row += "<td>" + tempData.debit + "</td>"
+                            row += "</tr>";
+                            $('#tblsales').append(row);
+                            $('#gTotal').empty();
+                            $('#gTotal').append(gTotal);
+                            $('#Total').empty();
+                            $('#Total').append(Total);
+                            sNo++;
+                            }
+                            closingBalance = (parseFloat(gTotal) + parseFloat(data.resOpeningBalance)) - (Total);
+                            $('#txtCB').text(closingBalance);
+                        }
+                    } else {
+                        alert("Somthing went wrong please try again.");
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+
+            });
+
+
+
+
+    }
+
+
+
+
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) {
+            view[i] = s.charCodeAt(i) & 0xFF;
+        }
+        return buf;
+    }
+
+</script>
+
+

@@ -1,0 +1,147 @@
+﻿@model IEnumerable<issBlueMetal.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+
+<!-- Editor -->
+<link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+<!-- Buttons -->
+<link href="https://nightly.datatables.net/buttons/css/buttons.dataTables.css?_=c6b24f8a56e04fcee6105a02f4027462.css" rel="stylesheet" type="text/css" />
+<script src="https://nightly.datatables.net/buttons/js/dataTables.buttons.js?_=c6b24f8a56e04fcee6105a02f4027462"></script>
+
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Customers</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Home/Index">Dashboard(Master)</a>
+
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a> Customer Index</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col s12">
+    <div class="container">
+        <div class="section">
+            <div class="container">
+                <div class="card">
+
+                    <div class="card-tabs">
+                        <table class="hover row-border" width="100%" id="tblCustomer">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>
+                                        <h3 class="card-title"> Customer Id</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Customer Name</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Address</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Cell No</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Opening Balance</h3>
+
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cellNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.openingBalance)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#tblCustomer').DataTable({
+          
+            "buttons": [
+                {
+                    extend: 'copy',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-copy"></i> Copy'
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-file-excel"></i> Excel'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-file-pdf"></i> Pdf'
+                },
+                {
+                    extend: 'csv',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="fas fa-file-csv"></i> CSV'
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="fas fa-print"></i> Print'
+                }
+            ]
+        });
+    });
+</script>

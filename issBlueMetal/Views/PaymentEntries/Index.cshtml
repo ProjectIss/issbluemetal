@@ -1,0 +1,133 @@
+﻿@model IEnumerable<issBlueMetal.Models.PaymentEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Payment Entry</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Home/Index">Dashboard(Master)</a>
+
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>Payment Entry Index</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col s12">
+    <div class="container">
+        <div class="section">
+            <div class="container">
+                <div class="card">
+
+                    <div class="card-tabs">
+                        <table class="display" id="tblItems">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h3 class="card-title">Id</h3>
+
+                                    </th>
+
+                                    <th>
+                                        <h3 class="card-title">Date</h3>
+
+                                    </th>
+
+                                    <th>
+                                        <h3 class="card-title">Account Ledger</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Supplier Name</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Description</h3>
+
+                                    </th>
+
+                                    <th>
+                                        <h3 class="card-title">Amount</h3>
+
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    @if (@item.Date != null)
+                                    {
+                                        <td>
+                                            @item.Date.Value.ToShortDateString()
+                                           
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>}
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AcLedger.accountledger)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Supplier.name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.description)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                                        <a href="~/Report/Index/@item.Id">Voucher</a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#tblItems").DataTable();
+
+    });
+
+</script>

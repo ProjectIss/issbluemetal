@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "MaterialPurchasLedger";
+}
+
+<style>
+    .row {
+        margin-top: 2%;
+    }
+
+    .cardBody {
+        height: 600px;
+        padding: 5%;
+    }
+</style>
+
+<div class="row">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+        <div class="card cardBody" style="overflow:auto">
+            <div class="container">
+                <div class="card">
+                    <button class="btn waves-effect waves-light " id="exportexcel" style="float:right;margin-top:2%">
+                        .xlsx
+                        <i class="material-icons right">excel</i>
+                    </button>
+                </div>
+                <div class="card">
+                    <button class="btn waves-effect waves-light " id="print" style="float:right;margin-top:2%">
+                        Print
+                        <i class="material-icons right">print</i>
+                    </button>
+                </div>
+                <div>
+                    <h5 style="text-align: center">Material Purchas Ledger</h5>
+                </div>
+                <hr />
+                
+             
+
+            </div>
+            <br />
+            <table style="width:100%" id="Material">
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Material</th>
+                    <th>Material Id</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Status</th>
+                   
+                </tr>
+                <tbody id="tblMaterial"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

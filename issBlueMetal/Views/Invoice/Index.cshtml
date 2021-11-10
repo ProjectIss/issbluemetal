@@ -1,0 +1,284 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .mb-3 {
+        margin-bottom: 1% !important;
+    }
+
+    .mt-3 {
+        margin-top: 1% !important;
+    }
+    .btn, .btn-floating, .btn-large, .btn-small, .card, .card-panel, .collapsible, .dropdown-content, .sidenav, .toast, .z-depth-1, nav {
+        box-shadow: none!important;
+    }
+</style>
+
+<div class="row">
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="row">
+        <div class="container">
+            <!-- app invoice View Page -->
+            <section class="invoice-view-wrapper section">
+                <div class="row">
+                    <div class="card">
+                        <button class="btn waves-effect waves-light " id="btnprint" style="float:right;margin-top:2%">
+                            Print
+
+                        </button>
+                    </div>
+                    <!-- invoice view page -->
+                    <div class="col s12">
+                        <div class="card">
+
+                            <!-- header section -->
+                            <div class="row mt-3 invoice-logo-title">
+                                <!-- logo and title -->
+
+                                <center>
+                                    <div class="col m6 s4 pull-m2">
+                                        <h4 class="indigo-text">INVOICE</h4>
+                                        <small style="font-size: .5rem">ISSUE OF INVOICE UNDER GST 2021</small>
+                                    </div>
+                                </center>
+                                <div class="mr-3">
+                                    <small>BillNo:</small>
+                                    <span id="billNo"></span>
+                                </div>
+                                <div class="mr-3" style="float:right">
+                                    <small>Date Issue:</small>
+                                    <span>@DateTime.Now.ToShortDateString()</span>
+                                </div>
+                                <div class="mr-3">
+                                    <span>GSTIN : 33AAMPE3553A3Z8</span>
+                                </div>
+                            </div>
+                            <div class="divider mb-1 mt-1"></div>
+                            <!-- invoice address and contact -->
+                            <div class="row invoice-info">
+                                <div class="col m6 s6">
+                                    <h6 class="invoice-from">Bill From</h6>
+                                    <div class="invoice-address">
+                                        <span>UDHAYAM BLUE METALS</span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span>Asanur Road, Puthamangalam, Elavanasurkottai, Ulundurpettai(tk),Kallakurichi(dt)-606 305</span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span>udayambluemetals17@gmail.com</span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span>9514713630 , 9677160168</span>
+                                    </div>
+                                </div>
+                                <div class="col m6 s6">
+                                    <div class="divider show-on-small hide-on-med-and-up mb-3"></div>
+                                    <h6 class="invoice-to">Bill To</h6>
+                                    <div class="invoice-address">
+                                        <span id="customerName"></span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span id="address"></span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span id="email"></span>
+                                    </div>
+                                    <div class="invoice-address">
+                                        <span id="phoneNo"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider mb-1 mt-1"></div>
+                            <!-- product details table-->
+                            <div class="invoice-product-details">
+                                <table class="striped responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Description & Specification of Goods / Service</th>
+                                            <th>HSN Code</th>
+                                            <th>Unit</th>
+                                            <th>Unit Rate</th>
+                                            <th class="right-align">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td id="item"></td>
+                                            <td id="hsnCode">2517</td>
+                                            <td id="unit"></td>
+                                            <td id="unitRate"></td>
+                                            <td class="indigo-text right-align" id="amount"></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- invoice subtotal -->
+                            <div class="divider mt-3 mb-3"></div>
+                            <div class="invoice-subtotal">
+                                <div class="row">
+                                    <div class="col m5 s6">
+                                        <p>Thanks for your business.</p>
+                                        <ul>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">Account No</span>
+                                                <h6 class="invoice-subtotal-value">1448201000291</h6>
+                                            </li>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">IFSC Code</span>
+                                                <h6 class="invoice-subtotal-value">CNRB0001448</h6>
+                                            </li>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">Bank Name</span>
+                                                <h6 class="invoice-subtotal-value">CANARA BANK</h6>
+                                            </li>
+
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">Branch</span>
+                                                <h6 class="invoice-subtotal-value">VEPPUR</h6>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col xl4 m7 s6 offset-xl3">
+                                        <ul>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">Total Amount</span>
+                                                <h6 class="invoice-subtotal-value" id="totalAmount"></h6>
+                                            </li>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">CGST 2.5 %</span>
+                                                <h6 class="invoice-subtotal-value" id="cgst"></h6>
+                                            </li>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">SGST 2.5 %</span>
+                                                <h6 class="invoice-subtotal-value" id="sgst"></h6>
+                                            </li>
+                                            <li class="divider mt-2 mb-2"></li>
+                                            <li class="display-flex justify-content-between">
+                                                <span class="invoice-subtotal-title">Net Amount</span>
+                                                <h6 class="invoice-subtotal-value" id="netAmount"></h6>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div style="float:right;margin-right:10%">
+
+                                    <span>Authorised Signatory</span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="divider mt-3 mb-3"></div>
+                        </div>
+                    </div>
+                    <!-- invoice action  -->
+                   
+                </div>
+            </section><!-- START RIGHT SIDEBAR NAV -->
+            <!-- END RIGHT SIDEBAR NAV -->
+        </div>
+        <div class="content-overlay"></div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(function () {
+              $('#navCreate').hide();
+        loadData();
+        $('#btnprint').click(function () {
+            $('#header').hide();
+            $(this).hide();
+            $('#settings').hide();
+            $('#Sidemenus').hide();
+            $('footer').hide();
+            window.print();
+            $('#header').show();
+            $('#settings').show();
+            $('#Sidemenus').show();
+            $(this).show();
+            $('footer').show();
+
+
+        });
+        function PrintElem(elem) {
+            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href=\"../lib/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\"><link href=\"../css/core.css\" rel=\"stylesheet\"><link href=\"../css/components.css\" rel=\"stylesheet\"><link href=\"../css/icons.css\" rel=\"stylesheet\">")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printArea').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+
+            
+        //    document.addEventListener("DOMContentLoaded", function () {
+        //        document.getElementById("print").addEventListener("click", function () {
+        //            createPopup(document.getElementById("content").innerHTML);
+
+        //        }, false);
+
+        //    });
+
+        //})();
+    });
+    function loadData() {
+        let id =@ViewBag.Id;
+        console.log(id);
+        $.ajax({
+           type: 'POST',
+           url: '@Url.Content("~/Invoice/getSalesData")',
+            dataType: 'json',
+            data: { id: id },
+            success: function (data) {
+                console.log(data);
+                $('#customerName').append(data.customer);
+                $('#billNo').append(data.billNo);
+                $('#address').append(data.address);
+                $('#phoneNo').append(data.phoneNo);
+
+                $('#unit').append(data.noOfUnit);
+                $('#unitRate').append(data.advanceAmount);
+               // $('#amount').append(data.netAmount);
+                
+                $('#item').append(data.Item.name);
+                let amount = parseInt(data.noOfUnit * data.advanceAmount);
+                $('#amount').append(amount);
+                $('#totalAmount').append(amount);
+               
+                let cgst = (amount * 2.5) / 100;
+                let sgst = (amount * 2.5) / 100;
+                $('#cgst').append(cgst);
+                $('#sgst').append(sgst);
+                let ttm = amount + parseInt(cgst) + parseInt(cgst);
+                $('#netAmount').append(ttm);
+                //$('#nos').append(data.noofLoad);
+                //$('#totalUnits').append(data.totalUnit);
+               //$('#IDNo').append(data.id);
+
+           },
+           error: function (err) {
+               console.log(err);
+           }
+       });
+    }
+</script>

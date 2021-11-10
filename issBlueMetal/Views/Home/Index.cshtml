@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col s12 m6 l4">
+        <div class="card padding-4 animate fadeLeft">
+            <div class="row">
+                <div class="col s5 m5">
+                    <p class="mb-0">Openning Balance</p>
+                   
+                    <p class="mb-0">Expenses</p>
+                    <p class="mb-0">Income</p>
+                    <p class="mb-0">Closing Balance</p>
+                   </div>
+                <div class="col s7 m7 right-align">
+                    <p class="mb-0" id="tblOpeningBalance"></p>
+                    <p class="mb-0" id="tblExpances"></p>
+                    <p class="mb-0" id="tblIncome"></p>
+                    <p class="mb-0"  id="tblclose"></p>
+                    <a href="~/Report/DayBook">
+                        <i class="material-icons background-round mt-5 mb-5 gradient-45deg-purple-amber gradient-shadow white-text">perm_identity</i>
+                        <p>Day book</p>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col s12 m6 l4">
+        <div class="card padding-4 animate fadeLeft">
+            <div class="row">
+                <div class="col s5 m5">
+                    <p class="mb-0">Openning Balance</p>
+
+                    <p class="mb-0">Expenses</p>
+                    <p class="mb-0">Income</p>
+                    <p class="mb-0">Closing Balance</p>
+                </div>
+                <div class="col s7 m7 right-align">
+                    <p class="mb-0" id="htblOpeningBalance"></p>
+                    <p class="mb-0" id="htblExpances"></p>
+                    <p class="mb-0" id="htblIncome"></p>
+                    <p class="mb-0" id="htblclose"></p>
+                    <a href="~/Report/HotelsBook">
+                        <i class="material-icons background-round mt-5 mb-5 gradient-45deg-purple-amber gradient-shadow white-text">perm_identity</i>
+                        <p class="mb-0">Hotel Day Book</p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col s12 m6 l4">
+        <div class="card padding-4 animate fadeLeft">
+            <div class="row">
+                <div class="col s5 m5">
+                    <p class="mb-0">Booking</p>
+
+                    <p class="mb-0">Vacancy</p>
+                    <p class="mb-0">House Keeping</p>
+                  
+                </div>
+                <div class="col s7 m7 right-align">
+                    <p class="mb-0"  id="tblBooking"></p>
+                    <p class="mb-0" id="tblVacancy"></p>
+                    <p class="mb-0" id="tblHousKeeping"></p>
+                
+                    <a href="~/Report/RoomStatus">
+                        <i class="material-icons background-round mt-5 mb-5 gradient-45deg-purple-amber gradient-shadow white-text">perm_identity</i>
+                        <p>Room Status</p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+        load();
+        getHotel();
+        Book();
+        function load() {
+                $.ajax({
+                type: 'Get',
+                url: '@Url.Content("~/Home/getOB")',
+                dataType: 'json',
+               // data: { date: yesterday},
+                success: function (data) {
+                    console.log(data);
+                    $('#tblOpeningBalance').append(data.openingBalance.toLocaleString());
+                    $('#tblExpances').append(data.TodayPaid.toLocaleString());
+                    $('#tblIncome').append(data.todayIncome.toLocaleString());
+                    $('#tblclose').append(data.closingBalance.toLocaleString());
+                }
+            });
+            
+
+        }
+        function getHotel() {
+            var d = new Date();
+            var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+           // var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+           $.ajax({
+                type: 'Get',
+                url: '@Url.Content("~/Home/getOBHotel")',
+               dataType: 'json',
+               data: { tdate: strDate  },
+                success: function (data) {
+                   $('#htblOpeningBalance').append(data.openingBalance.toLocaleString());
+                    $('#htblExpances').append(data.todayExpenses.toLocaleString());
+                    $('#htblIncome').append(data.todayIncome.toLocaleString());
+                    $('#htblclose').append(data.closingBalance.toLocaleString());
+                }
+            });
+        }
+         function Book() {
+                $.ajax({
+                type: 'Get',
+                url: '@Url.Content("~/Home/RoomStatus")',
+                dataType: 'json',
+               // data: { date: yesterday},
+                success: function (data) {
+                    console.log(data);
+                    $('#tblBooking').append(data.booking);
+                    $('#tblVacancy').append(data.vacancy);
+                    $('#tblHousKeeping').append(data.housKeeping);
+                  
+                }
+             });
+         }  
+       
+    });
+
+</script>

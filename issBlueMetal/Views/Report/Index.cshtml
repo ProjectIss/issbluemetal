@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .row {
+        margin-top: 2%;
+    }
+
+    .cardBody {
+        height: 600px;
+        padding: 5%;
+    }
+</style>
+
+<div class="row">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+        <div class="card">
+            <button class="btn waves-effect waves-light " id="print" style="float:right;margin-top:2%">
+                Print
+                <i class="material-icons right">print</i>
+            </button>
+        </div>
+        <div class="card cardBody" id="receipt">
+            <div class="container">
+
+                <div>
+                    <h5 style="text-align: center">UDHAYAM BLUE METALS</h5>
+                    <center> <h10 style="text-align: center">Asanur Road, Puthamangalam, Elavanasurkottai, Ulundurpettai(tk),Kallakurichi(dt)-606 305</h10></center>
+                    <center> <h10 style="text-align: center">PHONE : 9514713630 , 9677160168 , Mail ID : udayambluemetals17@gmail.com</h10></center>
+                </div>
+            </div>
+            <hr />
+            <center><b><u>VOUCHER</u></b></center>
+            <div class="row">
+                
+                <div class="col s2">Voucher No:<samp id="receiptNo"></samp> </div>
+                <div class="col s4"></div>
+                
+                <div class="col s2">Date :<samp id="date">@DateTime.Today.ToShortDateString()</samp></div>
+            </div>
+            <div class="row">
+                <div class="col s1"></div>
+                <div class="col s4">Paid to</div>
+                <div class="col s4"><b><u><span id="receivedFrom"></span></u></b></div>
+            </div>
+            <div class="row">
+                <div class="col s4">the Sum of Rupees</div>
+                <div class="col s4"><b><u><span id="sumOfRupees"></span> </u></b></div>
+            </div>
+            <div class="row">
+                <div class="col s4">Cheque drawn on</div>
+                <div class="col s4"><b><u><span id="chequeDrown"></span> </u></b></div>
+            </div>
+            <div class="row">
+                <div class="col s4">Rs. </div>
+                <div class="col s4"><b><u><span id="amount"></span> </u></b></div>
+                <div class="col s4">Authorised Signature</div>
+
+            </div>
+        </div>
+
+        <div class="content-overlay"></div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(function () {
+        loadData();
+        $('#print').click(function () {
+            $('#header').hide();
+            $(this).hide();
+            $('#settings').hide();
+            $('#Sidemenus').hide();
+            $('footer').hide();
+            window.print();
+            $('#header').show();
+            $('#settings').show();
+            $('#Sidemenus').show();
+            $(this).show();
+            $('footer').show();
+
+          
+        });
+    });
+    function loadData() {
+        let id =@ViewBag.Id;
+      
+        $.ajax({
+           type: 'POST',
+           url: '@Url.Content("~/Report/getReceipt")',
+            dataType: 'json',
+            data: { id: id },
+            success: function (data) {
+                //console.log(data);
+               // $('#receivedFrom').text(data.Customer.name);
+                $('#receiptNo').text(data.Id);
+                $('#sumOfRupees').text(data.description);
+                $('#amount').text(data.Amount);
+                $('#chequeDrown').text(data.PaymentType);
+               
+
+           },
+           error: function (err) {
+               console.log(err);
+           }
+       });
+    }
+</script>
+

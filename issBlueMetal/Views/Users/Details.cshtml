@@ -1,0 +1,72 @@
+﻿@model issBlueMetal.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>User Details</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Users/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Details</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <th style="width: 15%">   <label class="col-lg-2 font-weight-bold">User Id</label></th>
+                        <th>@Html.DisplayFor(model => model.id)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Name</label></th>
+                        <th>   @Html.DisplayFor(model => model.name)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">User Name</label></th>
+                        <th>@Html.DisplayFor(model => model.username)</th>
+                    </tr>
+                    <tr>
+                        <th>  <label class="col-lg-2 font-weight-bold">Password</label></th>
+                        <th>@Html.DisplayFor(model => model.password)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Role</label></th>
+                        <th>@Html.DisplayFor(model => model.role)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Status</label></th>
+                        <th>@Html.DisplayFor(model => model.status)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Last Login</label></th>
+                        <th>  @Html.DisplayFor(model => model.lastLogin)</th>
+                    </tr>
+                </table>
+        </div>
+            <div class="header-elements">
+                <div class="list-icons" style="text-align:right">
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

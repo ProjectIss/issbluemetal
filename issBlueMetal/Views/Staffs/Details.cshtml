@@ -1,0 +1,85 @@
+﻿@model issBlueMetal.Models.Staff
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Staff Details</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Staffs/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Details</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <th style="width: 15%"><label class="col-lg-2 font-weight-bold">Staff Id</label></th>
+                        <th>@Html.DisplayFor(model => model.id)</th>
+</tr>
+                    <tr>
+
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Staff Name</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.name)</th>
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Address</label></th>
+                        <th>   @Html.DisplayFor(model => model.address)</th>
+</tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Cell No</label></th>
+                        <th>@Html.DisplayFor(model => model.cellNo)</th>
+</tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Licence No</label></th>
+                        <th>  @Html.DisplayFor(model => model.licenceNo)</th>
+</tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Badge No</label></th>
+                        <th>@Html.DisplayFor(model => model.badgeno)</th>
+</tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Licence Ex Date</label></th>
+                        <th> @Html.DisplayFor(model => model.licenceExDate)</th>
+</tr>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">Salary</label></th>
+                        <th> @Html.DisplayFor(model => model.salary)</th>
+                        
+                    </tr>
+                    <tr>
+                        <th><label class="col-lg-2 font-weight-bold">Salary Type</label></th>
+                        <th>   @Html.DisplayFor(model => model.salaryType)</th>
+                    </tr>
+                </table>
+
+        </div>
+            <div class="header-elements">
+                <div class="list-icons" style="text-align:right">
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

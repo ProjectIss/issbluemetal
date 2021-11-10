@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ISSHotel" GeneratedClassName="config">
+  <Profiles />
+  <Settings>
+    <Setting Name="datasource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sql5085.site4now.net</Value>
+    </Setting>
+    <Setting Name="filePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\HotelManagementSystem\Data</Value>
+    </Setting>
+    <Setting Name="database" Type="System.String" Scope="User">
+      <Value Profile="(Default)">db_a77066_bluemetal</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">db_a77066_bluemetal_admin</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">H@04460446</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

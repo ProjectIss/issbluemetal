@@ -1,0 +1,315 @@
+﻿@model issBlueMetal.Models.Sales
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Sales</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Sales/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Create</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col s12">
+                <div id="icon-prefixes" class="card card-tabs">
+                    <div class="card-content">
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col s12 m6 l10">
+                                    <h4 class="card-title">New Purchase</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="view-icon-prefixes" class="active">
+                            <div class="row">
+
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s6">
+                                            <div class="form-control input-field">
+                                                <input type="date" name="Date" id="Date" class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s6">
+                                            <label for="icon_prefix3">Vehicle</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.vehicle, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.vehicle, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s6">
+                                            <label for="icon_prefix3">Driver Name</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.driver, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.driver, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <label for="icon_prefix3">Type</label>
+                                        <div class="form-control input-field">
+
+                                            @Html.DropDownList("type", new List<SelectListItem>
+                                             {
+    new SelectListItem{ Text="6 WHEELER HMV", Value="6 WHEELER HMV"},
+    new SelectListItem{ Text="10 WHEELER HMV", Value="10 WHEELER HMV"},
+    new SelectListItem{ Text="LCV", Value="LCV"},
+    new SelectListItem{ Text="JCB", Value="JCB"},
+    new SelectListItem{ Text="CRANE", Value="CRANE"},
+     new SelectListItem{ Text="TATA ACE", Value="TATA ACE"},
+      new SelectListItem{ Text="DOZER", Value="DOZER"},
+       new SelectListItem{ Text="TRACTOR", Value="TRACTOR"},
+        new SelectListItem{ Text="EXCAVATOR", Value="EXCAVATOR"},
+         new SelectListItem{ Text="ROLLER", Value="ROLLER"},
+          new SelectListItem{ Text="PAVER", Value="PAVER"},
+           new SelectListItem{ Text="GRADER", Value="GRADER"},
+    }, "--- Select ---", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        @Html.DropDownList("itemId", null, htmlAttributes: new { @class = "form-control" })
+                                        <label for="icon_prefix3"> Materical Names</label>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <div class="input-field col s6">
+                                   
+                                            @Html.DropDownList("customerId", null, htmlAttributes: new { @class = "form-control" })
+                                            <label for="icon_prefix3"> Customer Names</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Address</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @id = "address" } })
+                                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Phone No</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.phoneNo, new { htmlAttributes = new { @class = "form-control", @id = "cusPhone" } })
+                                                @Html.ValidationMessageFor(model => model.phoneNo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Delivery Place</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.deliveryPlace, new { htmlAttributes = new { @class = "form-control", @id = "cusPhone" } })
+                                                @Html.ValidationMessageFor(model => model.deliveryPlace, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">No Of Unit</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.noOfUnit, new { htmlAttributes = new { @class = "form-control", @id = "txtnoOfUnit" } })
+                                                @Html.ValidationMessageFor(model => model.noOfUnit, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Rate Per Unit</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.ratePerUnit, new { htmlAttributes = new { @class = "form-control", @id = "txtratePerUnit" } })
+                                                @Html.ValidationMessageFor(model => model.ratePerUnit, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Driver Salary</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.driverSalary, new { htmlAttributes = new { @class = "form-control", @id = "txtdriverSalary" } })
+                                                @Html.ValidationMessageFor(model => model.driverSalary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Rent Amount</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.rentAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtrentAmount" } })
+                                                @Html.ValidationMessageFor(model => model.rentAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Net Amount</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.netAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtnetAmount" } })
+                                                @Html.ValidationMessageFor(model => model.netAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">
+                                                GST Rate
+                                            </label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.advanceAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtadvanceAmount" } })
+                                                @Html.ValidationMessageFor(model => model.advanceAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Paid Amount</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.paidAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtpaidAmount" } })
+                                                @Html.ValidationMessageFor(model => model.paidAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Balance Amount</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.balanceAmount, new { htmlAttributes = new { @class = "form-control", @id = "txtbalanceAmount" } })
+                                                @Html.ValidationMessageFor(model => model.balanceAmount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Submit" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        //getCustomerDetails
+        $('#ddlCustomer').change(function () {
+
+            let id = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Content("~/Sales/getCustomerDetails")',
+                dataType: 'json',
+                data: { id: id },
+                success: function (data) {
+                   // console.log(data);
+                    let address = "";
+                    let cellNo = "";
+                    data.address != null ? address = data.address : address = address;
+                    data.cellNo != null ? cellNo = data.cellNo : cellNo = cellNo;
+                    $('#address').val(address);
+                    $('#cusPhone').val(cellNo);
+                }
+            });
+        });
+        $('#txtrentAmount').focusout(function () {
+            let txtnoOfUnit = parseFloat($('#txtnoOfUnit').val());
+            let txtratePerUnit = parseFloat($('#txtratePerUnit').val());
+            let txtdriverSalary = parseFloat($('#txtdriverSalary').val());
+            let txtrentAmount = parseFloat($('#txtrentAmount').val());
+            var result = (txtnoOfUnit * txtratePerUnit) + txtdriverSalary + txtrentAmount;
+            $('#txtnetAmount').val(result);
+
+        });
+        $('#txtpaidAmount').focusout(function () {
+            let txtpaidAmount = parseFloat($(this).val());
+            let txtnetAmount = parseFloat($('#txtnetAmount').val());
+          //  let txtadvanceAmount = parseFloat($('#txtadvanceAmount').val());
+            var rs = txtnetAmount - (txtpaidAmount);
+            $('#txtbalanceAmount').val(rs);
+            //
+        });
+    });
+
+</script>
+

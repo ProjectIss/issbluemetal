@@ -1,0 +1,113 @@
+﻿@model IEnumerable<issBlueMetal.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Item</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Home/Index">Dashboard(Master)</a>
+
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a> Item Index</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col s12">
+    <div class="container">
+        <div class="section">
+            <div class="container">
+                <div class="card">
+
+                    <div class="card-tabs">
+                        <table class="display" id="tblItems">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h3 class="card-title">Item Id</h3>
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Item Name</h3>
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">UOM</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Purchase Prize</h3>
+
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Sales Prize</h3>
+
+                                    </th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.uom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.purchasePrize)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.salcePrize)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $("#tblItems").DataTable();
+       
+    });
+
+</script>

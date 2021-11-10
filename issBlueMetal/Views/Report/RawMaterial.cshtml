@@ -1,0 +1,192 @@
+﻿@model IEnumerable<issBlueMetal.Models.RawMateriyalPurchase>
+
+@{
+    ViewBag.Title = "RawMaterial";
+}
+
+
+<style type="text/css">
+    .row {
+        margin-top: 2%;
+    }
+
+    .cardBody {
+        /*height: 600px;*/
+        padding: 5%;
+    }
+
+    tr {
+        border: none;
+    }
+
+    .columns {
+        border: 1px solid !important;
+        padding: 8px;
+    }
+   
+</style>
+
+<div class="row">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+
+        <div class="card">
+            <button class="btn waves-effect waves-light " id="print" style="float:right;margin-top:0%">
+                Print
+               
+            </button>
+        </div>
+        <div class="card cardBody" id="receipt">
+
+            @*<h6><center><b>GOODS RECEIPT NOTE</u></b>   </center></h6>*@
+            <hr />
+            <div class="container">
+
+                <div>
+                    <h5 style="text-align: center">UDHAYAM BLUE METALS</h5>
+                    <center> <h10 style="text-align: center">Asanur Road, Puthamangalam, Elavanasurkottai, Ulundurpettai(tk),Kallakurichi(dt)-606 305</h10></center>
+                    <center> <h10 style="text-align: center">PHONE : 9514713630 , 9677160168 , Mail ID : udayambluemetals17@gmail.com</h10></center>
+                </div>
+            </div>
+            <hr />
+
+            
+         
+            <table id="RawContent">
+                <tr style="border:1px solid;border-bottom:none">
+                    <th colspan="2">Received from ,</th>
+                    <th>ID No.</th>
+                    <th>:</th>
+                    <th id="IDNo"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th></th>
+                    <th id="name"></th>
+                    <th>Date of Receive</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="dateOfRecive"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th></th>
+                    <th></th>
+                    <th>Place of Issue</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="placeofIssue"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th></th>
+                    <th></th>
+                    <th>Place of Receive</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="placeOfRecive"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+
+                    <th colspan="2">Driver Name</th>
+                    <th>Vehicle No</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="vehicelNo"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th></th>
+                    <th id="driverName"></th>
+                    <th>Type</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="type"></th>
+                </tr>
+                <tr class="columns">
+                    <th class="columns">S.No</th>
+                    <th class="columns">Description & Specification of Goods / Service</th>
+                    <th class="columns">Weight (Or) Unit</th>
+                    <th class="columns">Nos</th>
+                    <th class="columns">Total Unit</th>
+                </tr>
+                <tr class="columns">
+                    <th class="columns">1</th>
+                    <th class="columns" id="service"></th>
+                    <th class="columns" id="weight"></th>
+                    <th class="columns" id="nos"></th>
+                    <th class="columns" id="totalUnits"></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="float:right">For UDHAYAM BLUE METALS</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="float:right">Authorised Signatory</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content-overlay">
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(function () {
+        loadData();
+        $('#print').click(function () {
+            $('#header').hide();
+            $(this).hide();
+            $('#settings').hide();
+            $('#Sidemenus').hide();
+            $('footer').hide();
+            window.print();
+            $('#header').show();
+            $('#settings').show();
+            $('#Sidemenus').show();
+            $(this).show();
+            $('footer').show();
+
+          
+        });
+    });
+    function loadData() {
+        let id =@ViewBag.Id;
+      
+        $.ajax({
+           type: 'POST',
+           url: '@Url.Content("~/Report/getRawData")',
+            dataType: 'json',
+            data: { id: id },
+            success: function (data) {
+                $('#name').append(data.Supplier.name);
+               $('#IDNo').append(data.id);
+                $('#dateOfRecive').append(DateConvertion(data.dateTime));
+                $('#placeofIssue').append(data.ArrivalPlace.name);
+                $('#placeOfRecive').append(data.DeparturePlace.name);
+                $('#vehicelNo').append(data.Vehicle.vehicleNo);
+                $('#type').append(data.type);
+                $('#driverName').append(data.Staff.name);
+                $('#service').append(data.id);
+                $('#weight').append(data.Weight);
+                $('#nos').append(data.noofLoad);
+                $('#totalUnits').append(data.totalUnit);
+               //$('#IDNo').append(data.id);
+
+           },
+           error: function (err) {
+               console.log(err);
+           }
+       });
+    }
+</script>
+

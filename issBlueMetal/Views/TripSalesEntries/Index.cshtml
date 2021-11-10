@@ -1,0 +1,129 @@
+﻿@model IEnumerable<issBlueMetal.Models.TripSalesEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vehicleNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.driverName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.materialName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deliveryPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noofUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.driverSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.netAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paidAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rateperUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rentAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.advanceAmt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.balanceAmt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vehicleNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.driverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.materialName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.deliveryPlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noofUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.driverSalary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.netAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paidAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rateperUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rentAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.advanceAmt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balanceAmt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

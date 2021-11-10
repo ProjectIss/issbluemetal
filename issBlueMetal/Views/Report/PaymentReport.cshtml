@@ -1,0 +1,243 @@
+﻿@model IEnumerable<issBlueMetal.Models.PaymentEntry>
+@{
+    ViewBag.Title = "PaymentReport";
+}
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+<div class="container">
+    <div>
+        <h5 style="text-align: center">Payment Report</h5>
+
+    </div>
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col s1">
+        </div>
+
+
+        <div class="col s1">
+            <div>
+                <label>  From Date :</label>
+            </div>
+        </div>
+        <div class="col s2 card card-header info">
+
+            <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
+        </div>
+
+        <div class="col s1">
+            <div>
+                <label>  To Date :</label>
+            </div>
+        </div>
+        <div class="col s2 card card-header info">
+
+            <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
+        </div>
+        <div class="col s2">
+            <button class="btn waves-effect waves-light " id="btnsearch" style="float:inherit;margin-top:10%">
+                Search
+                <i class="material-icons right"></i>
+            </button>
+
+        </div>
+    </div>
+}
+<br />
+<div class="col s10" style="margin:1%">
+    <div class="card">
+        <div class="dt_colVis_buttons"></div>
+        <table class="display" id="pay">
+            <thead>
+                <tr>
+                    
+                    <th>Date</th>
+                    <th>Payment Type</th>
+                    <th>Account Ledger</th>
+                    <th>Description</th>
+                    <th>Supplier</th>
+                    <th>Amount</th>
+
+
+                </tr>
+            </thead>
+            <tbody id="tblpayment">
+                @foreach (var item in Model)
+                {
+                <tr>
+                    @if (@item.Date != null)
+                    {
+                        <td>
+                            @item.Date.Value.ToShortDateString()
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>}
+
+                    <td>@Html.DisplayFor(modelItem => item.PaymentType)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.AcLedger.accountledger)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Supplier.name)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+
+
+
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+
+                    <th colspan="4"></th>
+                    <th id="Total">@ViewBag.Total</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="~/app-assets/js/custom/buttons.uikit.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" defer></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js" defer></script>
+<script src="~/app-assets/js/custom/datatables.uikit.min.js"></script>
+<script src="~/app-assets/js/custom/common.js"></script>
+<script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#pay').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        text: 'Pdf',
+                        orientation: 'landscape',
+                        autoPrint: true,
+                        footer: true,
+                        title: 'Payment Report'
+
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        orientation: 'landscape',
+                        autoPrint: true,
+                        footer: true,
+                        title: 'Payment Report'
+                    },
+
+                    'csv', 'excel',
+                ]
+            });
+        });
+
+    </script>
+<script>
+
+   
+
+
+   
+
+
+
+    function Advance(fromDate, toDate) {
+        $("#tblpayment").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Report/PaymentReport")',
+            dataType: 'json',
+            data: { fromDate: fromDate, toDate: toDate, },
+            success: function (data) {
+            if (data != "Faild") {
+            //var data = JSON.parse(result);
+
+            var row;
+            let gTotal = 0;
+            let sNo = 1;
+            if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+            var tempData = {};
+
+            if (data[i].Date != null) { tempData.date = DateConvertion(data[i].Date) } else tempData.date = "";
+            if (data[i].PaymentType != null) { tempData.PaymentType = data[i].PaymentType; } else tempData.PaymentType = "";
+            if (data[i].AcLedger != null) { tempData.AcLedger = data[i].AcLedger.accountledger; } else tempData.AcLedger = "";
+            if (data[i].description != null) { tempData.description = data[i].description; } else tempData.description = "";
+            if (data[i].Supplier != null) { tempData.Supplier = data[i].Supplier.name; } else tempData.Supplier = "";
+            if (data[i].Amount != null) { tempData.Amount = data[i].Amount; gTotal += parseInt(data[i].Amount); } else tempData.Amount = "";
+
+            row = '<tr>'
+                row += "<td>" + sNo + "</td>"
+                row += '<td>' + tempData.date + '</td>'
+                row += '<td>' + tempData.PaymentType + '</td>'
+                row += '<td>' + tempData.AcLedger + '</td>'
+                row += '<td>' + tempData.description + '</td>'
+                row += '<td>' + tempData.Supplier + '</td>'
+                row += '<td>' + tempData.Amount + '</td>'
+
+                row += '</tr>';
+            $('#tblpayment').append(row);
+            $('#Total').empty();
+            $('#Total').append(gTotal);
+            sNo++;
+
+            }
+            }
+            } else {
+            alert("Somthing went wrong please try again.");
+            }
+
+            },
+            error: function (err) {
+            console.log(err);
+            }
+            });
+            }
+
+
+
+
+
+
+
+            function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) {
+            view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+            }
+
+</script>

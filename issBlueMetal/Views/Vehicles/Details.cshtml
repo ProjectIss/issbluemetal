@@ -1,0 +1,114 @@
+﻿@model issBlueMetal.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Vehicle Details</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/Vehicles/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Details</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                <div class="card-header header-elements-inline">
+                    <div class="header-elements" style="float: right;">
+                        <div class="list-icons">
+                            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Vehicle No</label></th>
+                        <th> @Html.DisplayFor(model => model.vehicleNo)</th>
+
+                    </tr>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">shortNo</label></th>
+                        <th> @Html.DisplayFor(model => model.shortNo)</th>
+                    </tr>
+                    <tr>
+                        <th>   <label class="col-lg-2 font-weight-bold">vehicleName</label></th>
+                        <th>
+                            @Html.DisplayFor(model => model.vehicleName)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>   <label class="col-lg-2 font-weight-bold">registrationAddress</label></th>
+                        <th> @Html.DisplayFor(model => model.registrationAddress)</th>
+                    </tr>
+                    <tr>
+                        <th>   <label class="col-lg-2 font-weight-bold">mfdYear</label></th>
+                        <th> @Html.DisplayFor(model => model.mfdYear)</th>
+                    </tr>
+                    <tr>
+                        <th>   <label class="col-lg-2 font-weight-bold">insuranceExDate</label></th>
+                        <th> @Html.DisplayFor(model => model.insuranceExDate)</th>
+                    </tr>
+                    <tr>
+                        <th>   <label class="col-lg-2 font-weight-bold">taxExDate</label></th>
+                        <th> @Html.DisplayFor(model => model.taxExDate)</th>
+                    </tr>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">permitExDate</label></th>
+                        <th> @Html.DisplayFor(model => model.permitExDate)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">fcExDate</label></th>
+                        <th> @Html.DisplayFor(model => model.fcExDate)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">oillService</label></th>
+                        <th> @Html.DisplayFor(model => model.oillService)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">greecePacking</label></th>
+                        <th> @Html.DisplayFor(model => model.greecePacking)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">coolentOill</label></th>
+                        <th> @Html.DisplayFor(model => model.coolentOill)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">gearBoxOill</label></th>
+                        <th> @Html.DisplayFor(model => model.gearBoxOill)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">grownOill</label></th>
+                        <th> @Html.DisplayFor(model => model.grownOill)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">salary</label></th>
+                        <th> @Html.DisplayFor(model => model.salary)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">vehicleDetail</label></th>
+                        <th> @Html.DisplayFor(model => model.vehicleDetail)</th>
+                    <tr>
+                        <th> <label class="col-lg-2 font-weight-bold">noofUnit</label></th>
+                        <th> @Html.DisplayFor(model => model.noofUnit)</th>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@model issBlueMetal.Models.ReciptEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 m6 l6 breadcrumbs-left">
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Receipt Entry Details</span></h5>
+
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="~/ReciptEntries/Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Details</a>
+                    </li>
+
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card card-tabs">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Id</label></th>
+                        <th>@Html.DisplayFor(model => model.Id)</th>
+</tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Account Ledger Name</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.AcLedger.accountledger)</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Customer</label>
+                        </th>
+                        <th>  @Html.DisplayFor(model => model.customer.name)</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Date</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.Date)</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Payment Type</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.PaymentType)</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Description</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.description)</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="col-lg-2 font-weight-bold">Amount</label>
+                        </th>
+                        <th>@Html.DisplayFor(model => model.Amount)</th>
+                    </tr>
+                </table>
+        </div>
+            <div class="header-elements">
+                <div class="list-icons" style="text-align:right">
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

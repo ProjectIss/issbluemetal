@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "RoomStatus";
+}
+
+
+<style>
+    .row {
+        margin-top: 2%;
+    }
+
+    .cardBody {
+        /*height: 600px;*/
+        padding: 5%;
+    }
+</style>
+
+<div class="row">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+
+        <div class="card cardBody">
+           
+
+
+
+            <div class="container">
+                <div>
+                    <h5 style="text-align: center">Booking Status</h5>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col s2">
+
+
+                    </div>
+
+                </div>
+                <hr />
+
+            </div>
+            <br />
+
+
+            <div class="dt_colVis_buttons"></div>
+            <table style="width:100%" id="RoomStatus">
+                <tr>
+                    <th>S.No</th>
+
+                    <th>Grc No</th>
+                    <th>Grc Date</th>
+                    <th>Name</th>
+                    <th>Phone No</th>
+                    <th>Room No</th>
+                    <th>Room Type</th>
+                    <th>Room Option</th>
+                    <th>Chk Date</th>
+
+                </tr>
+                <tbody id="tblRoomStatus"></tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var date = "";
+    
+    $(function () {
+
+        date = $('#todate').val();
+        Advance(date);
+    });
+
+  
+
+    function Advance() {
+        $("#tblRoomStatus").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Report/RoomStatuss")',
+            dataType: 'json',
+
+            success: function (data) {
+                var row = "";
+                let sNo = 1;
+                console.log(data)
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tempData = {};
+                        if (data[i].grcNo != null) { tempData.grcNo = data[i].grcNo; } else tempData.grcNo = "";
+                        if (data[i].grcDate != null) { tempData.grcDate = DateConvertion(data[i].grcDate) } else tempData.grcDate = "";
+                        if (data[i].name != null) { tempData.name = data[i].name; } else tempData.name = "";
+                        if (data[i].phone != null) { tempData.phone = data[i].phone; } else tempData.phone = "";
+                        if (data[i].roomNo != null) { tempData.roomNo = data[i].roomNo; } else tempData.roomNo = "";
+                        if (data[i].roomType != null) { tempData.roomType = data[i].roomType; } else tempData.roomType = "";
+                        if (data[i].roomOption != null) { tempData.roomOption = data[i].roomOption; } else tempData.roomOption = "";
+                        if (data[i].chkdate != null) { tempData.chkdate = DateConvertion(data[i].chkdate) } else tempData.chkdate = "";
+
+
+                        row += "<tr>"
+                        row += "<td>" + sNo + "</td>"
+                        row += '<td>' + tempData.grcNo + '</td>'
+                        row += '<td>' + tempData.grcDate + '</td>'
+                        row += '<td>' + tempData.name + '</td>'
+                        row += '<td>' + tempData.phone + '</td>'
+                        row += '<td>' + tempData.roomNo + '</td>'
+                        row += '<td>' + tempData.roomType + '</td>'
+                        row += '<td>' + tempData.roomOption + '</td>'
+                        row += '<td>' + tempData.chkdate + '</td>'
+
+
+
+                        row += "</tr>";
+                        sNo++;
+                    }
+                    $('#tblRoomStatus').append(row);
+
+
+                }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+   
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) {
+            view[i] = s.charCodeAt(i) & 0xFF;
+        }
+        return buf;
+    }
+
+</script>
+

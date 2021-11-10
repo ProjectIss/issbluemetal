@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "SupplierLedger";
+}
+
+<style>
+    .row {
+        margin-top: 2%;
+    }
+
+    .cardBody {
+        height: 600px;
+        padding: 5%;
+    }
+</style>
+
+<div class="row">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+        <div class="card cardBody" style="overflow:auto">
+            <div class="container">
+                <div class="card">
+                    <button class="btn waves-effect waves-light " id="exportexcel" style="float:right;margin-top:2%">
+                        .xlsx
+                        <i class="material-icons right">excel</i>
+                    </button>
+                </div>
+                <div class="card">
+                    <button class="btn waves-effect waves-light " id="print" style="float:right;margin-top:2%">
+                        Print
+                        <i class="material-icons right">print</i>
+                    </button>
+                </div>
+                <div>
+                    <h5 style="text-align: center">SALES REPORT</h5>
+                    <center> <h10 style="text-align: center">Asanur Road, Puthamangalam, Elavanasurkottai, Ulundurpettai(tk),Kallakurichi(dt)-606 305</h10></center>
+
+                </div>
+                <div>
+                    <h5 style="text-align: center">Supplier Ledger</h5>
+                </div>
+
+                <hr />
+
+            </div>
+            <br />
+            <table style="width:100%" id="sales">
+                <tr>
+                    <th>Bill.No</th>
+                    <th>Date</th>
+                    <th>Vehicle</th>
+                    <th>Customer name</th>
+                    <th>phone</th>
+                    <th>Material</th>
+                    <th>Driver</th>
+                    <th>Unit</th>
+                    <th>Rate</th>
+                    <th>Net Amount</th>
+                    <th>Rent</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Vehicle</th>
+                </tr>
+                <tbody id="tblSales"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
