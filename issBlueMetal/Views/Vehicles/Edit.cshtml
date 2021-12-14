@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col s12">
         <div class="card card-tabs">
-            <div class="card-content">
+            <div class="card-content" style="margin-left:25px; margin-right:20px">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -47,7 +47,7 @@
                                 <div class="input-field col s3">
                                     <label for="icon_prefix3">Vehicle No</label>
                                     <div class="form-control input-field">
-                                        @Html.EditorFor(model => model.vehicleNo, new { htmlAttributes = new { @class = "form-control",  } })
+                                        @Html.EditorFor(model => model.vehicleNo, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.vehicleNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                 <div class="input-field col s3">
                                     <label for="icon_prefix3">Vehicle Name</label>
                                     <div class="form-control input-field">
-                                        @Html.EditorFor(model => model.vehicleName, new { htmlAttributes = new { @class = "form-control",} })
+                                        @Html.EditorFor(model => model.vehicleName, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.vehicleName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -88,8 +88,9 @@
                                     <div class="input-field col s3">
                                         <label for="icon_prefix3">MFD Year</label>
                                         <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.mfdYear, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.mfdYear, "", new { @class = "text-danger" })
+
+                                            @Html.TextBoxFor(m => m.mfdYear, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
                                         </div>
                                     </div>
                                 </div>
@@ -98,8 +99,8 @@
                                     <div class="input-field col s3">
                                         <label for="icon_prefix3">Insurance Ex Date</label>
                                         <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.insuranceExDate, new { htmlAttributes = new { @class = "form-control",  } })
-                                            @Html.ValidationMessageFor(model => model.insuranceExDate, "", new { @class = "text-danger" })
+                                            @Html.TextBoxFor(m => m.insuranceExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
                                         </div>
                                     </div>
                                 </div>
@@ -108,115 +109,115 @@
                                     <div class="input-field col s3">
                                         <label for="icon_prefix3">Tax Ex Date</label>
                                         <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.taxExDate, new { htmlAttributes = new { @class = "form-control",} })
-                                            @Html.ValidationMessageFor(model => model.taxExDate, "", new { @class = "text-danger" })
+                                            @Html.TextBoxFor(m => m.taxExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Permit Ex Date</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.permitExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="row">
+                                    <div class="form-group">
 
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Permit Ex Date</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.permitExDate, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.permitExDate, "", new { @class = "text-danger" })
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">FC Ex Date</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.fcExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">oillService</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.oillService, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Greece Packing</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.greecePacking, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Coolent Oill</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.coolentOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
+                                <div class="row">
+                                    <div class="form-group">
 
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">FC Ex Date</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.fcExDate, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.fcExDate, "", new { @class = "text-danger" })
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Gear Box Oill</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.gearBoxOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Grown Oill</label>
+                                            <div class="form-control input-field">
+                                                @Html.TextBoxFor(m => m.grownOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Salary</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", } })
+                                                @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">Vehicle Detail</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.vehicleDetail, new { htmlAttributes = new { @class = "form-control", } })
+                                                @Html.ValidationMessageFor(model => model.vehicleDetail, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="row">
+                                    <div class="form-group">
 
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">oillService</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.oillService, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.oillService, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Greece Packing</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.greecePacking, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.greecePacking, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Coolent Oill</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.coolentOill, new { htmlAttributes = new { @class = "form-control",  } })
-                                            @Html.ValidationMessageFor(model => model.coolentOill, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Gear Box Oill</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.gearBoxOill, new { htmlAttributes = new { @class = "form-control",} })
-                                            @Html.ValidationMessageFor(model => model.gearBoxOill, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Grown Oill</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.grownOill, new { htmlAttributes = new { @class = "form-control",} })
-                                            @Html.ValidationMessageFor(model => model.grownOill, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Salary</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">Vehicle Detail</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.vehicleDetail, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.vehicleDetail, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-
-                                    <div class="input-field col s3">
-                                        <label for="icon_prefix3">No of Unit</label>
-                                        <div class="form-control input-field">
-                                            @Html.EditorFor(model => model.noofUnit, new { htmlAttributes = new { @class = "form-control", } })
-                                            @Html.ValidationMessageFor(model => model.noofUnit, "", new { @class = "text-danger" })
+                                        <div class="input-field col s3">
+                                            <label for="icon_prefix3">No of Unit</label>
+                                            <div class="form-control input-field">
+                                                @Html.EditorFor(model => model.noofUnit, new { htmlAttributes = new { @class = "form-control", } })
+                                                @Html.ValidationMessageFor(model => model.noofUnit, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -76,7 +76,7 @@ namespace issBlueMetal.Controllers
                 db.errorLogs.Add(errorLog);
                 db.SaveChanges();
             }
-            return View(db.PaymentEntries.Where(x=>x.Id==0).ToList());
+            return View(db.PaymentEntries.Where(x => x.Id == 0).ToList());
         }
         public ActionResult ReciptReport()
         {
@@ -219,7 +219,7 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-              
+
                 ViewBag.netAmount = 0;
                 ViewBag.paidAmount = 0;
                 ViewBag.balanceAmount = 0;
@@ -252,7 +252,7 @@ namespace issBlueMetal.Controllers
                         return View(data);
                     }
                 }
-                
+
                 else return View(new Sales());
 
             }
@@ -275,12 +275,12 @@ namespace issBlueMetal.Controllers
                 {
                     DateTime fDate = Convert.ToDateTime(fromDate);
                     DateTime tDate = Convert.ToDateTime(toDate);
-                   
-                  
-                        var data = db.PaymentEntries.Where(x => x.Date >= fDate && x.Date <= tDate).ToList();
+
+
+                    var data = db.PaymentEntries.Where(x => x.Date >= fDate && x.Date <= tDate).ToList();
                     ViewBag.Total = data.Sum(x => x.Amount);
                     return View(data);
-                    
+
                 }
 
                 else return View(new PaymentEntry());
@@ -393,7 +393,7 @@ namespace issBlueMetal.Controllers
                 db.SaveChanges();
             }
             return View(db.supplierLedgers.Where(x => x.Id == 0).ToList());
-           
+
         }
 
         [HttpPost]
@@ -402,7 +402,7 @@ namespace issBlueMetal.Controllers
 
             try
             {
-               
+
                 List<SelectListItem> supplier = new List<SelectListItem>();
                 //supplier.Add(new SelectListItem { Text = "", Value = "0" });
                 foreach (var item in db.supplierLedgers.GroupBy(x => x.SupplierLedger.name).Select(g => g.FirstOrDefault()).ToList())
@@ -422,7 +422,7 @@ namespace issBlueMetal.Controllers
                         var data = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).ToList();
                         var gTotalPaid = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).Sum((x => (decimal?)x.credit));
                         var Total = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).Sum(x => (decimal?)x.debit);
-                        
+
                         var openingBalance = db.Suppliers.Where(x => x.name == id).FirstOrDefault();
                         decimal tCredit = 0;
                         decimal tDebit = 0;
@@ -447,7 +447,7 @@ namespace issBlueMetal.Controllers
                         var data = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate).ToList();
                         var gTotalPaid = db.supplierLedgers.Where(x => x.dateOfPurchages < fDate && x.SupplierLedger.name == id).Sum((x => (decimal?)x.credit));
                         var Total = db.supplierLedgers.Where(x => x.dateOfPurchages < fDate && x.SupplierLedger.name == id).Sum(x => (decimal?)x.debit);
-                        
+
                         var openingBalance = db.Suppliers.Where(x => x.name == id).FirstOrDefault();
                         decimal tCredit = 0;
                         decimal tDebit = 0;
@@ -744,7 +744,7 @@ namespace issBlueMetal.Controllers
 
             try
             {
-               
+
                 if (!string.IsNullOrEmpty(Date))
                 {
                     DateTime todayDate = Convert.ToDateTime(Date);
@@ -769,13 +769,13 @@ namespace issBlueMetal.Controllers
                     }
                     openingBalance = totalIncome - totalPaid;
                     closingBalance = (openingBalance + todayIncome) - todayExpenses;
-                   
+
                     openingBalance = totalIncome - totalPaid;
                     var data = new { dayBooks, openingBalance, closingBalance };
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
 
-               
+
             }
 
             catch (Exception ex)
@@ -809,7 +809,7 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-               
+
                 if (!string.IsNullOrEmpty(fromDate) && !string.IsNullOrEmpty(toDate))
                 {
                     DateTime fDate = Convert.ToDateTime(fromDate);
@@ -868,6 +868,152 @@ namespace issBlueMetal.Controllers
 
             }
             return Json("Invalid", JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult CustomerConsolidate()
+        {
+
+            try
+            {
+
+
+            }
+            catch (Exception ex)
+            {
+
+                errorLog.controllerName = "MaterialPurchase";
+                errorLog.ErrorDate = DateTime.Now;
+                errorLog.MethodName = "index";
+                errorLog.ErrorMessage = ex.Message;
+                db.errorLogs.Add(errorLog);
+                db.SaveChanges();
+            }
+            return View(db.Sales.Where(x => x.Id == 0).ToList());
+
+        }
+        [HttpPost]
+        public JsonResult CustomerConsolidate(string fromDate, string toDate)
+
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(fromDate) && !string.IsNullOrEmpty(toDate))
+                {
+                    DateTime fDate = Convert.ToDateTime(fromDate);
+                    DateTime tDate = Convert.ToDateTime(toDate);
+                    var data = db.Sales.Where(x => x.Date >= fDate && x.Date <= tDate).ToList();
+                    int amount = 0;
+                    List<Sales> lstSales = new List<Sales>();
+                    foreach (var item in data)
+                    {
+                        Sales sales = new Sales();
+                        sales.netAmount = data.Where(x => x.customer.name == item.customer.name).Sum(x => x.netAmount);
+                        sales.customer = item.customer;
+                        sales.Item = item.Item;
+                        //var ll = lstSales.Where(x => x.customer.name == item.customer.name).ToList();
+                        //if (ll.Count > 0)
+                        //{
+                        //    lstSales.Add()
+                        //}
+                        lstSales.Add(sales);
+                    }
+                    var responesData = lstSales.GroupBy(x => x.customer.name).ToList();
+                   
+                    //for (int i = 0; i < data.Count; i++)
+                    //{
+                    //    Sales sales = new Sales();
+
+                    //    amount = data[i].netAmount != null ? Convert.ToInt32(data[i].netAmount) : 0; 
+                    //    if (i > 0)
+                    //    {
+                    //        if (data[i].customer.name == data[i - 1].customer.name)
+                    //        {
+                    //           int a = data[i].netAmount != null ? Convert.ToInt32(data[i].netAmount) : 0;
+                    //            amount += a;
+                    //            if (lstSales[i-1].customer.name==data[i].customer.name)
+                    //            {
+                    //                var sl = lstSales.Where(x => x.customer.name==)
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            amount = 0;
+                    //        }
+                    //    }
+                    //    sales.netAmount = amount;
+                    //    sales.customer = data[i].customer;
+                    //    sales.Item = data[i].Item;
+                    //    lstSales.Add(sales);
+                    //}
+
+                    return Json(responesData, JsonRequestBehavior.AllowGet);
+                }
+                else return Json("Faild", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Faild", JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+
+        public ActionResult SupplierConsolidate()
+        {
+            try
+            {
+
+
+            }
+            catch (Exception ex)
+            {
+
+                errorLog.controllerName = "MaterialPurchase";
+                errorLog.ErrorDate = DateTime.Now;
+                errorLog.MethodName = "index";
+                errorLog.ErrorMessage = ex.Message;
+                db.errorLogs.Add(errorLog);
+                db.SaveChanges();
+            }
+            return View(db.RawMateriyalPurchases.Where(x => x.id == 0).ToList());
+
+        }
+        [HttpPost]
+        public ActionResult SupplierConsolidate(string fromDate, string toDate)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(fromDate) && !string.IsNullOrEmpty(toDate))
+                {
+                    DateTime fDate = Convert.ToDateTime(fromDate);
+                    DateTime tDate = Convert.ToDateTime(toDate);
+                    var data = db.RawMateriyalPurchases.Where(x => x.dateTime >= fDate && x.dateTime <= tDate).ToList();
+                  
+                    List<RawMateriyalPurchase> lstRawMateriyalPurchase = new List<RawMateriyalPurchase>();
+                    foreach (var item in data)
+                    {
+                        RawMateriyalPurchase RawMateriyalPurchase = new RawMateriyalPurchase();
+                        RawMateriyalPurchase.netAmount = data.Where(x => x.Supplier.name == item.Supplier.name).Sum(x => x.netAmount);
+                        RawMateriyalPurchase.Supplier = item.Supplier;
+                        RawMateriyalPurchase.materialName = item.materialName;
+                       
+                        lstRawMateriyalPurchase.Add(RawMateriyalPurchase);
+                    }
+                    var responesData = lstRawMateriyalPurchase.GroupBy(x => x.Supplier.name).ToList();
+
+
+                    return Json(responesData, JsonRequestBehavior.AllowGet);
+                }
+                else return Json("Faild", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Faild", JsonRequestBehavior.AllowGet);
+            }
+
+
+
+
         }
 
     }

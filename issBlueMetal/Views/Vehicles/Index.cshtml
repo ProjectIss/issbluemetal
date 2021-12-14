@@ -68,42 +68,7 @@
                                         <h3 class="card-title">MFD Year</h3>
 
                                     </th>
-                                    @*<th>
-                        @Html.DisplayNameFor(model => model.insuranceExDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.taxExDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.permitExDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fcExDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.oillService)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.greecePacking)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.coolentOill)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.gearBoxOill)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.grownOill)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.salary)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.vehicleDetail)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.noofUnit)
-                    </th>*@
+                                  
                                     <th></th>
                                 </tr>
                             </thead>
@@ -126,45 +91,17 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.registrationAddress)
                                         </td>
+                                        
+                                   @if (@item.mfdYear != null)
+                                    {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.mfdYear)
+                                            @item.mfdYear.Value.ToShortDateString()
+                                           
                                         </td>
-                                        @*<td>
-                            @Html.DisplayFor(modelItem => item.insuranceExDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.taxExDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.permitExDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.fcExDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.oillService)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.greecePacking)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.coolentOill)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.gearBoxOill)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.grownOill)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.salary)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.vehicleDetail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.noofUnit)
-                        </td>*@
+                                    }
+                                    else
+                                    {
+                                        <td></td>}
                                         <td>
                                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                                             @Html.ActionLink("Details", "Details", new { id = item.id }) |

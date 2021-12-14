@@ -8,26 +8,27 @@
             <div class="row">
                 <div class="col s5 m5">
                     <p class="mb-0">Openning Balance</p>
-                   
+
                     <p class="mb-0">Expenses</p>
                     <p class="mb-0">Income</p>
                     <p class="mb-0">Closing Balance</p>
-                   </div>
+                </div>
                 <div class="col s7 m7 right-align">
                     <p class="mb-0" id="tblOpeningBalance"></p>
                     <p class="mb-0" id="tblExpances"></p>
                     <p class="mb-0" id="tblIncome"></p>
-                    <p class="mb-0"  id="tblclose"></p>
+                    <p class="mb-0" id="tblclose"></p>
                     <a href="~/Report/DayBook">
                         <i class="material-icons background-round mt-5 mb-5 gradient-45deg-purple-amber gradient-shadow white-text">perm_identity</i>
                         <p>Day book</p>
                     </a>
-                   
+
                 </div>
             </div>
         </div>
 
     </div>
+
     <div class="col s12 m6 l4">
         <div class="card padding-4 animate fadeLeft">
             <div class="row">
@@ -61,19 +62,50 @@
 
                     <p class="mb-0">Vacancy</p>
                     <p class="mb-0">House Keeping</p>
-                  
+
                 </div>
                 <div class="col s7 m7 right-align">
-                    <p class="mb-0"  id="tblBooking"></p>
+                    <p class="mb-0" id="tblBooking"></p>
                     <p class="mb-0" id="tblVacancy"></p>
                     <p class="mb-0" id="tblHousKeeping"></p>
-                
+
                     <a href="~/Report/RoomStatus">
                         <i class="material-icons background-round mt-5 mb-5 gradient-45deg-purple-amber gradient-shadow white-text">perm_identity</i>
                         <p>Room Status</p>
                     </a>
 
                 </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m6 l4">
+        <div class="card padding-4 animate fadeLeft">
+            <div class="row">
+                <div>
+                    <h5>
+                        Insurance Expire Details
+                    </h5>
+
+                    <table style="width:100%" id="ExpireDetails">
+                        <thead>
+                            <tr>
+
+                                <th>Vehicle No</th>
+                                <th>Expire warning</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="tblExpireDetails">
+                            <tr></tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
             </div>
         </div>
 
@@ -88,6 +120,7 @@
         load();
         getHotel();
         Book();
+        Expire();
         function load() {
                 $.ajax({
                 type: 'Get',
@@ -95,14 +128,14 @@
                 dataType: 'json',
                // data: { date: yesterday},
                 success: function (data) {
-                    console.log(data);
+
                     $('#tblOpeningBalance').append(data.openingBalance.toLocaleString());
                     $('#tblExpances').append(data.TodayPaid.toLocaleString());
                     $('#tblIncome').append(data.todayIncome.toLocaleString());
                     $('#tblclose').append(data.closingBalance.toLocaleString());
                 }
             });
-            
+
 
         }
         function getHotel() {
@@ -129,15 +162,67 @@
                 dataType: 'json',
                // data: { date: yesterday},
                 success: function (data) {
-                    console.log(data);
+
                     $('#tblBooking').append(data.booking);
                     $('#tblVacancy').append(data.vacancy);
                     $('#tblHousKeeping').append(data.housKeeping);
-                  
+
                 }
              });
-         }  
-       
+        }
+        function Expire() {
+            $("#tblExpireDetails").empty();
+                $.ajax({
+                type: 'Get',
+                url: '@Url.Content("~/Home/Expire")',
+                dataType: 'json',
+                    success: function (data) {
+                        console.log(data)
+                debugger
+                var row;
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tempData = {};
+                        if (data[i].vehicleNo) { tempData.vehicleNo = data[i].vehicleNo } else tempData.vehicleNo = "";
+                        if (data[i].insuranceExDate) { tempData.insuranceExDate = DateConvertion(data[i].insuranceExDate) } else tempData.insuranceExDate = "";
+                        var arra = tempData.insuranceExDate.split("/");
+
+                        tempData.insuranceExDate =  new Date(arra[1] + '/'+arra[0] + '/'+arra[2]);
+
+                        var news = new Date();
+                        var total_days = Math.round((tempData.insuranceExDate - news) / (1000 * 60 * 60 * 24));
+
+                        if (total_days < 31 & total_days >= 0) {
+                            var total_days = total_days + " days Are Pending";
+                       
+                        row = '<tr>';
+                        row += '<td>' + tempData.vehicleNo + '</td>'
+                        row += '<td>' + total_days + '</td>'
+                        row += '</tr>';
+                            $('#tblExpireDetails').append(row);
+                        }
+                    }
+                }
+                
+
+
+                    },
+                 });
+        }
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+
     });
 
 </script>

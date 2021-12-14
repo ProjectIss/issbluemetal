@@ -257,6 +257,30 @@ namespace issBlueMetal.Controllers
             }
             return Json("Invalid", JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public JsonResult Expire()
+        {
+            try
+            {
+                //DateTime todayDate = DateTime.Today;
+                
+                var data = db.Vehicles;
+               
+                var response = new { data };
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                errorLog.controllerName = "Expire";
+                errorLog.ErrorDate = DateTime.Now;
+                errorLog.MethodName = "Vehicles";
+                errorLog.ErrorMessage = ex.Message;
+                db.errorLogs.Add(errorLog);
+                db.SaveChanges();
+
+            }
+            return Json("Invalid", JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

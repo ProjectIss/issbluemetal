@@ -1,0 +1,168 @@
+﻿@model IEnumerable<issBlueMetal.Models.RawMateriyalPurchase>
+
+@{
+    ViewBag.Title = "SupplierConsolidate";
+}
+
+
+
+
+
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .dataTables_wrapper {
+        position: relative;
+        clear: both;
+        padding: 2% !important;
+    }
+</style>
+
+
+<div class="container">
+    <div>
+        <h5 style="text-align: center">Supplier Consolidate </h5>
+
+    </div>
+</div>
+    <div class="row">
+        <div class="col s1">
+        </div>
+       
+
+       
+        <div class="col s2 card card-header info">
+            <label>  From Date :</label>
+            <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
+        </div>
+
+        <div class="col s1">
+        </div>
+        <div class="col s2 card card-header info">
+            <label>  To Date :</label>
+
+            <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
+        </div>
+        <div class="col s2">
+            <button class="btn waves-effect waves-light " id="btnsearch" style="float:inherit;margin-top:10%">
+                Search
+                <i class="material-icons right"></i>
+            </button>
+
+        </div>
+    </div>
+
+<br />
+
+<div class="col s12" style="margin:1%">
+    <div class="card">
+
+
+        <div class="dt_colVis_buttons"></div>
+        <table style="width:100%" id="supplier">
+            <thead>
+                <tr>
+
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Material Name</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="tblSupplierLedger">
+               
+            </tbody>
+            <tfoot>
+               
+            </tfoot>
+        </table>
+
+
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+
+        $('#btnsearch').click(function () {
+            var formatDate = $('#fromdate').val().split('-');
+            var formatToDate = $('#todate').val().split('-');
+            if (formatDate[0] != "" && formatToDate[0] != "") {
+                var fromDate = formatDate[2] + "-" + formatDate[1] + "-" + formatDate[0];
+                var toDate = formatToDate[2] + "-" + formatToDate[1] + "-" + formatToDate[0];
+                Advance(fromDate, toDate);
+            }
+            else {
+                alert("Please Select the FormatDate and ToDate ")
+            }
+        });
+
+    });
+    function Advance(fromDate, toDate) {
+        $("#tblSupplierLedger").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Report/SupplierConsolidate")',
+            dataType: 'json',
+            data: { fromDate: fromDate, toDate: toDate, },
+            success: function (data) {
+                if (data != "Faild") {
+                    //var data = JSON.parse(result);
+                   
+                   
+                var row;
+               
+                    let sNo = 1;
+                if (data.length>0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tempData = {};
+
+
+                        if (data[i][0].Supplier.name != null) { tempData.name = data[i][0].Supplier.name; } else tempData.name = "";
+                        if (data[i][0].Supplier.address != null) { tempData.address = data[i][0].Supplier.address; } else tempData.address = "";
+                        if (data[i][0].materialName != null) { tempData.materialName = data[i][0].materialName.name; } else tempData.materialName = "";
+                        if (data[i][0].netAmount != null) { tempData.netAmount = data[i][0].netAmount; } else tempData.netAmount = "";
+
+                        row = '<tr>';
+                        row += "<td>" + sNo + "</td>"
+                        row += '<td>' + tempData.name + '</td>'
+                        row += '<td>' + tempData.address + '</td>'
+                        row += '<td>' + tempData.materialName + '</td>'
+                        row += '<td>' + tempData.netAmount + '</td>'
+
+
+                        row += '</tr>';
+                        $('#tblSupplierLedger').append(row);
+                       
+                        sNo++;
+
+                    }
+                }
+                }
+                else {
+                alert("Somthing went wrong please try again.");
+            }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+</script>
+
+
+
+
+
+
+

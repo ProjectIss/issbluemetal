@@ -345,7 +345,8 @@
         $('#txtsalaryPerLoad').focusout(function () {
             let nofoLoad = parseFloat($(this).val());
             let salaryPerLoad = parseFloat($('#txtnoofLoad').val());
-            let salary = nofoLoad * salaryPerLoad; $('#txtsalary').val(salary);
+            let salary = nofoLoad * salaryPerLoad;
+            $('#txtsalary').val(salary);
         });
         //salary Calculation
         $('#txtnoofLoad').focusout(function () {

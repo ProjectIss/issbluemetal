@@ -38,8 +38,8 @@ namespace issBlueMetal.Controllers
             return View();
         }
 
-        // GET: Vehicles/Details/5
-        public async Task<ActionResult> Details(int? id)
+       
+            public async Task<ActionResult> Details(int? id)
         {
             try
             {
