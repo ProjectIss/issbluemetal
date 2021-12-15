@@ -1303,6 +1303,8 @@
     <Content Include="Views\Report\ReciptReport.cshtml" />
     <Content Include="Views\Report\TblGRC.cshtml" />
     <Content Include="Views\Report\RoomStatus.cshtml" />
+    <Content Include="Views\Report\CustomerConsolidate.cshtml" />
+    <Content Include="Views\Report\SupplierConsolidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

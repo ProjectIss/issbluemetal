@@ -892,7 +892,6 @@ namespace issBlueMetal.Controllers
         }
         [HttpPost]
         public JsonResult CustomerConsolidate(string fromDate, string toDate)
-
         {
             try
             {
@@ -901,51 +900,25 @@ namespace issBlueMetal.Controllers
                     DateTime fDate = Convert.ToDateTime(fromDate);
                     DateTime tDate = Convert.ToDateTime(toDate);
                     var data = db.Sales.Where(x => x.Date >= fDate && x.Date <= tDate).ToList();
-                    int amount = 0;
                     List<Sales> lstSales = new List<Sales>();
                     foreach (var item in data)
                     {
                         Sales sales = new Sales();
-                        sales.netAmount = data.Where(x => x.customer.name == item.customer.name).Sum(x => x.netAmount);
-                        sales.customer = item.customer;
-                        sales.Item = item.Item;
-                        //var ll = lstSales.Where(x => x.customer.name == item.customer.name).ToList();
-                        //if (ll.Count > 0)
-                        //{
-                        //    lstSales.Add()
-                        //}
-                        lstSales.Add(sales);
+                        sales.netAmount = data.Where(x => x.customer.name == item.customer.name && x.Item.name == item.Item.name).Sum(x => x.netAmount);
+                        if (sales.netAmount != 0)
+                        {
+                            sales.customer = item.customer;
+                            sales.Item = item.Item;
+                        }
+                        var isDuplicate = lstSales.Where(x => x.Item.name == item.Item.name && x.customer.name == item.customer.name).FirstOrDefault();
+                        if (isDuplicate == null)
+                        {
+                            lstSales.Add(sales);
+                        }
+
                     }
-                    var responesData = lstSales.GroupBy(x => x.customer.name).ToList();
-                   
-                    //for (int i = 0; i < data.Count; i++)
-                    //{
-                    //    Sales sales = new Sales();
-
-                    //    amount = data[i].netAmount != null ? Convert.ToInt32(data[i].netAmount) : 0; 
-                    //    if (i > 0)
-                    //    {
-                    //        if (data[i].customer.name == data[i - 1].customer.name)
-                    //        {
-                    //           int a = data[i].netAmount != null ? Convert.ToInt32(data[i].netAmount) : 0;
-                    //            amount += a;
-                    //            if (lstSales[i-1].customer.name==data[i].customer.name)
-                    //            {
-                    //                var sl = lstSales.Where(x => x.customer.name==)
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            amount = 0;
-                    //        }
-                    //    }
-                    //    sales.netAmount = amount;
-                    //    sales.customer = data[i].customer;
-                    //    sales.Item = data[i].Item;
-                    //    lstSales.Add(sales);
-                    //}
-
-                    return Json(responesData, JsonRequestBehavior.AllowGet);
+                    var responesData = lstSales.ToList();
+                    return Json(lstSales, JsonRequestBehavior.AllowGet);
                 }
                 else return Json("Faild", JsonRequestBehavior.AllowGet);
             }
@@ -953,11 +926,7 @@ namespace issBlueMetal.Controllers
             {
                 return Json("Faild", JsonRequestBehavior.AllowGet);
             }
-
         }
-
-
-
         public ActionResult SupplierConsolidate()
         {
             try
@@ -988,22 +957,27 @@ namespace issBlueMetal.Controllers
                     DateTime fDate = Convert.ToDateTime(fromDate);
                     DateTime tDate = Convert.ToDateTime(toDate);
                     var data = db.RawMateriyalPurchases.Where(x => x.dateTime >= fDate && x.dateTime <= tDate).ToList();
-                  
                     List<RawMateriyalPurchase> lstRawMateriyalPurchase = new List<RawMateriyalPurchase>();
                     foreach (var item in data)
                     {
-                        RawMateriyalPurchase RawMateriyalPurchase = new RawMateriyalPurchase();
-                        RawMateriyalPurchase.netAmount = data.Where(x => x.Supplier.name == item.Supplier.name).Sum(x => x.netAmount);
-                        RawMateriyalPurchase.Supplier = item.Supplier;
-                        RawMateriyalPurchase.materialName = item.materialName;
-                       
-                        lstRawMateriyalPurchase.Add(RawMateriyalPurchase);
+                        RawMateriyalPurchase rawMateriyalPurchase = new RawMateriyalPurchase();
+                        rawMateriyalPurchase.netAmount = data.Where(x => x.Supplier.name == item.Supplier.name && x.materialName.name == item.materialName.name).Sum(x => x.netAmount);
+                        if (rawMateriyalPurchase.netAmount != 0)
+                        {
+                            rawMateriyalPurchase.Supplier = item.Supplier;
+                            rawMateriyalPurchase.materialName = item.materialName;
+                        }
+                        var isDuplicate = lstRawMateriyalPurchase.Where(x => x.materialName.name == item.materialName.name && x.Supplier.name == item.Supplier.name).FirstOrDefault();
+                        if (isDuplicate == null)
+                        {
+                            lstRawMateriyalPurchase.Add(rawMateriyalPurchase);
+                        }
+
                     }
-                    var responesData = lstRawMateriyalPurchase.GroupBy(x => x.Supplier.name).ToList();
-
-
-                    return Json(responesData, JsonRequestBehavior.AllowGet);
+                    var responesData = lstRawMateriyalPurchase.ToList();
+                    return Json(lstRawMateriyalPurchase, JsonRequestBehavior.AllowGet);
                 }
+
                 else return Json("Faild", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
