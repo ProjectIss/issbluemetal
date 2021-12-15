@@ -192,8 +192,9 @@
                         var news = new Date();
                         var total_days = Math.round((tempData.insuranceExDate - news) / (1000 * 60 * 60 * 24));
 
-                        if (total_days < 31 & total_days >= 0) {
-                            var total_days = total_days + " days Are Pending";
+                        if (total_days < 31 & total_days >= 0)
+                        {
+                            var total_days = total_days + " Days Are Pending";
                        
                         row = '<tr>';
                         row += '<td>' + tempData.vehicleNo + '</td>'
