@@ -517,14 +517,14 @@ namespace issBlueMetal.Controllers
             try
             {
 
-                List<SelectListItem> supplier = new List<SelectListItem>();
+                List<SelectListItem> Customer = new List<SelectListItem>();
                 //supplier.Add(new SelectListItem { Text = "", Value = "0" });
                 foreach (var item in db.customerLedgers.GroupBy(x => x.Customer.name).Select(g => g.FirstOrDefault()).ToList())
                 {
-                    supplier.Add(new SelectListItem { Text = item.Customer.name, Value = item.Customer.name });
+                    Customer.Add(new SelectListItem { Text = item.Customer.name, Value = item.Customer.name });
 
                 }
-                ViewBag.customers = supplier;
+                ViewBag.customers = Customer;
 
             }
             catch (Exception ex)
@@ -551,31 +551,38 @@ namespace issBlueMetal.Controllers
             try
             {
 
-                List<SelectListItem> supplier = new List<SelectListItem>();
+                List<SelectListItem> Customer = new List<SelectListItem>();
                 //supplier.Add(new SelectListItem { Text = "", Value = "0" });
                 foreach (var item in db.customerLedgers.GroupBy(x => x.Customer.name).Select(g => g.FirstOrDefault()).ToList())
                 {
-                    supplier.Add(new SelectListItem { Text = item.Customer.name, Value = item.Customer.name });
+                    Customer.Add(new SelectListItem { Text = item.Customer.name, Value = item.Customer.name });
 
                 }
-                ViewBag.customers = supplier;
+                ViewBag.customers = Customer;
                 if (!string.IsNullOrEmpty(fromDate) && !string.IsNullOrEmpty(toDate))
                 {
                     DateTime fDate = Convert.ToDateTime(fromDate);
+                    DateTime Date = Convert.ToDateTime(toDate);
                     DateTime tDate = Convert.ToDateTime(toDate);
-                    tDate = tDate.AddDays(-1);
+                    fDate = fDate.AddDays(-1);
                     if (!string.IsNullOrEmpty(id))
                     {
 
-                        var data = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).ToList();
-                        var gTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).Sum((x => (decimal?)x.credit));
-                        var Total = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).Sum(x => (decimal?)x.debit);
+                        var data = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= Date && x.Customer.name == id).ToList();
+                        var gTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= Date && x.Customer.name == id).Sum((x => (decimal?)x.credit));
+                        var Total = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= Date && x.Customer.name == id).Sum(x => (decimal?)x.debit);
 
                         var openingBalance = db.Customers.Where(x => x.name == id).FirstOrDefault();
                         decimal tCredit = 0;
                         decimal tDebit = 0;
-                        if (gTotalPaid != null && gTotalPaid > 0) { tCredit = Convert.ToDecimal(gTotalPaid); }
-                        if (Total != null && Total > 0) { tDebit = Convert.ToDecimal(Total); }
+                        if (gTotalPaid != null && gTotalPaid > 0)
+                        {
+                            tCredit = Convert.ToDecimal(gTotalPaid);
+                        }
+                        if (Total != null && Total > 0)
+                        {
+                            tDebit = Convert.ToDecimal(Total);
+                        }
                         decimal resOpeningBalance = 0;
                         if (openingBalance.openingBalance != null)
                         {

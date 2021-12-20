@@ -81,12 +81,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col s12 m6 l4">
-        <div class="card padding-4 animate fadeLeft">
+    <div class="col s12 m6 20">
+        <div class="card padding-4 animate fadeLeft"style="border-radius: 8px;">
             <div class="row">
                 <div>
                     <h5>
-                        Insurance Expire Details
+                         Expire Details
                     </h5>
 
                     <table style="width:100%" id="ExpireDetails">
@@ -94,7 +94,10 @@
                             <tr>
 
                                 <th>Vehicle No</th>
-                                <th>Expire warning</th>
+                                <th>Insurance Expire </th>
+                                <th>Fc Expire </th>
+                                <th>Permit Expire </th>
+                                <th>Tax Expire </th>
 
                             </tr>
                         </thead>
@@ -185,12 +188,30 @@
                         var tempData = {};
                         if (data[i].vehicleNo) { tempData.vehicleNo = data[i].vehicleNo } else tempData.vehicleNo = "";
                         if (data[i].insuranceExDate) { tempData.insuranceExDate = DateConvertion(data[i].insuranceExDate) } else tempData.insuranceExDate = "";
+                        if (data[i].fcExDate) { tempData.fcExDate = DateConvertion(data[i].fcExDate) } else tempData.fcExDate = "";
+                        if (data[i].permitExDate) { tempData.permitExDate = DateConvertion(data[i].permitExDate) } else tempData.permitExDate = "";
+                        if (data[i].taxExDate) { tempData.taxExDate = DateConvertion(data[i].taxExDate) } else tempData.taxExDate = "";
+
                         var arra = tempData.insuranceExDate.split("/");
-
                         tempData.insuranceExDate =  new Date(arra[1] + '/'+arra[0] + '/'+arra[2]);
-
                         var news = new Date();
                         var total_days = Math.round((tempData.insuranceExDate - news) / (1000 * 60 * 60 * 24));
+
+                        var rra = tempData.fcExDate.split("/");
+                        tempData.fcExDate = new Date(rra[1] + '/' + rra[0] + '/' + rra[2]);
+                        var ews = new Date();
+                        var total_day = Math.round((tempData.fcExDate - ews) / (1000 * 60 * 60 * 24));
+
+                        var arr = tempData.permitExDate.split("/");
+                        tempData.permitExDate = new Date(arr[1] + '/' + arr[0] + '/' + arr[2]);
+                        var newes = new Date();
+                        var total_da = Math.round((tempData.permitExDate - newes) / (1000 * 60 * 60 * 24));
+
+                        var ara = tempData.taxExDate.split("/");
+                        tempData.taxExDate = new Date(ara[1] + '/' + ara[0] + '/' + ara[2]);
+                        var newse = new Date();
+                        var total_d = Math.round((tempData.taxExDate - newse) / (1000 * 60 * 60 * 24));
+
 
                         if (total_days < 31 & total_days >= 0)
                         {
@@ -198,7 +219,11 @@
                        
                         row = '<tr>';
                         row += '<td>' + tempData.vehicleNo + '</td>'
-                        row += '<td>' + total_days + '</td>'
+                            row += '<td>' + total_days + '</td>'
+                            row += '<td>' + total_day + " Days Are Pending"+ '</td>'
+                            row += '<td>' + total_da + " Days Are Pending"+ '</td>'
+                            row += '<td>' + total_d + " Days Are Pending"+ '</td>'
+
                         row += '</tr>';
                             $('#tblExpireDetails').append(row);
                         }

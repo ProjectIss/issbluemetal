@@ -73,8 +73,8 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-                ViewBag.itemId = new SelectList(db.GetItems, "id", "name");
-                ViewBag.customerId = new SelectList(db.Customers, "id", "name");
+                ViewBag.itemId = new SelectList(db.GetItems.OrderBy(x => x.name), "id", "name");
+                ViewBag.customerId = new SelectList(db.Customers.OrderBy(x => x.name), "id", "name");
 
             }
             catch (Exception ex)
@@ -125,7 +125,6 @@ namespace issBlueMetal.Controllers
                         customerLedger.Company = company;
                         customerLedger.companyId = company.id;
                         customerLedger.debit = Convert.ToDecimal(sales.netAmount);
-                        customerLedger.credit = 0;
                         customerLedger.customerId = sales.customerId;
                         customerLedger.dateOfPurchages = DateTime.Now;
                         db.customerLedgers.Add(customerLedger);
@@ -174,8 +173,8 @@ namespace issBlueMetal.Controllers
 
 
 
-                ViewBag.itemId = new SelectList(db.GetItems, "id", "name", sales.itemId);
-                ViewBag.customerId = new SelectList(db.Customers, "id", "name", sales.customerId);
+                ViewBag.itemId = new SelectList(db.GetItems.OrderBy(x => x.name), "id", "name", sales.itemId);
+                ViewBag.customerId = new SelectList(db.Customers.OrderBy(x => x.name), "id", "name", sales.customerId);
                 return View(sales);
             }
             catch (Exception ex)

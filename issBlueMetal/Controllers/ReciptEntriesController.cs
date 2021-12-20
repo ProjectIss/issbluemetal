@@ -21,7 +21,7 @@ namespace issBlueMetal.Controllers
         public async Task<ActionResult> Index()
         {
           
-            return View(await db.ReciptEntries.OrderByDescending(x=>x.Id).OrderByDescending(x => x.Id).ToListAsync());
+            return View(await db.ReciptEntries.Include(p => p.AcLedger).Include(p => p.customer).OrderByDescending(x=>x.Id).OrderByDescending(x => x.Id).ToListAsync());
         }
 
         // GET: ReciptEntries/Details/5
@@ -70,8 +70,8 @@ namespace issBlueMetal.Controllers
                     }
                 }
                 ViewBag.PaymentType = accountLedger;
-                ViewBag.acLedgerId = new SelectList(db.AcLedger, "id", "accountledger");
-                ViewBag.customerId = new SelectList(db.Customers, "id", "name");
+                ViewBag.acLedgerId = new SelectList(db.AcLedger.OrderBy(x => x.accountledger), "id", "accountledger");
+                ViewBag.customerId = new SelectList(db.Customers.OrderBy(x => x.name), "id", "name");
             }
             catch (Exception ex)
             {
@@ -106,7 +106,9 @@ namespace issBlueMetal.Controllers
                     customerLedger.Company = company;
                     customerLedger.companyId = company.id;
                     customerLedger.credit = Convert.ToDecimal(reciptEntry.Amount);
-                    customerLedger.debit = 0;
+                    customerLedger.customerId = reciptEntry.customerId;
+                    customerLedger.Customer = reciptEntry.customer;
+                    customerLedger.type = "Payment";
                     customerLedger.dateOfPurchages = DateTime.Now;
                     db.customerLedgers.Add(customerLedger);
                     await db.SaveChangesAsync();
@@ -163,8 +165,8 @@ namespace issBlueMetal.Controllers
                     }
                 }
                 ViewBag.PaymentType = accountLedger;
-                ViewBag.acLedgerId = new SelectList(db.AcLedger, "id", "accountledger", reciptEntry.acLedgerId);
-                ViewBag.customerId = new SelectList(db.Customers, "id", "name", reciptEntry.customerId);
+                ViewBag.acLedgerId = new SelectList(db.AcLedger.OrderBy(x => x.accountledger), "id", "accountledger", reciptEntry.acLedgerId);
+                ViewBag.customerId = new SelectList(db.Customers.OrderBy(x => x.name), "id", "name", reciptEntry.customerId);
                 return View(reciptEntry);
             }
             catch (Exception ex)
