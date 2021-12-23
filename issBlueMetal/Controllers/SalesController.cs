@@ -124,9 +124,9 @@ namespace issBlueMetal.Controllers
                         customerLedger customerLedger = new customerLedger();
                         customerLedger.Company = company;
                         customerLedger.companyId = company.id;
-                        customerLedger.debit = Convert.ToDecimal(sales.netAmount);
+                        customerLedger.debit = Convert.ToDecimal(sales.balanceAmount);
                         customerLedger.customerId = sales.customerId;
-                        customerLedger.dateOfPurchages = DateTime.Now;
+                        customerLedger.dateOfPurchages = Convert.ToDateTime(sales.Date);
                         db.customerLedgers.Add(customerLedger);
                         db.SaveChanges();
                         

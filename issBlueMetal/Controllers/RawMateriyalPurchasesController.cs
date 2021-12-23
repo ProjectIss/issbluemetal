@@ -113,7 +113,7 @@ namespace issBlueMetal.Controllers
                     supplierLedger.companyId = company.id;
                     supplierLedger.credit = rawMateriyalPurchase.netAmount;
                     supplierLedger.supplierId = rawMateriyalPurchase.supplierId;
-                    supplierLedger.dateOfPurchages = DateTime.Now;
+                    supplierLedger.dateOfPurchages = Convert.ToDateTime(rawMateriyalPurchase.dateTime);
                     db.supplierLedgers.Add(supplierLedger);
                     db.SaveChanges();
                     return RedirectToAction("Index");

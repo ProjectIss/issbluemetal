@@ -108,7 +108,7 @@ namespace issBlueMetal.Controllers
                     customerLedger.credit = Convert.ToDecimal(reciptEntry.Amount);
                     customerLedger.customerId = reciptEntry.customerId;
                     customerLedger.Customer = reciptEntry.customer;
-                    customerLedger.type = "Payment";
+                    customerLedger.type = "Received";
                     customerLedger.dateOfPurchages = DateTime.Now;
                     db.customerLedgers.Add(customerLedger);
                     await db.SaveChangesAsync();

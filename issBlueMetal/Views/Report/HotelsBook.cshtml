@@ -115,6 +115,10 @@
 
 
     function Advance(Date) {
+        $('#balance').text("");
+        $('#closingbalance').text("");
+        $('#Total').text("");
+        $('#gTotalPaid').text("");
         $.ajax({
             type: 'POST',
 

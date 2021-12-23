@@ -182,7 +182,9 @@
                     success: function (data) {
                         console.log(data)
                 debugger
-                var row;
+                        var row;
+                        let gTotal = 0;
+                        let gTotalPaid = 0;
                 if (data.length>0) {
                     for (var i = 0; i < data.length; i++) {
                         var tempData = {};
@@ -212,21 +214,24 @@
                         var newse = new Date();
                         var total_d = Math.round((tempData.taxExDate - newse) / (1000 * 60 * 60 * 24));
 
-
-                        if (total_days < 31 & total_days >= 0)
-                        {
-                            var total_days = total_days + " Days Are Pending";
-                       
                         row = '<tr>';
-                        row += '<td>' + tempData.vehicleNo + '</td>'
-                            row += '<td>' + total_days + '</td>'
-                            row += '<td>' + total_day + " Days Are Pending"+ '</td>'
-                            row += '<td>' + total_da + " Days Are Pending"+ '</td>'
-                            row += '<td>' + total_d + " Days Are Pending"+ '</td>'
-
+                       
+                        if (total_days < 31 & total_days >= 0) {
+                            row += '<td>' + tempData.vehicleNo + '</td>';
+                            row += '<td>' + total_days + " Days Are Pending" + '</td>'
+                        }
+                        if (total_day < 31 & total_day >= 0) {
+                            row += '<td>' + total_day + " Days Are Pending" + '</td>'
+                        }
+                        if (total_da < 31 & total_da >= 0) {
+                            row += '<td>' + total_da + " Days Are Pending" + '</td>'
+                        }  
+                        if (total_d < 31 & total_d >= 0) {
+                            row += '<td>' + total_d + " Days Are Pending" + '</td>'
+                        }   
                         row += '</tr>';
                             $('#tblExpireDetails').append(row);
-                        }
+                        
                     }
                 }
                 

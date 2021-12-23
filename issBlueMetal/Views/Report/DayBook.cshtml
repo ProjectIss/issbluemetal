@@ -107,7 +107,12 @@
         });
     });
 
-     function Advance(Date) {
+    function Advance(Date) {
+        debugger
+        $('#balance').text("");
+        $('#closing').text("");
+        $('#Total').text("");
+        $('#gTotalPaid').text("");
         $.ajax({
             type: 'POST',
           

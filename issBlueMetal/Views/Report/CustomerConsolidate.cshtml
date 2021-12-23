@@ -89,13 +89,13 @@
                                 if (data[i].customer.name != null) { tempData.name = data[i].customer.name; } else tempData.name = "";
                                 if (data[i].customer.address != null) { tempData.address = data[i].customer.address; } else tempData.address = "";
                                 if (data[i].Item != null) { tempData.Item = data[i].Item.name; } else tempData.Item = "";
-                                if (data[i].netAmount != null) { tempData.netAmount = data[i].netAmount; } else tempData.netAmount = "";                              
+                        if (data[i].balanceAmount != null) { tempData.balanceAmount = data[i].balanceAmount; } else tempData.balanceAmount = "";                              
                                 row = '<tr>';
                                 row += "<td>" + sNo + "</td>"
                                 row += '<td>' + tempData.name + '</td>'
                                 row += '<td>' + tempData.address + '</td>'
-                                row += '<td>' + tempData.Item + '</td>'
-                                row += '<td>' + tempData.netAmount + '</td>'
+                        row += '<td>' + tempData.Item + '</td>'
+                        row += '<td>' + tempData.balanceAmount + '</td>'
                                 row += '</tr>';
                         $('#tblCustomerLedger').append(row);
                         sNo++;
