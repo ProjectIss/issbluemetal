@@ -414,11 +414,11 @@ namespace issBlueMetal.Controllers
                 if (!string.IsNullOrEmpty(fromDate) && !string.IsNullOrEmpty(toDate))
                 {
                     DateTime fDate = Convert.ToDateTime(fromDate);
-                    DateTime tDate = Convert.ToDateTime(toDate);
-                    tDate = tDate.AddDays(-1);
-                    var data = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).ToList();
-                    var gTotalPaid = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).Sum((x => (decimal?)x.credit));
-                    var Total = db.supplierLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.SupplierLedger.name == id).Sum(x => (decimal?)x.debit);
+
+                    fDate = fDate.AddDays(-1);
+                    var data = db.supplierLedgers.Where(x => x.dateOfPurchages <= fDate && x.SupplierLedger.name == id).ToList();
+                    var gTotalPaid = db.supplierLedgers.Where(x => x.dateOfPurchages <= fDate && x.SupplierLedger.name == id).Sum((x => (decimal?)x.credit));
+                    var Total = db.supplierLedgers.Where(x => x.dateOfPurchages <= fDate && x.SupplierLedger.name == id).Sum(x => (decimal?)x.debit);
                     var openingBalance = db.Suppliers.Where(x => x.name == id).FirstOrDefault();
                     decimal tCredit = 0, tDebit = 0, resOpeningBalance = 0;
                     if (gTotalPaid != null && gTotalPaid > 0)
@@ -441,7 +441,7 @@ namespace issBlueMetal.Controllers
                     var GTotalPaid = db.supplierLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.SupplierLedger.name == id).Sum((x => (decimal?)x.credit));
                     var total = db.supplierLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.SupplierLedger.name == id).Sum(x => (decimal?)x.debit);
                     var OpeningBalance = db.Suppliers.Where(x => x.name == id).FirstOrDefault();
-                    decimal TCredit = 0, TDebit = 0, ResOpeningBalance = 0;
+                    decimal TCredit = 0, TDebit = 0;
                     if (GTotalPaid != null && GTotalPaid > 0)
                     {
                         TCredit = Convert.ToDecimal(GTotalPaid);
@@ -450,16 +450,17 @@ namespace issBlueMetal.Controllers
                     {
                         TDebit = Convert.ToDecimal(total);
                     }
-                    if (OpeningBalance.openingBalance != null)
-                    {
-                        ResOpeningBalance = (tCredit - tDebit) + Convert.ToDecimal(OpeningBalance.openingBalance);
-                    }
+                   
 
                     ViewBag.gTotalPaid = GTotalPaid;
                     ViewBag.total = total;
                     ViewBag.resOpeningBalance = resOpeningBalance;
-                    var closingBalance = ((GTotalPaid) + (ResOpeningBalance)) - (total);
+                    var closingBalance = ((GTotalPaid) + (resOpeningBalance)) - (total);
                     ViewBag.closingBalance = closingBalance;
+                    if (Data.Count == 0)
+                    {
+                        ViewBag.closingBalance = resOpeningBalance;
+                    }
                     return View(Data);
 
 
@@ -528,13 +529,14 @@ namespace issBlueMetal.Controllers
                 {
 
                     DateTime fDate = Convert.ToDateTime(fromDate);
-                    DateTime tDate = Convert.ToDateTime(toDate);
+                   
                     fDate = fDate.AddDays(-1);
-                    var data = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).ToList();
-                    var gTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).Sum((x => (decimal?)x.credit));
-                    var Total = db.customerLedgers.Where(x => x.dateOfPurchages >= fDate && x.dateOfPurchages <= tDate && x.Customer.name == id).Sum(x => (decimal?)x.debit);
+                  
+                    var data = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate  && x.Customer.name == id).ToList();
+                    var gTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate  && x.Customer.name == id).Sum((x => (decimal?)x.credit));
+                    var Total = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate && x.Customer.name == id).Sum(x => (decimal?)x.debit);
                     var openingBalance = db.Customers.Where(x => x.name == id).FirstOrDefault();
-                    decimal tCredit = 0, tDebit = 0, resOpeningBalance = 0;
+                    decimal tCredit = 0, tDebit = 0, Openingbalance = 0;
                     if (gTotalPaid != null && gTotalPaid > 0)
                     {
                         tCredit = Convert.ToDecimal(gTotalPaid);
@@ -543,11 +545,11 @@ namespace issBlueMetal.Controllers
                     {
                         tDebit = Convert.ToDecimal(Total);
                     }
+                    
                     if (openingBalance.openingBalance != null)
                     {
-                        resOpeningBalance = (tCredit - tDebit) + Convert.ToDecimal(openingBalance.openingBalance);
+                        Openingbalance = ((tDebit) + Convert.ToDecimal(openingBalance.openingBalance)) - tCredit;
                     }
-
                     DateTime FDate = Convert.ToDateTime(fromDate);
                     DateTime TDate = Convert.ToDateTime(toDate);
 
@@ -555,7 +557,7 @@ namespace issBlueMetal.Controllers
                     var GTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.Customer.name == id).Sum((x => (decimal?)x.credit));
                     var total = db.customerLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.Customer.name == id).Sum(x => (decimal?)x.debit);
                     var OpeningBalance = db.Customers.Where(x => x.name == id).FirstOrDefault();
-                    decimal TCredit = 0, TDebit = 0, ResOpeningBalance = 0;
+                    decimal TCredit = 0, TDebit = 0;
                     if (GTotalPaid != null && GTotalPaid > 0)
                     {
                         TCredit = Convert.ToDecimal(GTotalPaid);
@@ -564,18 +566,18 @@ namespace issBlueMetal.Controllers
                     {
                         TDebit = Convert.ToDecimal(total);
                     }
-                    if (OpeningBalance.openingBalance != null)
-                    {
-                        ResOpeningBalance = (TCredit - TDebit) + Convert.ToDecimal(OpeningBalance.openingBalance);
-                    }
-
-                    //else resOpeningBalance = (tCredit - tDebit);
+                    
+          
                     ViewBag.gTotalPaid = GTotalPaid;
-                    ViewBag.Total = Total;
-                    ViewBag.resOpeningBalance = resOpeningBalance;
-
-                    var closingBalance = ((GTotalPaid) + (resOpeningBalance)) - (0);
+                    ViewBag.Total = total;
+                    ViewBag.resOpeningBalance = Openingbalance;
+                    
+                    var closingBalance = ((total) + (Openingbalance)) - (GTotalPaid);
                     ViewBag.closingBalance = closingBalance;
+                    if (Data.Count == 0)
+                    {
+                        ViewBag.closingBalance = Openingbalance;
+                    }
                     return View(Data);
                 }
 
@@ -857,7 +859,51 @@ namespace issBlueMetal.Controllers
                             lstSales.Add(sales);
                         }
 
+                       
+
+                        fDate = fDate.AddDays(-1);
+
+                        var DATA = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate && x.Customer.name == item.customer.name).ToList();
+                        var gTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate && x.Customer.name == item.customer.name).Sum((x => (decimal?)x.credit));
+                        var Total = db.customerLedgers.Where(x => x.dateOfPurchages <= fDate && x.Customer.name == item.customer.name).Sum(x => (decimal?)x.debit);
+                        var openingBalance = db.Customers.Where(x => x.name == item.customer.name).FirstOrDefault();
+                        decimal tCredit = 0, tDebit = 0, Openingbalance = 0;
+                        if (gTotalPaid != null && gTotalPaid > 0)
+                        {
+                            tCredit = Convert.ToDecimal(gTotalPaid);
+                        }
+                        if (Total != null && Total > 0)
+                        {
+                            tDebit = Convert.ToDecimal(Total);
+                        }
+
+                        if (openingBalance.openingBalance != null)
+                        {
+                            Openingbalance = ((tDebit) + Convert.ToDecimal(openingBalance.openingBalance)) - tCredit;
+                        }
+                        DateTime FDate = Convert.ToDateTime(fromDate);
+                        DateTime TDate = Convert.ToDateTime(toDate);
+
+                        var Data = db.customerLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.Customer.name == item.customer.name).ToList();
+                        var GTotalPaid = db.customerLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.Customer.name == item.customer.name).Sum((x => (decimal?)x.credit));
+                        var total = db.customerLedgers.Where(x => x.dateOfPurchages >= FDate && x.dateOfPurchages <= TDate && x.Customer.name == item.customer.name).Sum(x => (decimal?)x.debit);
+                        var OpeningBalance = db.Customers.Where(x => x.name == item.customer.name).FirstOrDefault();
+                        decimal TCredit = 0, TDebit = 0;
+                        if (GTotalPaid != null && GTotalPaid > 0)
+                        {
+                            TCredit = Convert.ToDecimal(GTotalPaid);
+                        }
+                        if (total != null && total > 0)
+                        {
+                            TDebit = Convert.ToDecimal(total);
+                        }
+
+
+                        var closingBalance = ((total) + (Openingbalance)) - (GTotalPaid);
+                        ViewBag.closingBalance = closingBalance;
+
                     }
+
                     var responesData = lstSales.ToList();
                     return Json(lstSales, JsonRequestBehavior.AllowGet);
                 }

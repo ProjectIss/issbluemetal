@@ -108,7 +108,7 @@ namespace issBlueMetal.Controllers
                     supplierLedger.supplierId = paymentEntry.supplierId;
                     supplierLedger.SupplierLedger = paymentEntry.Supplier;
                     supplierLedger.type = "Payment";
-                    supplierLedger.dateOfPurchages = DateTime.Now;
+                    supplierLedger.dateOfPurchages = (DateTime)paymentEntry.Date;
                     db.supplierLedgers.Add(supplierLedger);
                     db.SaveChanges();
                     return RedirectToAction("Index");

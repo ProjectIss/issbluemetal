@@ -109,7 +109,7 @@ namespace issBlueMetal.Controllers
                     customerLedger.customerId = reciptEntry.customerId;
                     customerLedger.Customer = reciptEntry.customer;
                     customerLedger.type = "Received";
-                    customerLedger.dateOfPurchages = DateTime.Now;
+                    customerLedger.dateOfPurchages = (DateTime)reciptEntry.Date;
                     db.customerLedgers.Add(customerLedger);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");

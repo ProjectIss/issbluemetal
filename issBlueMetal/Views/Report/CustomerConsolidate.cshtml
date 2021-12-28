@@ -49,16 +49,19 @@
                     <th>Name</th>
                     <th>Address</th>
                     <th>Material Name</th>
-                    <th>Amount</th>
+                    <th>
+                        Amount
+                        <span>@ViewBag.closingBalance</span>
+                    </th>
                 </tr>
             </thead>
-            <tbody id="tblCustomerLedger">
-            </tbody>
+            <tbody id="tblCustomerLedger"></tbody>
+           
         </table>
     </div>
 </div>
 <script>
-    $(function () { 
+    $(function () {
         $('#btnsearch').click(function () {
             var formatDate = $('#fromdate').val().split('-');
             var formatToDate = $('#todate').val().split('-');
@@ -89,20 +92,20 @@
                                 if (data[i].customer.name != null) { tempData.name = data[i].customer.name; } else tempData.name = "";
                                 if (data[i].customer.address != null) { tempData.address = data[i].customer.address; } else tempData.address = "";
                                 if (data[i].Item != null) { tempData.Item = data[i].Item.name; } else tempData.Item = "";
-                        if (data[i].balanceAmount != null) { tempData.balanceAmount = data[i].balanceAmount; } else tempData.balanceAmount = "";                              
+                        //if (data[i].balanceAmount != null) { tempData.balanceAmount = data[i].balanceAmount; } else tempData.balanceAmount = "";
                                 row = '<tr>';
                                 row += "<td>" + sNo + "</td>"
                                 row += '<td>' + tempData.name + '</td>'
                                 row += '<td>' + tempData.address + '</td>'
                         row += '<td>' + tempData.Item + '</td>'
-                        row += '<td>' + tempData.balanceAmount + '</td>'
+                        //row += '<td>' + tempData.balanceAmount + '</td>'
                                 row += '</tr>';
                         $('#tblCustomerLedger').append(row);
                         sNo++;
                             }
                         }
                         console.log(tempData);
-                      
+
                 }
                 else {
                 alert("Somthing went wrong please try again.");
@@ -112,7 +115,7 @@
                 console.log(err);
             }
         });
-    } 
+    }
 </script>
 
 
