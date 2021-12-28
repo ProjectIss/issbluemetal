@@ -70,8 +70,8 @@ namespace issBlueMetal.Controllers
                     }
                 }
                 ViewBag.PaymentType = accountLedger;
-                ViewBag.acLedgerId = new SelectList(db.AcLedger, "id", "accountledger");
-                ViewBag.supplierId = new SelectList(db.Suppliers, "id", "name");
+                ViewBag.acLedgerId = new SelectList(db.AcLedger.OrderBy(x => x.accountledger), "id", "accountledger");
+                ViewBag.supplierId = new SelectList(db.Suppliers.OrderBy(x => x.name), "id", "name");
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace issBlueMetal.Controllers
                     supplierLedger.supplierId = paymentEntry.supplierId;
                     supplierLedger.SupplierLedger = paymentEntry.Supplier;
                     supplierLedger.type = "Payment";
-                    supplierLedger.dateOfPurchages = DateTime.Now;
+                    supplierLedger.dateOfPurchages = (DateTime)paymentEntry.Date;
                     db.supplierLedgers.Add(supplierLedger);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -164,8 +164,8 @@ namespace issBlueMetal.Controllers
                     }
                 }
                 ViewBag.PaymentType = accountLedger;
-                ViewBag.acLedgerId = new SelectList(db.AcLedger, "id", "accountledger", paymentEntry.acLedgerId);
-                ViewBag.supplierId = new SelectList(db.Suppliers, "id", "name", paymentEntry.supplierId);
+                ViewBag.acLedgerId = new SelectList(db.AcLedger.OrderBy(x => x.accountledger), "id", "accountledger", paymentEntry.acLedgerId);
+                ViewBag.supplierId = new SelectList(db.Suppliers.OrderBy(x => x.name), "id", "name", paymentEntry.supplierId);
                 return View(paymentEntry);
             }
             catch (Exception ex)

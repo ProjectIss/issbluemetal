@@ -39,22 +39,43 @@
                                 <center>
                                     <div class="col m6 s4 pull-m2">
                                         <h4 class="indigo-text">INVOICE</h4>
-                                        <small style="font-size: .5rem">ISSUE OF INVOICE UNDER GST 2021</small>
+                                        <small style="font-size: .6rem">ISSUE OF INVOICE UNDER GST 2021</small>
                                     </div>
                                 </center>
-                                <div class="mr-3">
+                                @*<div class="mr-3">
                                     <small>BillNo:</small>
                                     <span id="billNo"></span>
-                                </div>
-                                <div class="mr-3" style="float:right">
+                                </div>*@
+                                <div class="mr-2" style="float:right">
+                                    @*<small>BillNo:</small>
+                                    <span id="billNo"></span>
                                     <small>Date Issue:</small>
                                     <span>@DateTime.Now.ToShortDateString()</span>
+                                    <span>GSTIN : 33AAMPE3553A3Z8</span>*@
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>BillNo:</th>
+                                                <th>Date Issue:</th>
+                                                <th>GSTIN : </th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="billNo"></td>
+                                                <td>@DateTime.Now.ToShortDateString()</td>
+                                                <td>33AAMPE3553A3Z8</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div class="mr-3">
-                                    <span>GSTIN : 33AAMPE3553A3Z8</span>
+                                   
                                 </div>
                             </div>
-                            <div class="divider mb-1 mt-1"></div>
+                            <div class="divider"></div>
                             <!-- invoice address and contact -->
                             <div class="row invoice-info">
                                 <div class="col m6 s6">
@@ -89,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="divider mb-1 mt-1"></div>
+                            <div class="divider"></div>
                             <!-- product details table-->
                             <div class="invoice-product-details">
                                 <table class="striped responsive-table">
@@ -117,7 +138,7 @@
                                 </table>
                             </div>
                             <!-- invoice subtotal -->
-                            <div class="divider mt-3 mb-3"></div>
+                            <div class="divider"></div>
                             <div class="invoice-subtotal">
                                 <div class="row">
                                     <div class="col m5 s6">
@@ -157,7 +178,7 @@
                                                 <span class="invoice-subtotal-title">SGST 2.5 %</span>
                                                 <h6 class="invoice-subtotal-value" id="sgst"></h6>
                                             </li>
-                                            <li class="divider mt-2 mb-2"></li>
+                                            <li class="divider"></li>
                                             <li class="display-flex justify-content-between">
                                                 <span class="invoice-subtotal-title">Net Amount</span>
                                                 <h6 class="invoice-subtotal-value" id="netAmount"></h6>
@@ -175,7 +196,7 @@
 
 
 
-                            <div class="divider mt-3 mb-3"></div>
+                            <div class="divider"></div>
                         </div>
                     </div>
                     <!-- invoice action  -->
@@ -211,7 +232,7 @@
 
         });
         function PrintElem(elem) {
-            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+            var mywindow = window.open('', 'PRINT', 'height=200,width=400');
 
             mywindow.document.write('<html><head>');
             mywindow.document.write("<link href=\"../lib/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\"><link href=\"../css/core.css\" rel=\"stylesheet\"><link href=\"../css/components.css\" rel=\"stylesheet\"><link href=\"../css/icons.css\" rel=\"stylesheet\">")

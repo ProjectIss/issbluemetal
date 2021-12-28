@@ -71,12 +71,12 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-                ViewBag.arrivalPlaceId = new SelectList(db.Locations, "id", "name");
-                ViewBag.departurePlaceId = new SelectList(db.Locations, "id", "name");
-                ViewBag.materialNameId = new SelectList(db.RawMeteriyals, "id", "name");
-                ViewBag.staffId = new SelectList(db.Staffs, "id", "name");
-                ViewBag.supplierId = new SelectList(db.Suppliers, "id", "name");
-                ViewBag.vehicleId = new SelectList(db.Vehicles, "id", "vehicleNo");
+                ViewBag.arrivalPlaceId = new SelectList(db.Locations.OrderBy(x=>x.name), "id", "name");
+                ViewBag.departurePlaceId = new SelectList(db.Locations.OrderBy(x => x.name), "id", "name");
+                ViewBag.materialNameId = new SelectList(db.RawMeteriyals.OrderBy(x => x.name), "id", "name");
+                ViewBag.staffId = new SelectList(db.Staffs.OrderBy(x => x.name), "id", "name");
+                ViewBag.supplierId = new SelectList(db.Suppliers.OrderBy(x => x.name), "id", "name");
+                ViewBag.vehicleId = new SelectList(db.Vehicles.OrderBy(x => x.vehicleNo), "id", "vehicleNo");
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace issBlueMetal.Controllers
                     supplierLedger.companyId = company.id;
                     supplierLedger.credit = rawMateriyalPurchase.netAmount;
                     supplierLedger.supplierId = rawMateriyalPurchase.supplierId;
-                    supplierLedger.dateOfPurchages = DateTime.Now;
+                    supplierLedger.dateOfPurchages = Convert.ToDateTime(rawMateriyalPurchase.dateTime);
                     db.supplierLedgers.Add(supplierLedger);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -154,12 +154,12 @@ namespace issBlueMetal.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.arrivalPlaceId = new SelectList(db.Locations, "id", "name", rawMateriyalPurchase.arrivalPlaceId);
-                ViewBag.departurePlaceId = new SelectList(db.Locations, "id", "name", rawMateriyalPurchase.departurePlaceId);
-                ViewBag.materialNameId = new SelectList(db.RawMeteriyals, "id", "name", rawMateriyalPurchase.materialNameId);
-                ViewBag.staffId = new SelectList(db.Staffs, "id", "name", rawMateriyalPurchase.staffId);
-                ViewBag.supplierId = new SelectList(db.Suppliers, "id", "name", rawMateriyalPurchase.supplierId);
-                ViewBag.vehicleId = new SelectList(db.Vehicles, "id", "vehicleNo", rawMateriyalPurchase.vehicleId);
+                ViewBag.arrivalPlaceId = new SelectList(db.Locations.OrderBy(x => x.name), "id", "name", rawMateriyalPurchase.arrivalPlaceId);
+                ViewBag.departurePlaceId = new SelectList(db.Locations.OrderBy(x => x.name), "id", "name", rawMateriyalPurchase.departurePlaceId);
+                ViewBag.materialNameId = new SelectList(db.RawMeteriyals.OrderBy(x => x.name), "id", "name", rawMateriyalPurchase.materialNameId);
+                ViewBag.staffId = new SelectList(db.Staffs.OrderBy(x => x.name), "id", "name", rawMateriyalPurchase.staffId);
+                ViewBag.supplierId = new SelectList(db.Suppliers.OrderBy(x => x.name), "id", "name", rawMateriyalPurchase.supplierId);
+                ViewBag.vehicleId = new SelectList(db.Vehicles.OrderBy(x => x.vehicleNo), "id", "vehicleNo", rawMateriyalPurchase.vehicleId);
                 return View(rawMateriyalPurchase);
             }
             catch (Exception ex)
