@@ -2,15 +2,9 @@
 @{
     ViewBag.Title = "CustomerConsolidate";
 }
-
-
-
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
-
 <link href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-
-
 <style>
     .dataTables_wrapper {
         position: relative;
@@ -19,31 +13,22 @@
     }
 </style>
 
-
 <div class="container">
     <div>
         <h5 style="text-align: center">Customer Consolidate</h5>
-
     </div>
 </div>
-
 <div class="row">
     <div class="col s1">
     </div>
-
-
-
     <div class="col s2 card card-header info">
         <label>  From Date :</label>
-
         <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
     </div>
     <div class="col s1">
     </div>
-   
     <div class="col s2 card card-header info">
         <label>  To Date :</label>
-
         <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
     </div>
     <div class="col s2">
@@ -51,50 +36,32 @@
             Search
             <i class="material-icons right"></i>
         </button>
-
     </div>
 </div>
-
 <br />
-
 <div class="col s12" style="margin:1%">
     <div class="card">
-
-
         <div class="dt_colVis_buttons"></div>
         <table style="width:100%" id="customer">
             <thead>
                 <tr>
-
                     <th>Id</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Material Name</th>
-                    <th>Amount</th>
-                  
-
+                    <th>
+                        Amount
+                        <span>@ViewBag.closingBalance</span>
+                    </th>
                 </tr>
             </thead>
-            <tbody id="tblCustomerLedger">
-              <tr>
-
-              </tr>
-            </tbody>
-            <tfoot>
-             
-            </tfoot>
+            <tbody id="tblCustomerLedger"></tbody>
+           
         </table>
-
-
     </div>
 </div>
-
-
-
 <script>
-   
     $(function () {
-       
         $('#btnsearch').click(function () {
             var formatDate = $('#fromdate').val().split('-');
             var formatToDate = $('#todate').val().split('-');
@@ -107,7 +74,6 @@
                 alert("Please Select the FormatDate and ToDate ")
             }
         });
-
     });
     function Advance(fromDate, toDate) {
         $("#tblCustomerLedger").empty();
@@ -118,81 +84,38 @@
             data: { fromDate: fromDate, toDate: toDate, },
             success: function (data) {
                 if (data != "Faild") {
-                    //var data = JSON.parse(result);
-                  
-                    debugger
                 var row;
-                let gTotal = 0;
                     let sNo = 1;
-                if (data.length>0) {
+                    if (data.length > 0) {
                     for (var i = 0; i < data.length; i++) {
                         var tempData = {};
-                       
-
-                        if (data[i][0].customer.name != null) { tempData.name = data[i][0].customer.name; } else tempData.name = "";
-                        if (data[i][0].customer.address != null) { tempData.address = data[i][0].customer.address; } else tempData.address = "";
-                        if (data[i][0].Item != null) { tempData.Item = data[i][0].Item.name; } else tempData.Item = "";
-                        if (data[i][0].netAmount != null) { tempData.netAmount = data[i][0].netAmount; } else tempData.netAmount = "";
-
-                        row = '<tr>';
-                        row += "<td>" + sNo + "</td>"
-                        row += '<td>' + tempData.name + '</td>'
-                        row += '<td>' + tempData.address + '</td>'
+                                if (data[i].customer.name != null) { tempData.name = data[i].customer.name; } else tempData.name = "";
+                                if (data[i].customer.address != null) { tempData.address = data[i].customer.address; } else tempData.address = "";
+                                if (data[i].Item != null) { tempData.Item = data[i].Item.name; } else tempData.Item = "";
+                        //if (data[i].balanceAmount != null) { tempData.balanceAmount = data[i].balanceAmount; } else tempData.balanceAmount = "";
+                                row = '<tr>';
+                                row += "<td>" + sNo + "</td>"
+                                row += '<td>' + tempData.name + '</td>'
+                                row += '<td>' + tempData.address + '</td>'
                         row += '<td>' + tempData.Item + '</td>'
-                        row += '<td>' + tempData.netAmount + '</td>'
-                       
-
-                        row += '</tr>';
+                        //row += '<td>' + tempData.balanceAmount + '</td>'
+                                row += '</tr>';
                         $('#tblCustomerLedger').append(row);
-                        $('#Total').empty();
-                        $('#Total').append(gTotal);
                         sNo++;
+                            }
+                        }
+                        console.log(tempData);
 
-                    }
-                }
                 }
                 else {
                 alert("Somthing went wrong please try again.");
             }
-
             },
             error: function (err) {
                 console.log(err);
             }
         });
     }
-
-
-
-
-
-    function exportToExcel() {
-
-        var wscols = [
-            { wch: 10 },
-            { wch: 20 },
-            { wch: 15 },
-            { wch: 15 },
-            { wch: 15 },
-        ];
-        var wb = XLSX.utils.table_to_book(document.getElementById("payment"), {
-            sheet: "PaymentReport",
-            raw: true,
-        });
-        wb.Sheets["PaymentReport"]["!cols"] = wscols;
-        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "PaymentReport.xlsx");
-    }
-
-    function s2ab(s) {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < s.length; i++) {
-            view[i] = s.charCodeAt(i) & 0xFF;
-        }
-        return buf;
-    }
-
 </script>
 
 

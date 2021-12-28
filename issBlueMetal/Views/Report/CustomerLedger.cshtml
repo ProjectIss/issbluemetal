@@ -41,22 +41,18 @@
         </div>
 
         <div class="col s1">
-            <div>
-                <label>  From Date :</label>
-            </div>
+          
         </div>
         <div class="col s2 card card-header info">
-
+            <label>  From Date :</label>
             <input type="date" name="fromDate" class="form-control daterange-single" id="fromdate">
         </div>
 
         <div class="col s1">
-            <div>
-                <label>  To Date :</label>
-            </div>
+           
         </div>
         <div class="col s2 card card-header info">
-
+            <label>  To Date :</label>
             <input type="date" class="form-control" name="toDate" format="dd-MM-yyyy" id="todate" />
         </div>
         <div class="col s2">
@@ -184,85 +180,4 @@
         });
 
     </script>
-    <script>
-        function Advance(fromDate, toDate, Id) {
-            $('#tblCustomerLedger').empty();
-            $('#Total').empty();
-            $('#gTotal').empty();
-            $('#txtOB').text("");
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Content("~/Report/getCustomerDetails")',
-                dataType: 'json',
-                data: { fromDate: fromDate, toDate: toDate, name: Id },
-
-                success: function (data) {
-                    if (data != "Faild") {
-                        //var data = JSON.parse(result);
-                        console.log(data)
-
-                    var row;
-                        let gTotal = 0;
-                        let Total = 0;
-                        let sNo = 1;
-                        let closingBalance = 0;
-
-                        $('#txtOB').text(data.resOpeningBalance);
-                        if (data.customer.length > 0) {
-                            for (var i = 0; i < data.customer.length; i++) {
-                                var tempData = {};
-                                if (data.customer[i].Id) { tempData.Id = data.customer[i].Id } else tempData.Id = "";
-                                if (data.customer[i].dateOfPurchages) { tempData.dateOfPurchages = DateConvertion(data.customer[i].dateOfPurchages) } else tempData.dateOfPurchages = "";
-                               
-                                if (data.customer[i].credit) { tempData.credit = data.customer[i].credit; gTotal += parseInt(data.customer[i].credit) } else tempData.credit = "0";
-                                if (data.customer[i].debit) { tempData.debit = data.customer[i].debit; Total += parseInt(data.customer[i].debit) } else tempData.debit = "0";
-
-
-
-                            row = "<tr>"
-                            row += "<td>" + sNo + "</td>"
-                            row += "<td>" + tempData.Id + "</td>"
-                            row += "<td>" + tempData.dateOfPurchages + "</td>"
-                            //row += "<td>" + tempData.materialName + "</td>"
-                            row += "<td>" + tempData.credit + "</td>"
-                            row += "<td>" + tempData.debit + "</td>"
-                            row += "</tr>";
-                            $('#tblCustomerLedger').append(row);
-                            $('#gTotal').empty();
-                            $('#gTotal').append(gTotal);
-                            $('#Total').empty();
-                            $('#Total').append(Total);
-                            sNo++;
-                        }
-                            closingBalance = (parseFloat(gTotal) + parseFloat(data.resOpeningBalance)) - (Total);
-                        $('#txtCB').text(closingBalance);
-                        }
-                    }
-                    else
-                    {
-                        alert("Somthing went wrong please try again.");
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-
-        }
-
-
-
-
-
-
-
-    function s2ab(s) {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < s.length; i++) {
-            view[i] = s.charCodeAt(i) & 0xFF;
-        }
-        return buf;
-    }
-
-    </script>
+    

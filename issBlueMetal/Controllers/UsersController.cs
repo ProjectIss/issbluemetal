@@ -72,7 +72,7 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-                ViewBag.companyId = new SelectList(db.Companies, "id", "name");
+                ViewBag.companyId = new SelectList(db.Companies.OrderBy(x => x.name), "id", "name");
 
             }
             catch (Exception ex)

@@ -71,7 +71,7 @@ namespace issBlueMetal.Controllers
         {
             try
             {
-                ViewBag.accountGroupID = new SelectList(db.AccountGroups, "id", "accountGrouop");
+                ViewBag.accountGroupID = new SelectList(db.AccountGroups.OrderBy(x => x.accountGrouop), "id", "accountGrouop");
             }
             catch (Exception ex)
             {
@@ -134,7 +134,7 @@ namespace issBlueMetal.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.accountGroupID = new SelectList(db.AccountGroups, "id", "accountGrouop", acLedger.accountGroupID);
+                ViewBag.accountGroupID = new SelectList(db.AccountGroups.OrderBy(x => x.accountGrouop), "id", "accountGrouop", acLedger.accountGroupID);
                 return View(acLedger);
             }
             catch (Exception ex)
