@@ -19,7 +19,7 @@
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.Accountledgers",
+                "dbo.AcLedgers",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -41,7 +41,6 @@
                         name = c.String(),
                         address = c.String(),
                         cellNo = c.String(),
-                        companyId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             
@@ -77,6 +76,18 @@
                 .PrimaryKey(t => t.id);
             
             CreateTable(
+                "dbo.errorLogs",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        ErrorDate = c.DateTime(nullable: false),
+                        controllerName = c.String(),
+                        MethodName = c.String(),
+                        ErrorMessage = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
                 "dbo.Items",
                 c => new
                     {
@@ -88,6 +99,25 @@
                         companyId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Hotels",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        tranNo = c.Int(nullable: false),
+                        income = c.Int(nullable: false),
+                        expence = c.Int(nullable: false),
+                        flag = c.Int(nullable: false),
+                        date = c.DateTime(nullable: false),
+                        roomNo = c.String(),
+                        particular = c.String(),
+                        status = c.String(),
+                        user = c.String(),
+                        mode = c.String(),
+                        invNo = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Locations",
@@ -106,17 +136,16 @@
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(),
                         PaymentType = c.String(),
-                        accountLedgerId = c.Int(nullable: false),
-                        ledgerId = c.Int(nullable: false),
+                        acLedgerId = c.Int(nullable: false),
                         description = c.String(),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         supplierId = c.Int(nullable: false),
                         companyId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accountledgers", t => t.accountLedgerId, cascadeDelete: true)
+                .ForeignKey("dbo.AcLedgers", t => t.acLedgerId, cascadeDelete: true)
                 .ForeignKey("dbo.Suppliers", t => t.supplierId, cascadeDelete: true)
-                .Index(t => t.accountLedgerId)
+                .Index(t => t.acLedgerId)
                 .Index(t => t.supplierId);
             
             CreateTable(
@@ -163,7 +192,7 @@
                     })
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.Locations", t => t.arrivalPlaceId, cascadeDelete: true)
-               // .ForeignKey("dbo.Locations", t => t.departurePlaceId, cascadeDelete: true)
+             //   .ForeignKey("dbo.Locations", t => t.departurePlaceId, cascadeDelete: true)
                 .ForeignKey("dbo.RawMeteriyals", t => t.materialNameId, cascadeDelete: true)
                 .ForeignKey("dbo.Staffs", t => t.staffId, cascadeDelete: true)
                 .ForeignKey("dbo.Suppliers", t => t.supplierId, cascadeDelete: true)
@@ -237,15 +266,29 @@
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(),
                         PaymentType = c.String(),
-                        accountLedgerId = c.Int(nullable: false),
-                        ledgerId = c.Int(nullable: false),
+                        acLedgerId = c.Int(nullable: false),
                         description = c.String(),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         companyId = c.Int(nullable: false),
+                        customerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accountledgers", t => t.accountLedgerId, cascadeDelete: true)
-                .Index(t => t.accountLedgerId);
+                .ForeignKey("dbo.AcLedgers", t => t.acLedgerId, cascadeDelete: true)
+                .ForeignKey("dbo.Customers", t => t.customerId, cascadeDelete: true)
+                .Index(t => t.acLedgerId)
+                .Index(t => t.customerId);
+            
+            CreateTable(
+                "dbo.RoomStatus",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        booking = c.Int(nullable: false),
+                        vacancy = c.Int(nullable: false),
+                        housKeeping = c.Int(nullable: false),
+                        Date = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.Sales",
@@ -259,7 +302,7 @@
                         driver = c.String(),
                         type = c.String(),
                         itemId = c.Int(nullable: false),
-                        customer = c.String(),
+                        customerId = c.Int(nullable: false),
                         address = c.String(),
                         phoneNo = c.String(),
                         deliveryPlace = c.String(),
@@ -273,8 +316,10 @@
                         balanceAmount = c.Decimal(precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.customerId, cascadeDelete: true)
                 .ForeignKey("dbo.Items", t => t.itemId, cascadeDelete: true)
-                .Index(t => t.itemId);
+                .Index(t => t.itemId)
+                .Index(t => t.customerId);
             
             CreateTable(
                 "dbo.supplierLedgers",
@@ -293,6 +338,33 @@
                 .ForeignKey("dbo.Suppliers", t => t.supplierId, cascadeDelete: true)
                 .Index(t => t.supplierId)
                 .Index(t => t.companyId);
+            
+            CreateTable(
+                "dbo.TblGRCs",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        grcNo = c.Int(nullable: false),
+                        grcDate = c.DateTime(nullable: false),
+                        name = c.String(),
+                        phone = c.String(),
+                        age = c.String(),
+                        adult = c.String(),
+                        child = c.String(),
+                        arrtime = c.DateTime(nullable: false),
+                        roomType = c.String(),
+                        roomOption = c.String(),
+                        roomNo = c.String(),
+                        tariff = c.String(),
+                        billNo = c.Int(nullable: false),
+                        noofDay = c.Int(nullable: false),
+                        total = c.Int(nullable: false),
+                        chkdate = c.DateTime(nullable: false),
+                        chkTime = c.DateTime(nullable: false),
+                        taxAmt = c.String(),
+                        status = c.String(),
+                    })
+                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.TripSalesEntries",
@@ -372,7 +444,9 @@
             DropForeignKey("dbo.supplierLedgers", "supplierId", "dbo.Suppliers");
             DropForeignKey("dbo.supplierLedgers", "companyId", "dbo.Companies");
             DropForeignKey("dbo.Sales", "itemId", "dbo.Items");
-            DropForeignKey("dbo.ReciptEntries", "accountLedgerId", "dbo.Accountledgers");
+            DropForeignKey("dbo.Sales", "customerId", "dbo.Customers");
+            DropForeignKey("dbo.ReciptEntries", "customerId", "dbo.Customers");
+            DropForeignKey("dbo.ReciptEntries", "acLedgerId", "dbo.AcLedgers");
             DropForeignKey("dbo.RawMateriyalPurchases", "vehicleId", "dbo.Vehicles");
             DropForeignKey("dbo.RawMateriyalPurchases", "supplierId", "dbo.Suppliers");
             DropForeignKey("dbo.RawMateriyalPurchases", "staffId", "dbo.Staffs");
@@ -380,10 +454,10 @@
             DropForeignKey("dbo.RawMateriyalPurchases", "departurePlaceId", "dbo.Locations");
             DropForeignKey("dbo.RawMateriyalPurchases", "arrivalPlaceId", "dbo.Locations");
             DropForeignKey("dbo.PaymentEntries", "supplierId", "dbo.Suppliers");
-            DropForeignKey("dbo.PaymentEntries", "accountLedgerId", "dbo.Accountledgers");
+            DropForeignKey("dbo.PaymentEntries", "acLedgerId", "dbo.AcLedgers");
             DropForeignKey("dbo.customerLedgers", "customerId", "dbo.Customers");
             DropForeignKey("dbo.customerLedgers", "companyId", "dbo.Companies");
-            DropForeignKey("dbo.Accountledgers", "accountGroupID", "dbo.AccountGroups");
+            DropForeignKey("dbo.AcLedgers", "accountGroupID", "dbo.AccountGroups");
             DropIndex("dbo.User", new[] { "companyId" });
             DropIndex("dbo.TripSalesEntries", new[] { "deliveryPlaceId" });
             DropIndex("dbo.TripSalesEntries", new[] { "CustomerId" });
@@ -392,8 +466,10 @@
             DropIndex("dbo.TripSalesEntries", new[] { "vehicleId" });
             DropIndex("dbo.supplierLedgers", new[] { "companyId" });
             DropIndex("dbo.supplierLedgers", new[] { "supplierId" });
+            DropIndex("dbo.Sales", new[] { "customerId" });
             DropIndex("dbo.Sales", new[] { "itemId" });
-            DropIndex("dbo.ReciptEntries", new[] { "accountLedgerId" });
+            DropIndex("dbo.ReciptEntries", new[] { "customerId" });
+            DropIndex("dbo.ReciptEntries", new[] { "acLedgerId" });
             DropIndex("dbo.RawMateriyalPurchases", new[] { "materialNameId" });
             DropIndex("dbo.RawMateriyalPurchases", new[] { "arrivalPlaceId" });
             DropIndex("dbo.RawMateriyalPurchases", new[] { "supplierId" });
@@ -401,15 +477,17 @@
             DropIndex("dbo.RawMateriyalPurchases", new[] { "staffId" });
             DropIndex("dbo.RawMateriyalPurchases", new[] { "vehicleId" });
             DropIndex("dbo.PaymentEntries", new[] { "supplierId" });
-            DropIndex("dbo.PaymentEntries", new[] { "accountLedgerId" });
+            DropIndex("dbo.PaymentEntries", new[] { "acLedgerId" });
             DropIndex("dbo.customerLedgers", new[] { "companyId" });
             DropIndex("dbo.customerLedgers", new[] { "customerId" });
-            DropIndex("dbo.Accountledgers", new[] { "accountGroupID" });
+            DropIndex("dbo.AcLedgers", new[] { "accountGroupID" });
             DropTable("dbo.User");
             DropTable("dbo.UnitConvertions");
             DropTable("dbo.TripSalesEntries");
+            DropTable("dbo.TblGRCs");
             DropTable("dbo.supplierLedgers");
             DropTable("dbo.Sales");
+            DropTable("dbo.RoomStatus");
             DropTable("dbo.ReciptEntries");
             DropTable("dbo.Vehicles");
             DropTable("dbo.Staffs");
@@ -418,11 +496,13 @@
             DropTable("dbo.Suppliers");
             DropTable("dbo.PaymentEntries");
             DropTable("dbo.Locations");
+            DropTable("dbo.Hotels");
             DropTable("dbo.Items");
+            DropTable("dbo.errorLogs");
             DropTable("dbo.Customers");
             DropTable("dbo.customerLedgers");
             DropTable("dbo.Companies");
-            DropTable("dbo.Accountledgers");
+            DropTable("dbo.AcLedgers");
             DropTable("dbo.AccountGroups");
         }
     }

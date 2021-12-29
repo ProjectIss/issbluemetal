@@ -4,7 +4,38 @@
     ViewBag.Title = "Details";
 }
 
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 50%;
+    }
+
+    .card-content {
+        width: 70%;
+    }
+
+    input[type=text]:not(.browser-default):hover {
+        color: none;
+    }
+
+    table {
+        padding: 8px;
+        margin-left: 5px;
+    }
+
+    tr th {
+        margin-left: 10px;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
@@ -32,76 +63,77 @@
 <div class="row">
     <div class="col s12">
         <div class="card card-tabs">
-            <div class="card-content">
-                <div class="card-header header-elements-inline">
-                    <div class="header-elements" style="float: right;">
-                        <div class="list-icons">
-                            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
-                        </div>
+            <div class="card-header header-elements-inline">
+                <div class="header-elements" style="float: right;margin-top:10px;margin-right:10px">
+                    <div class="list-icons">
+                        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
                     </div>
                 </div>
+            </div>
+            <div class="card-content">
+
                 <table>
                     <tr>
-                        <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Vehicle No</label></th>
+                        <th style="width: 25%"> <label class="col-lg-2 font-weight-bold">Vehicle No</label></th>
                         <th> @Html.DisplayFor(model => model.vehicleNo)</th>
 
                     </tr>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">shortNo</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Short No</label></th>
                         <th> @Html.DisplayFor(model => model.shortNo)</th>
                     </tr>
                     <tr>
-                        <th>   <label class="col-lg-2 font-weight-bold">vehicleName</label></th>
+                        <th>   <label class="col-lg-2 font-weight-bold">Vehicle Name</label></th>
                         <th>
                             @Html.DisplayFor(model => model.vehicleName)
                         </th>
                     </tr>
                     <tr>
-                        <th>   <label class="col-lg-2 font-weight-bold">registrationAddress</label></th>
+                        <th>   <label class="col-lg-2 font-weight-bold">Registration Address</label></th>
                         <th> @Html.DisplayFor(model => model.registrationAddress)</th>
                     </tr>
                     <tr>
-                        <th>   <label class="col-lg-2 font-weight-bold">mfdYear</label></th>
+                        <th>   <label class="col-lg-2 font-weight-bold">MFD Year</label></th>
                         <th> @Html.DisplayFor(model => model.mfdYear)</th>
                     </tr>
                     <tr>
-                        <th>   <label class="col-lg-2 font-weight-bold">insuranceExDate</label></th>
+                        <th>   <label class="col-lg-2 font-weight-bold">Insurance Ex Date</label></th>
                         <th> @Html.DisplayFor(model => model.insuranceExDate)</th>
                     </tr>
                     <tr>
-                        <th>   <label class="col-lg-2 font-weight-bold">taxExDate</label></th>
+                        <th>   <label class="col-lg-2 font-weight-bold">Tax Ex Date</label></th>
                         <th> @Html.DisplayFor(model => model.taxExDate)</th>
                     </tr>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">permitExDate</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Permit Ex Date</label></th>
                         <th> @Html.DisplayFor(model => model.permitExDate)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">fcExDate</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">FC Ex Date</label></th>
                         <th> @Html.DisplayFor(model => model.fcExDate)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">oillService</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Oil Service</label></th>
                         <th> @Html.DisplayFor(model => model.oillService)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">greecePacking</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Greece Packing</label></th>
                         <th> @Html.DisplayFor(model => model.greecePacking)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">coolentOill</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Coolent Oil</label></th>
                         <th> @Html.DisplayFor(model => model.coolentOill)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">gearBoxOill</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Gear Box Oil</label></th>
                         <th> @Html.DisplayFor(model => model.gearBoxOill)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">grownOill</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Grown Oil</label></th>
                         <th> @Html.DisplayFor(model => model.grownOill)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">salary</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Salary</label></th>
                         <th> @Html.DisplayFor(model => model.salary)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">vehicleDetail</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">Vehicle Detail</label></th>
                         <th> @Html.DisplayFor(model => model.vehicleDetail)</th>
                     <tr>
-                        <th> <label class="col-lg-2 font-weight-bold">noofUnit</label></th>
+                        <th> <label class="col-lg-2 font-weight-bold">No of Unit</label></th>
                         <th> @Html.DisplayFor(model => model.noofUnit)</th>
                     </tr>
                 </table>

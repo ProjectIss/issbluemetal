@@ -4,6 +4,35 @@
     ViewBag.Title = "Details";
 }
 
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
+
+    input[type=text]:not(.browser-default) {
+        width: 50%;
+    }
+    .card-content
+    {
+        width:70%;
+    }
+        input[type=text]:not(.browser-default):hover {
+            color: none;
+        }
+    table  {
+       
+        padding:8px;
+        margin-left:5px;
+    }
+    tr th {
+        margin-left:20px!important;
+    }
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
@@ -30,9 +59,9 @@
     <div class="col s12">
         <div class="card card-tabs">
             <div class="card-content">
-                <table>
+                <table style="width:75%">
                     <tr>
-                        <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Name</label></th>
+                        <th style="width: 25%"> <label class="col-lg-2 font-weight-bold">Name</label></th>
                         <th> @Html.DisplayFor(model => model.name)</th>
 
                     </tr>

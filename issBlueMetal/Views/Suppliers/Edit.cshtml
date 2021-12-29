@@ -4,6 +4,26 @@
     ViewBag.Title = "Edit";
 }
 
+<style>
+    #lblSup {
+        font-size: 17px!important;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
+   
+    input[type=text]:not(.browser-default) {
+        width: 75%;
+    }
+
+        input[type=text]:not(.browser-default):hover {
+            color: none;
+        }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
+
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
@@ -43,8 +63,8 @@
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Name</label>
+                                <div class="input-field col s6">
+                                    <label id="lblSup" for="icon_prefix3">Name</label><br />
                                     @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                                 </div>
@@ -52,17 +72,17 @@
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Address</label>
-                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control",  } })
+                                <div class="input-field col s6">
+                                    <label id="lblSup" for="icon_prefix3">Address</label><br />
+                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Cell No</label>
+                                <div class="input-field col s6">
+                                    <label id="lblSup" for="icon_prefix3">Cell No</label><br />
                                     @Html.EditorFor(model => model.cellNo, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.cellNo, "", new { @class = "text-danger" })
                                 </div>
@@ -70,26 +90,16 @@
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Opening Balance</label>
-                                    @Html.EditorFor(model => model.openingBalance, new { htmlAttributes = new { @class = "form-control",  } })
+                                <div class="input-field col s6">
+                                    <label id="lblSup" for="icon_prefix3">Opening Balance</label><br />
+                                    @Html.EditorFor(model => model.openingBalance, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.openingBalance, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">CST No</label>
-                                    @Html.EditorFor(model => model.cstNo, new { htmlAttributes = new { @class = "form-control",  } })
-                                    @Html.ValidationMessageFor(model => model.cstNo, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 input-field col s3">
-                                <input type="submit" value="SUBMIT" class="btn btn-default" />
+                                <input type="submit" value="Submit" class="btn btn-default" />
                             </div>
                         </div>
                     </div>

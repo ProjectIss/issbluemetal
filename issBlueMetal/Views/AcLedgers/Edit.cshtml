@@ -3,14 +3,32 @@
 @{
     ViewBag.Title = "Edit";
 }
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #a53394 !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 75%;
+    }
+
+        input[type=text]:not(.browser-default):hover {
+            color: none;
+        }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
             <div class="col s10 m6 l6 breadcrumbs-left">
-                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Account ledger Edit</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Edit Account ledger </span></h5>
 
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item">
@@ -29,7 +47,7 @@
 <div class="row">
     <div class="col s12">
         <div class="card card-tabs">
-            <div class="card-content">
+            <div class="card-content" style="margin:20px">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -44,8 +62,8 @@
                         <div class="row">
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Account ledger</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Account ledger</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.accountledger, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.accountledger, "", new { @class = "text-danger" })
@@ -54,8 +72,8 @@
                             </div>
                             <div class="form-group">
 
-                                <div class="input-field col s3" style="height: 240.047px">
-                                    <label for="icon_prefix3">Account Group</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Account Group</label><br />
                                     <div class="form-control input-field">
                                         @Html.DropDownList("accountGroupID", null, htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.accountGroupID, "", new { @class = "text-danger" })
@@ -65,17 +83,18 @@
                             </div>
                             <div class="form-group">
 
-                                <div class="input-field col s3">
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Opening Bal</label><br />
                                     <div class="form-control input-field">
-                                        @Html.EditorFor(model => model.openingBal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Opening Bal" } })
+                                        @Html.EditorFor(model => model.openingBal, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.openingBal, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Status</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Status</label><br />
                                     <div class="form-control input-field">
                                         @Html.DropDownList("type", new List<SelectListItem>
                                          {
@@ -89,8 +108,8 @@ new SelectListItem{ Text="Credit", Value="Credit"},
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-offset-2 input-field col s3">
-                                <input type="submit" value="SUBMIT" class="btn btn-default" />
+                            <div class="col-md-offset-2 input-field col s4">
+                                <input type="submit" value="Submit" class="btn btn-default" />
                             </div>
                         </div>
 

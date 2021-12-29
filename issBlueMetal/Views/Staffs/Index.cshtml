@@ -9,6 +9,22 @@
         clear: both;
         padding: 2% !important;
     }
+
+    label {
+        font-size: 16px;
+        color: #a53394 !important;
+        font-weight: 400;
+    }
+
+    input[type=search]:not(.browser-default) {
+        height: 17px;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 16px !important;
+        color: #a53394;
+    }
 </style>
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
@@ -44,7 +60,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <h3 class="card-title">Staff Id</h3>
+                                        <h3 class="card-title">Staff ID</h3>
 
                                     </th>
                                     <th>
@@ -55,10 +71,7 @@
                                         <h3 class="card-title">Address</h3>
 
                                     </th>
-                                    <th>
-                                        <h3 class="card-title">Cell No</h3>
-
-                                    </th>
+                                  
                                     <th>
                                         <h3 class="card-title">Licence No</h3>
 
@@ -72,45 +85,38 @@
                                         <h3 class="card-title">Salary</h3>
 
                                     </th>
-                                    <th>
-                                        <h3 class="card-title">Salary Type</h3>
-
-                                    </th>
-                                    <th></th>
+                                   
+                                    <th><h3 class="card-title">Actions </h3></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.id)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.name)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.address)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.cellNo)
-                                        </td>
-                                        <td>
+                                      
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.licenceNo)
                                         </td>
 
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.licenceExDate)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.salary)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.salaryType)
-                                        </td>
-                                        <td>
+                                        
+                                        <td style="text-align:center">
                                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.id }) 
                                             @Html.ActionLink("Delete", "Delete", new { id = item.id })
                                         </td>
                                     </tr>
