@@ -4,7 +4,40 @@
     ViewBag.Title = "Details";
 }
 
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 50%;
+    }
+
+    .card-content {
+        width: 70%;
+    }
+
+    input[type=text]:not(.browser-default):hover {
+        color: none;
+    }
+
+    table {
+        padding: 8px;
+        margin-left: 5px;
+    }
+
+    tr th {
+        margin-left: 20px !important;
+    }
+
+    .btn {
+     margin-bottom:20px;
+     margin-right:20px;
+        background-color: #ff5252 !important;
+    }
+</style>
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
@@ -32,21 +65,21 @@
             <div class="card-content">
                 <table>
                     <tr>
-                        <th style="width: 15%">  <label class="col-lg-2 font-weight-bold">Account ledger</label></th>
+                        <th style="width: 25%">  <label class="col-lg-2 font-weight-bold">Account ledger</label></th>
                         <th> @Html.DisplayFor(model => model.accountledger)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th style="width: 15%">    <label class="col-lg-2 font-weight-bold">Account Group</label></th>
                         <th>@Html.DisplayFor(model => model.accountGroup.accountGrouop)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th style="width: 15%">  <label class="col-lg-2 font-weight-bold">Opening Bal</label></th>
                         <th>   @Html.DisplayFor(model => model.openingBal)</th>
-</tr>    
+                    </tr>
                     <tr>
-                       <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Type</label></th>
-                       <th>@Html.DisplayFor(model => model.type)</th>
-</tr>
+                        <th style="width: 15%"> <label class="col-lg-2 font-weight-bold">Type</label></th>
+                        <th>@Html.DisplayFor(model => model.type)</th>
+                    </tr>
                 </table>
             </div>
             <div class="header-elements">

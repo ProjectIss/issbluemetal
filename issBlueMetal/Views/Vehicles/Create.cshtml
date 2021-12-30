@@ -3,13 +3,29 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #a53394 !important;
+        font-weight:bold;
+    }
+
+    input[type=text]:not(.browser-default) {
+        width: 100%;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
             <div class="col s10 m6 l6 breadcrumbs-left">
-                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Vehicle Create</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Add Vehicle </span></h5>
 
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item">
@@ -45,7 +61,7 @@
                             <div class="form-group">
 
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Vehicle No</label>
+                                    <label for="icon_prefix3">Vehicle No</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.vehicleNo, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.vehicleNo, "", new { @class = "text-danger" })
@@ -55,7 +71,7 @@
                             <div class="form-group">
 
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Short No</label>
+                                    <label for="icon_prefix3">Short No</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.shortNo, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.shortNo, "", new { @class = "text-danger" })
@@ -65,7 +81,7 @@
                             <div class="form-group">
 
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Vehicle Name</label>
+                                    <label for="icon_prefix3">Vehicle Name</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.vehicleName, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.vehicleName, "", new { @class = "text-danger" })
@@ -75,7 +91,7 @@
                             <div class="form-group">
 
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Registration Address</label>
+                                    <label for="icon_prefix3">Registration Address</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.registrationAddress, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.registrationAddress, "", new { @class = "text-danger" })
@@ -86,9 +102,9 @@
                                 <div class="form-group">
 
                                     <div class="input-field col s3">
-                                        <label for="icon_prefix3">MFD Year</label>
+                                        <label for="icon_prefix3">MFD Year</label><br />
                                         <div class="form-control input-field">
-                                      
+
                                             @Html.TextBoxFor(m => m.mfdYear, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
                                         </div>
@@ -97,7 +113,7 @@
                                 <div class="form-group">
 
                                     <div class="input-field col s3">
-                                        <label for="icon_prefix3">Insurance Ex Date</label>
+                                        <label for="icon_prefix3">Insurance Ex Date</label><br />
                                         <div class="form-control input-field">
                                             @Html.TextBoxFor(m => m.insuranceExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -107,7 +123,7 @@
                                 <div class="form-group">
 
                                     <div class="input-field col s3">
-                                        <label for="icon_prefix3">Tax Ex Date</label>
+                                        <label for="icon_prefix3">Tax Ex Date</label><br />
                                         <div class="form-control input-field">
                                             @Html.TextBoxFor(m => m.taxExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -116,7 +132,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Permit Ex Date</label>
+                                            <label for="icon_prefix3">Permit Ex Date</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.permitExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -128,7 +144,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">FC Ex Date</label>
+                                            <label for="icon_prefix3">FC Ex Date</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.fcExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -138,7 +154,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">oillService</label>
+                                            <label for="icon_prefix3">Oil Service</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.oillService, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -148,7 +164,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Greece Packing</label>
+                                            <label for="icon_prefix3">Greece Packing</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.greecePacking, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -158,7 +174,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Coolent Oill</label>
+                                            <label for="icon_prefix3">Coolent Oil</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.coolentOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -170,7 +186,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Gear Box Oill</label>
+                                            <label for="icon_prefix3">Gear Box Oill</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.gearBoxOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -180,7 +196,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Grown Oill</label>
+                                            <label for="icon_prefix3">Grown Oill</label><br />
                                             <div class="form-control input-field">
                                                 @Html.TextBoxFor(m => m.grownOill, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
@@ -190,7 +206,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Salary</label>
+                                            <label for="icon_prefix3">Salary</label><br />
                                             <div class="form-control input-field">
                                                 @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", } })
                                                 @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
@@ -201,7 +217,7 @@
 
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">Vehicle Detail</label>
+                                            <label for="icon_prefix3">Vehicle Detail</label><br />
                                             <div class="form-control input-field">
                                                 @Html.EditorFor(model => model.vehicleDetail, new { htmlAttributes = new { @class = "form-control", } })
                                                 @Html.ValidationMessageFor(model => model.vehicleDetail, "", new { @class = "text-danger" })
@@ -213,7 +229,7 @@
                                     <div class="form-group">
 
                                         <div class="input-field col s3">
-                                            <label for="icon_prefix3">No of Unit</label>
+                                            <label for="icon_prefix3">No of Unit</label><br />
                                             <div class="form-control input-field">
                                                 @Html.EditorFor(model => model.noofUnit, new { htmlAttributes = new { @class = "form-control", } })
                                                 @Html.ValidationMessageFor(model => model.noofUnit, "", new { @class = "text-danger" })
@@ -224,18 +240,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 input-field col s3">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    <input type="submit" value="Submit" class="btn btn-default" />
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                 }
-            
+
             </div>
-        </div>   
-     
+        </div>
+
     </div>
 </div>

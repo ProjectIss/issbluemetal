@@ -10,6 +10,24 @@
         clear: both;
         padding: 2% !important;
     }
+
+    label {
+        font-size: 16px;
+        color: #a53394;
+        font-weight: bold !important;
+    }
+
+    input[type=search]:not(.browser-default) {
+        height: 17px;
+    }
+
+    h3 {
+        font-size: 15px;
+        text-align: center;
+        color: #a53394;
+        font-weight: bold !important;
+    }
+
 </style>
 
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -46,27 +64,27 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <h3 class="card-title">Location Id</h3>
+                                        <h3 class="card-title">Location ID</h3>
 
                                     </th>
                                     <th>
                                         <h3 class="card-title">Location Name</h3>
 
                                     </th>
-                                    <th></th>
+                                    <th><h3 class="card-title">Actions</h3></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.id)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.name)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                                             @Html.ActionLink("Details", "Details", new { id = item.id }) |
                                             @Html.ActionLink("Delete", "Delete", new { id = item.id })

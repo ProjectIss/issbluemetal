@@ -9,15 +9,42 @@
         clear: both;
         padding: 2% !important;
     }
+
+    label {
+        font-size: 16px;
+        color: #a53394 !important;
+        font-weight: 400;
+    }
+
+    input[type=search]:not(.browser-default) {
+        height: 17px;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 16px !important;
+        color: #a53394;
+    }
+    td {
+        text-align:center!important;
+    }
 </style>
 
-<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<!-- Editor -->
+<link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+<!-- Buttons -->
+<link href="https://nightly.datatables.net/buttons/css/buttons.dataTables.css?_=c6b24f8a56e04fcee6105a02f4027462.css" rel="stylesheet" type="text/css" />
+<script src="https://nightly.datatables.net/buttons/js/dataTables.buttons.js?_=c6b24f8a56e04fcee6105a02f4027462"></script>
+
+
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
             <div class="col s10 m6 l6 breadcrumbs-left">
-                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>User</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Users</span></h5>
 
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item">
@@ -25,7 +52,7 @@
 
                     </li>
                     <li class="breadcrumb-item">
-                        <a> User Index</a>
+                        <a> Users Index</a>
                     </li>
 
                 </ol>
@@ -42,8 +69,8 @@
                 <div class="card">
 
                     <div class="card-tabs">
-                        <table class="display" id="tblItems">
-                            <thead>
+                        <table class="hover row-border" width="100%" id="tblCustomer">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>
                                         <h3 class="card-title">User Id</h3>
@@ -73,9 +100,13 @@
                                         <h3 class="card-title">Status</h3>
 
                                     </th>
+                                    <th>
+                                        <h3 class="card-title">Last Login</h3>
 
-
-                                    <th></th>
+                                    </th>
+                                    <th>
+                                        <h3 class="card-title">Actions</h3>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,7 +142,6 @@
                                     </tr>
                                 }
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -121,10 +151,38 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
 
-        $("#tblItems").DataTable();
+    $(function () {
+        $('#tblCustomer').DataTable({
 
+            "buttons": [
+                {
+                    extend: 'copy',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-copy"></i> Copy'
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-file-excel"></i> Excel'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="far fa-file-pdf"></i> Pdf'
+                },
+                {
+                    extend: 'csv',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="fas fa-file-csv"></i> CSV'
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-dark rounded-0',
+                    text: '<i class="fas fa-print"></i> Print'
+                }
+            ]
+
+        });
     });
-
 </script>

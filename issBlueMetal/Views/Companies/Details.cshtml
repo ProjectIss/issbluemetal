@@ -3,7 +3,40 @@
 @{
     ViewBag.Title = "Details";
 }
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 50%;
+    }
+
+    .card-content {
+        width: 70%;
+    }
+
+    input[type=text]:not(.browser-default):hover {
+        color: none;
+    }
+
+    table {
+        padding: 8px;
+        margin-left: 15px;
+    }
+
+    tr th {
+        margin-left: 20px !important;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+        margin-bottom:20px;
+        margin-right:10px;
+    }
+</style>
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
@@ -27,28 +60,28 @@
 
 <div class="row">
     <div class="col s12">
-        <div class="card card-tabs">
-            <div class="card-content">
+        <div class="card card-tabs" style="margin:20px!important">
+            <div class="card-content" >
                 <table>
                     <tr>
-                        <th>  <label class="col-lg-2 font-weight-bold">Company Id</label></th>
+                        <th>  <label class="col-lg-2 font-weight-bold">Company ID</label></th>
                         <th>  @Html.DisplayFor(model => model.id)</th>
-<tr>
-                            <th style="width: 15%">  <label class="col-lg-2 font-weight-bold">Name</label>  </th>
-                            <th>  @Html.DisplayFor(model => model.name) </ th >
-                                </tr>
                     <tr>
-                            <th> <label class="col-lg-2 font-weight-bold">Address</label></th>
-                            <th>@Html.DisplayFor(model => model.address)</th>
-</tr>
+                        <th style="width: 25%">  <label class="col-lg-2 font-weight-bold">Name</label>  </th>
+                        <th>  @Html.DisplayFor(model => model.name) </ th >
+                    </tr>
                     <tr>
-                            <th>  <label class="col-lg-2 font-weight-bold">Cell No</label></th>
-                            <th>@Html.DisplayFor(model => model.cellNo)</th>
-</tr>
+                        <th> <label class="col-lg-2 font-weight-bold">Address</label></th>
+                        <th>@Html.DisplayFor(model => model.address)</th>
+                    </tr>
+                    <tr>
+                        <th>  <label class="col-lg-2 font-weight-bold">Cell No</label></th>
+                        <th>@Html.DisplayFor(model => model.cellNo)</th>
+                    </tr>
                 </table>
             </div>
             <div class="header-elements">
-                <div class="list-icons" style="text-align:right">
+                <div class="list-icons" style="text-align:right;margin-bottom:20px!important">
                     @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                     @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
 

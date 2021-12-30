@@ -3,13 +3,27 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    label {
+        font-size: 19px;
+        font-weight: bold;
+        color: #a53394 !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 75%;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
             <div class="col s10 m6 l6 breadcrumbs-left">
-                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>User Create</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>Create User </span></h5>
 
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item">
@@ -42,16 +56,16 @@
                     <div class="row">
                         <div class="row">
                             <div class="form-group">
-                                <div class="input-field col s3">
-                                    <i class="material-icons prefix">account_circle</i>
+                                <div class="input-field col s4">
+                                    <i class="material-icons prefix">account_circle</i><br />
                                     @Html.DropDownList("companyId", null, htmlAttributes: new { @class = "form-control" })
-                                    <label for="icon_prefix3"> Company</label>
+                                    <label for="icon_prefix3"> Company</label><br />
                                 </div>
                             </div>
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Name</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Name</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -61,8 +75,8 @@
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">User Name</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">User Name</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
@@ -72,8 +86,8 @@
 
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Password</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Password</label><br />
                                     <div class="form-control input-field">
                                         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
@@ -81,14 +95,12 @@
                                 </div>
                             </div>
 
-                        </div>
 
-                        <div class="row">
-                            
                             <div class="form-group">
 
-                                <div class="input-field col s3">
+                                <div class="input-field col s4">
                                     <div class="form-control input-field">
+                                        <br />
                                         @Html.DropDownList("role",new List<SelectListItem> {
                                         new SelectListItem{ Text="Admin", Value="Admin"},
                                  new SelectListItem{ Text="Manager", Value="Manager"},
@@ -101,8 +113,8 @@
                             </div>
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <label for="icon_prefix3">Status</label>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Status</label><br />
                                     <div class="form-control input-field">
                                         @Html.DropDownList("status", new List<SelectListItem>
                                          {
@@ -113,22 +125,19 @@ new SelectListItem{ Text="InActive", Value="InActive"},
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="form-group">
 
-                                <div class="input-field col s3">
-                                    <span class="input-group-prepend">
-                                        <span class="input-group-text"><i class="icon-calendar22"></i></span>
-                                    </span>
+                                <div class="input-field col s4">
+                                    <label for="icon_prefix3">Last Login</label><br />
+                                    <div class="form-control input-field">
+                                        @Html.TextBoxFor(m => m.lastLogin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
 
-                                    @Html.EditorFor(model => model.lastLogin, new { htmlAttributes = new { @class = "form-control daterange-single-date", @placeholder = "Last Login" } })
-                                    @Html.ValidationMessageFor(model => model.lastLogin, "", new { @class = "text-danger" })
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-offset-2 input-field col s3">
+                            <div class="col-md-offset-2 input-field col s4">
                                 <input type="submit" value="Submit" class="btn btn-default" />
                             </div>
                         </div>

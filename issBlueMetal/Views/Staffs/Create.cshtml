@@ -3,7 +3,21 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    label {
+        font-size: 19px;
+        font-weight: bold;
+        color: #a53394 !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 100%;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+    }
+</style>
 
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
@@ -39,17 +53,14 @@
                             @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                         </div>
                     </div>
-
-
-
                     <div class="row">
 
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Name</label>
+                                <label for="icon_prefix3">Name</label>&nbsp;
                                 <div class="form-control input-field">
-                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control",  } })
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -57,7 +68,7 @@
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Address</label>
+                                <label for="icon_prefix3">Address</label>&nbsp;
                                 <div class="form-control input-field">
                                     @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
@@ -67,9 +78,9 @@
                             <div class="form-group">
 
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Cell No</label>
+                                    <label for="icon_prefix3">Cell No</label>&nbsp;
                                     <div class="form-control input-field">
-                                        @Html.EditorFor(model => model.cellNo, new { htmlAttributes = new { @class = "form-control",  } })
+                                        @Html.EditorFor(model => model.cellNo, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.cellNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -77,21 +88,21 @@
 
                             <div class="form-group">
                                 <div class="input-field col s3">
-                                    <label for="icon_prefix3">Licence No</label>
+                                    <label for="icon_prefix3">Licence No</label>&nbsp;
                                     <div class="form-control input-field">
-                                        @Html.EditorFor(model => model.licenceNo, new { htmlAttributes = new { @class = "form-control",} })
+                                        @Html.EditorFor(model => model.licenceNo, new { htmlAttributes = new { @class = "form-control", } })
                                         @Html.ValidationMessageFor(model => model.licenceNo, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="row">
+                   
+
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Badge No</label>
+                                <label for="icon_prefix3">Badge No</label>&nbsp;
                                 <div class="form-control input-field">
-                                    @Html.EditorFor(model => model.badgeno, new { htmlAttributes = new { @class = "form-control",  } })
+                                    @Html.EditorFor(model => model.badgeno, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.badgeno, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -99,17 +110,16 @@
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Licence Ex Date</label>
+                                <label for="icon_prefix3">Licence Ex Date</label>&nbsp;
                                 <div class="form-control input-field">
-                                    @Html.EditorFor(model => model.licenceExDate, new { htmlAttributes = new { @class = "form-control", } })
-                                    @Html.ValidationMessageFor(model => model.licenceExDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.licenceExDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Salary</label>
+                                <label for="icon_prefix3">Salary</label>&nbsp;
                                 <div class="form-control input-field">
                                     @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
@@ -119,9 +129,9 @@
                         <div class="form-group">
 
                             <div class="input-field col s3">
-                                <label for="icon_prefix3">Salary Type</label>
+                                <label for="icon_prefix3">Salary Type</label>&nbsp;
                                 <div class="form-control input-field">
-                                    @Html.EditorFor(model => model.salaryType, new { htmlAttributes = new { @class = "form-control",  } })
+                                    @Html.EditorFor(model => model.salaryType, new { htmlAttributes = new { @class = "form-control", } })
                                     @Html.ValidationMessageFor(model => model.salaryType, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -135,7 +145,7 @@
                     </div>
                             }
 
-                        </div>
-                    </div>
+                 </div>
+            </div>
     </div>
 </div>

@@ -1,10 +1,45 @@
 ﻿@model issBlueMetal.Models.Staff
 
 @{
-    ViewBag.Title = "Details";
+                /**/
+
+                ViewBag.Title = "Details";
 }
 
+<style>
+    label {
+        font-size: 17px;
+        font-weight: 400;
+        color: #8e24aa !important;
+    }
 
+    input[type=text]:not(.browser-default) {
+        width: 50%;
+    }
+
+    .card-content {
+        width: 70%;
+    }
+
+    input[type=text]:not(.browser-default):hover {
+        color: none;
+    }
+
+    table {
+        padding: 8px;
+        margin-left: 5px;
+    }
+
+    tr th {
+        margin-left: 20px !important;
+    }
+
+    .btn {
+        background-color: #ff5252 !important;
+        margin-bottom: 20px;
+        margin-right: 15px;
+    }
+</style>
 <div class="breadcrumbs-inline pt-3 pb-1" id="breadcrumbs-wrapper">
     <div class="container">
         <div class="row">
@@ -32,9 +67,9 @@
             <div class="card-content">
                 <table>
                     <tr>
-                        <th style="width: 15%"><label class="col-lg-2 font-weight-bold">Staff Id</label></th>
+                        <th style="width: 30%"><label class="col-lg-2 font-weight-bold">Staff ID</label></th>
                         <th>@Html.DisplayFor(model => model.id)</th>
-</tr>
+                    </tr>
                     <tr>
 
                         <th>
@@ -45,27 +80,27 @@
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Address</label></th>
                         <th>   @Html.DisplayFor(model => model.address)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Cell No</label></th>
                         <th>@Html.DisplayFor(model => model.cellNo)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Licence No</label></th>
                         <th>  @Html.DisplayFor(model => model.licenceNo)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Badge No</label></th>
                         <th>@Html.DisplayFor(model => model.badgeno)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Licence Ex Date</label></th>
                         <th> @Html.DisplayFor(model => model.licenceExDate)</th>
-</tr>
+                    </tr>
                     <tr>
                         <th> <label class="col-lg-2 font-weight-bold">Salary</label></th>
                         <th> @Html.DisplayFor(model => model.salary)</th>
-                        
+
                     </tr>
                     <tr>
                         <th><label class="col-lg-2 font-weight-bold">Salary Type</label></th>
@@ -73,7 +108,7 @@
                     </tr>
                 </table>
 
-        </div>
+            </div>
             <div class="header-elements">
                 <div class="list-icons" style="text-align:right">
                     @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
